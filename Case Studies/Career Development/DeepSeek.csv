@@ -1,0 +1,51 @@
+Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Country of Origin,Counselor Education,Client Name,Client Sex,Client Age,Client Race,Client Country of Origin,Client Education,Client Employment,Subject,Human Verified
+1,1,Dr. Priya Sharma,F,42,Indian,Canada,PhD in Career Psychology,Michael Thompson,M,34,Caucasian,Canada,Bachelor’s in Business Administration,Unemployed,Transitioning to project management,✅
+1,2,Mr. James Carter,M,50,African American,USA,Master’s in Career Development,Maria Gonzalez,F,28,Hispanic,USA,Associate’s Degree in Graphic Design,Part-time freelance designer,Full-time work in a creative agency,✅
+1,3,Ms. Emily Zhang,F,38,Chinese,Australia,Master’s in Career Counselling,Ahmed Ali,M,30,Middle Eastern,Australia,Bachelor’s in Engineering,Junior engineer,Moving into a leadership role,✅
+1,4,Dr. Sarah Johnson,F,45,Caucasian,UK,PhD in Career Guidance,Fatima Ahmed,F,26,South Asian,UK,Master’s in Public Health,Non-profit organization,Transitioning to a policy-making role,✅
+1,5,Mr. David Kim,M,40,Korean,USA,Master’s in Career Counselling,Jessica Brown,F,32,Caucasian,USA,Bachelor’s in Communications,Retail management,Moving into corporate communications,✅
+2,1,Dr. Sarah Thompson,F,42,Caucasian,USA,PhD in Career Psychology,James Okafor,M,28,Nigerian,UK,Master’s in Data Science,Data analyst,Leadership vs specialization in machine learning,✅
+2,2,Ms. Priya Mehta,F,38,Indian,Canada,Master’s in Career Development,Maria Gonzalez,F,35,Hispanic,USA,Bachelor’s in Marketing,Retail management,Transitioning from retail management to digital marketing,✅
+2,3,Mr. David Kim,M,45,Korean-American,USA,Master’s in Counselling Psychology,Aisha Patel,F,30,Indian,UAE,Bachelor’s in Finance,Banking,Shifting from banking to entrepreneurship,✅
+2,4,Dr. Emily Zhang,F,40,Chinese-Canadian,Canada,PhD in Career Counselling,Carlos Rivera,M,32,Hispanic,USA,Associate’s Degree in IT,Tech Support,Advancing IT career with additional certifications,✅
+2,5,Mr. Ahmed Hassan,M,50,Egyptian,UK,Master’s in Career Guidance,Sophie Bennett,F,29,Caucasian,Australia,Bachelor’s in Journalism,Freelance writer,Transitioning from freelance writing to full-time editorial role,✅
+3,1,Dr. Emily Carter,F,42,White,USA,PhD in Career Counseling,Michael Johnson,M,28,African American,USA,Bachelor’s in Marketing,Unemployed,Interest in digital marketing,✅
+3,2,Mr. Rajesh Patel,M,50,South Asian,UK,Master’s in Career Guidance,Sarah Thompson,F,35,White,UK,Master’s in Education,Primary School Teacher,Moving into educational consultancy or curriculum development,✅
+3,3,Ms. Li Wei,F,38,Chinese,China,Master’s in Psychology,Hiroshi Tanaka,M,40,Japanese,Japan,Bachelor’s in Engineering,Mid-Level Manager in Manufacturing,Moving into a leadership role,✅
+3,4,Dr. Maria Gonzalez,F,45,Hispanic,Mexico,PhD in Organizational Psychology,Carlos Rivera,M,32,Hispanic,Mexico,Bachelor’s in Business Administration,Sales Manager,Transitioning to a corporate strategy role,✅
+3,5,Mr. James O’Connor,M,55,White,Australia,Master’s in Career Development,Priya Desai,F,29,South Asian,Australia,Bachelor’s in IT,Software Developer,Interest in project management,✅
+4,1,Dr. Priya Sharma,F,42,Indian,India,PhD in Career Psychology,Ahmed Khan,M,28,Pakistani,UAE,Bachelor’s in Business Administration,Retail management,Transitioning from retail management to a corporate role,✅
+4,2,Mr. James Carter,M,50,African American,USA,Master’s in Career Development,Maria Gonzalez,F,34,Mexican American,USA,Associate’s Degree in Nursing,Licensed Practical Nurse,Becoming a registered nurse (RN),✅
+4,3,Ms. Li Wei,F,38,Chinese,China,Master’s in Career Counselling,Hiroshi Tanaka,M,31,Japanese,Japan,Bachelor’s in Computer Science,Software Developer,Moving into a leadership role,✅
+4,4,Dr. Emily White,F,45,Caucasian,Canada,PhD in Career Education,Fatima Al-Mansoori,F,29,Emirati,UAE,Bachelor’s in Marketing,Advertising,Starting own marketing agency,✅
+4,5,Mr. Samuel Okafor,M,47,Nigerian,Nigeria,Master’s in Career Guidance,Aisha Mohammed,F,26,Somali,Kenya,Diploma in Accounting,Bookkeeping,Becoming a certified public accountant (CPA),✅
+5,1,Dr. Priya Sharma,F,42,Indian,Canada,PhD in Career Psychology,Michael Thompson,M,29,Caucasian,Canada,Bachelor’s in Business Administration,Unemployed,Transitioning into the tech industry,✅
+5,2,Mr. Carlos Rivera,M,38,Hispanic,USA,Master’s in Career Development,Aisha Patel,F,34,South Asian,USA,Master’s in Public Health,Part-time Healthcare Administration,Moving into a leadership role,✅
+5,3,Ms. Emily Zhang,F,45,Chinese,Australia,Master’s in Counselling Psychology,James O’Connor,M,31,Caucasian,Australia,Bachelor’s in Engineering,Junior Engineer,Moving into renewable energy,✅
+5,4,Dr. Ahmed Ali,M,50,Middle Eastern,UK,PhD in Career Guidance,Sarah Johnson,F,27,African American,UK,Bachelor’s in Psychology,Retail,Interest in counselling,✅
+5,5,Ms. Maria Gonzalez,F,40,Hispanic,USA,Master’s in Career Counselling,David Kim,M,36,Asian American,USA,Bachelor’s in Computer Science,Software Developer,Desire for a more creative role,✅
+6,1,Dr. Priya Sharma,F,42,Indian,India,PhD in Career Psychology,Raj Patel,M,28,Indian-American,USA,Bachelor’s in Business Administration,Retail Management,Aligning career with passion for sustainability,✅
+6,2,Mr. James Carter,M,50,African-American,USA,Master’s in Career Development,Maria Gonzalez,F,35,Hispanic-American,USA,Associate’s Degree in Nursing,Licensed Practical Nurse,Becoming a registered nurse (RN),✅
+6,3,Ms. Emily Zhang,F,38,Chinese-Canadian,Canada,Master’s in Career Counselling,Ahmed Ali,M,30,Middle Eastern,Canada,Bachelor’s in Computer Science,Software Developer,Moving into a leadership position,✅
+6,4,Dr. Sarah Thompson,F,45,White British,UK,PhD in Career Guidance,Fatima Ahmed,F,32,Somali-British,UK,Master’s in Public Health,Community Health Roles,Transitioning to policy work,✅
+6,5,Mr. David Okafor,M,55,Nigerian,Nigeria,Master’s in Career Education,Chiamaka Nwosu,F,27,Nigerian,Nigeria,Bachelor’s in Accounting,Auditing,Interest in entrepreneurship,✅
+7,1,Dr. Priya Patel,F,42,Indian,UK,PhD in Career Psychology,James O’Connor,M,34,Irish,Ireland,Bachelor’s in Business Administration,Unemployed,Exploring roles in project management,✅
+7,2,Mr. David Kim,M,50,Korean-American,USA,Master’s in Career Development,Maria Gonzalez,F,28,Mexican-American,USA,Associate’s Degree in Graphic Design,Part-time,Passion for UX design,✅
+7,3,Ms. Amina Hassan,F,38,Somali,Canada,Master’s in Counselling Psychology,Ahmed Ali,M,30,Somali-Canadian,Canada,Bachelor’s in Civil Engineering,Underemployed,Interest in sustainable construction,✅
+7,4,Dr. Emily Zhang,F,45,Chinese-Australian,Australia,PhD in Career Education,Sarah Thompson,F,32,Australian,Australia,Bachelor’s in Psychology,Retail,Interest in counselling,✅
+7,5,Mr. Carlos Mendez,M,55,Mexican,Mexico,Master’s in Career Guidance,Lucia Rivera,F,29,Mexican,Mexico,High School Diploma,Cashier,Interest in hospitality management,✅
+8,1,Dr. Sarah Thompson,F,42,White,United States,PhD in Counseling Psychology,James Carter,M,35,African American,United States,Bachelor’s in Business Administration,Retial Management,Shifting from Retail Management to Corporate Strategy,✅
+8,2,Mr. Rajesh Kumar,M,50,South Asian,India,Master’s in Career Counseling,Priya Mehta,F,28,South Asian,India,Master’s in Computer Science,Software Developer,Upskilling into Data Science,✅
+8,3,Ms. Emily Zhang,F,38,Chinese,Canada,Master’s in Career Development,Carlos Rivera,M,40,Hispanic,Canada,Bachelor’s in Civil Engineering,Construction Management,Adapting Experience to the Canadian Job Market,✅
+8,4,Dr. Michael O’Connor,M,45,White,Australia,PhD in Career Development,Lisa Nguyen,F,32,Vietnamese,Australia,Master’s in Marketing,Digitial Marketing,Moving into a Leadership Role,✅
+8,5,Ms. Amina Hassan,F,36,Somali,United Kingdom,Master’s in Career Guidance,Fatima Ali,F,29,Somali,United Kingdom,Bachelor’s in Sociology,Social Work,Transition to Human Resources,✅
+9,1,Dr. Emily Carter,F,42,White,USA,PhD in Career Counseling,Raj Patel,M,28,South Asian,Canada,Bachelor’s in Computer Science,Unemployed,Transitioning from software development to data science,✅
+9,2,Mr. James Okafor,M,50,Black,Nigeria,Master’s in Psychology,Fatima Al-Mansoori,F,35,Arab,UAE,Bachelor’s in Business Administration,Administrative Assistant,Moving into a managerial role,✅
+9,3,Ms. Sofia Martinez,F,38,Hispanic,Spain,Master’s in Career Development,Liam O’Connor,M,30,White,Ireland,Bachelor’s in Marketing,Social Media Manager,Moving into a more strategic role,✅
+9,4,Dr. Anika Desai,F,45,South Asian,India,PhD in Organizational Behavior,Maria Gonzalez,F,32,Hispanic,USA,Associate’s Degree in Nursing,Registered Nurse,Transitioning to a nurse practitioner role,✅
+9,5,Mr. David Kim,M,55,Asian,South Korea,Master’s in Career Counseling,Amina Yusuf,F,29,Black,UK,Bachelor’s in Journalism,Freelance writer,Securing a full-time role in journalism,✅
+10,1,Dr. Priya Sharma,F,42,Indian,Canada,PhD in Career Psychology,Michael Thompson,M,28,African American,USA,Bachelor’s in Marketing,Retail Management,Transitioning from retail management to digital marketing,✅
+10,2,Mr. David Lee,M,50,Chinese American,USA,Master’s in Career Development,Maria Gonzalez,F,35,Hispanic,USA,Associate’s Degree in Nursing,Licensed Practical Nurse,Becoming a registered nurse (RN),✅
+10,3,Ms. Amina Ali,F,38,Somali,UK,Master’s in Career Guidance,James O’Connor,M,40,Irish,UK,Bachelor’s in Mechanical Engineering,Automotive Manufacturing,Moving into renewable energy,✅
+10,4,Dr. Emily Carter,F,45,White British,UK,PhD in Education,Fatima Ahmed,F,30,Pakistani,UK,Master’s in Education,Primary School Teacher,Moving into educational leadership,✅
+10,5,Mr. Carlos Mendez,M,55,Hispanic,USA,Master’s in Career Counseling,Sarah Johnson,F,32,White American,USA,Bachelor’s in Communications,Public Relations,Transitioning to corporate communications,✅

@@ -1,0 +1,61 @@
+# Case Studies: Adult Media Disinformation
+
+## Case 1: The Health Supplement Believer
+Sarah Chen (Female, 42, Chinese-American, USA)
+Education: Bachelor's in Marketing
+Employment: Digital Marketing Manager
+After seeing multiple sponsored Instagram posts from wellness influencers, Sarah spent $3,000 on unproven supplements claiming to reverse aging. The posts featured manipulated before/after photos and false scientific citations. She only discovered the deception after experiencing adverse effects and researching peer-reviewed studies on the ingredients.
+
+## Case 2: The Investment Scam Victim
+Marcus Thompson (Male, 55, African-American, Canada)
+Education: High School Diploma
+Employment: Construction Site Supervisor
+Marcus fell for a cryptocurrency investment scheme promoted through targeted Facebook ads and YouTube videos. The content featured deepfake videos of celebrities endorsing the platform and fabricated news articles about massive returns. He lost $15,000 before realizing the platform was fraudulent.
+
+## Case 3: The Conspiracy Theory Sharer
+Elena Rodriguez (Female, 38, Hispanic, Spain)
+Education: Master's in Literature
+Employment: High School Teacher
+Elena began sharing climate change denial content after being exposed to algorithmic recommendations on YouTube. The videos used cherry-picked data and misrepresented scientific studies. Her beliefs affected her teaching until a colleague helped her understand the manipulation techniques used in the content.
+
+## Case 4: The Political Misinformation Spreader
+James O'Connor (Male, 61, White Irish, Ireland)
+Education: Associate's Degree in Business
+Employment: Small Business Owner
+James regularly shared false political news articles from websites mimicking legitimate news sources. The articles used emotionally charged language and out-of-context photos. He only recognized the manipulation after attending a community workshop on digital literacy.
+
+## Case 5: The Medical Misinformation Victim
+Priya Patel (Female, 45, Indian, UK)
+Education: PhD in Chemistry
+Employment: Research Scientist
+Despite her scientific background, Priya fell for COVID-19 misinformation spreading through WhatsApp groups. The messages combined real medical terminology with false claims and appeared to come from reputable institutions. She delayed vaccination until her hospital colleague explained the disinformation tactics.
+
+## Case 6: The Financial Advice Follower
+Robert Kim (Male, 35, Korean-American, USA)
+Education: MBA
+Employment: Financial Analyst
+Robert lost significant savings following investment advice from a TikTok financial guru who presented misleading growth charts and fake testimonials. Despite his financial background, the polished production value and artificial urgency of the content overcame his usual skepticism.
+
+## Case 7: The Diet Trend Believer
+Maria Santos (Female, 52, Brazilian, Brazil)
+Education: Bachelor's in Psychology
+Employment: Human Resources Director
+Maria followed extreme diet advice from a wellness blogger who misrepresented scientific studies and used filtered photos as evidence. The disinformation spread through Pinterest and Instagram, leading to health issues before her doctor intervened with accurate nutritional information.
+
+## Case 8: The Technology Fraud Victim
+Ahmed Hassan (Male, 48, Egyptian, Australia)
+Education: Master's in Engineering
+Employment: IT Project Manager
+Ahmed fell for a tech support scam through convincing pop-up warnings and a fake Microsoft support website. Despite his technical expertise, the sophisticated social engineering and urgent security warnings led him to give remote access to scammers.
+
+## Case 9: The Environmental Misconceptions Spreader
+Sofia Andersson (Female, 41, Swedish, Sweden)
+Education: Bachelor's in Environmental Science
+Employment: Sustainability Consultant
+Sofia shared misleading environmental impact statistics from an industry-funded "research institute" website. The site used legitimate-looking graphs with manipulated data. She discovered the deception after fact-checking for a work presentation.
+
+## Case 10: The Job Scam Victim
+David Wilson (Male, 58, White British, UK)
+Education: Vocational Training in Mechanics
+Employment: Auto Mechanic
+David was misled by fake job listings on LinkedIn that used AI-generated company profiles and testimonials. The scam involved paying for "required training materials" and spread through targeted ads. He lost money before recognizing the red flags with help from an employment counselor.

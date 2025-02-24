@@ -1,0 +1,49 @@
+Case Study 1: The Investment Trap
+
+    Name: John, Gender: Male, Age: 52, Ethnicity: White, Country: USA, Education: Bachelor's in Business, Employment: Small Business Owner
+    John followed an online financial guru who promised high returns on cryptocurrency investments. The influencer’s videos, filled with testimonials and selective success stories, convinced him to invest heavily. When the market crashed, John lost most of his savings. Later, he discovered the influencer was promoting a scam project, earning commissions from referrals. This experience made him realize the importance of verifying financial advice, identifying conflicts of interest, and critically assessing online sources rather than relying on persuasive narratives.
+
+Case Study 2: The Health Misinformation Spiral
+
+    Name: Maria, Gender: Female, Age: 45, Ethnicity: Latina, Country: Mexico, Education: High School Diploma, Employment: Retail Worker
+    Maria came across a viral social media post claiming that a herbal remedy could cure diabetes. Skeptical of pharmaceutical companies, she stopped taking her prescribed medication and relied solely on the alternative treatment. Her condition worsened, leading to hospitalization. Only after a doctor explained the dangers of misinformation did she realize the post had no scientific backing. This experience highlighted the risks of health misinformation and the importance of seeking medical advice from reputable professionals rather than unverified online claims.
+
+Case Study 3: Political Echo Chamber
+
+    Name: Ahmed, Gender: Male, Age: 60, Ethnicity: Arab, Country: UK, Education: Master's in Engineering, Employment: Retired Civil Engineer
+    Ahmed, an active social media user, followed news pages aligned with his political beliefs. Over time, he was exposed only to one-sided perspectives, reinforcing his views and deepening his distrust of mainstream media. A fact-checking workshop made him realize how algorithm-driven content personalization had trapped him in an echo chamber. After learning to cross-check information and consult diverse sources, he became more aware of bias in news reporting and the importance of seeking balanced viewpoints.
+
+Case Study 4: The Conspiracy Rabbit Hole
+
+    Name: Lisa, Gender: Female, Age: 38, Ethnicity: White, Country: Australia, Education: Bachelor's in Psychology, Employment: Office Administrator
+    Lisa stumbled upon a YouTube channel promoting conspiracy theories about global elites controlling the world. Initially skeptical, she kept watching out of curiosity, but the videos’ suggestive framing and emotionally charged content gradually influenced her beliefs. She began distrusting government institutions and spreading misinformation among friends. It was only after attending a media literacy seminar that she understood how manipulation techniques, like selective evidence and fear-based rhetoric, had shaped her views.
+
+Case Study 5: Deepfake Deception
+
+    Name: Raj, Gender: Male, Age: 42, Ethnicity: Indian, Country: Canada, Education: Bachelor's in IT, Employment: Software Developer
+    Raj received a video of a well-known politician making racist remarks. Outraged, he shared it widely, only to later discover it was a deepfake—a digitally altered video. The incident made him realize how advanced technology could be used to spread falsehoods. He now fact-checks suspicious media using reverse image searches and deepfake detection tools before sharing content online.
+
+Case Study 6: Misleading Climate Change Claims
+
+    Name: Sophie, Gender: Female, Age: 50, Ethnicity: White, Country: Germany, Education: PhD in Environmental Science, Employment: University Professor
+    Despite her academic background, Sophie fell for misleading reports shared in professional networks suggesting that climate change was exaggerated. These reports cited manipulated data and industry-funded studies. A colleague pointed her to credible peer-reviewed research that debunked these claims. Sophie now teaches students how to identify biased sources, understand scientific consensus, and recognize the influence of vested interests in media narratives.
+
+Case Study 7: Manipulated Crime Statistics
+
+    Name: David, Gender: Male, Age: 55, Ethnicity: Black, Country: USA, Education: Associate Degree, Employment: Security Guard
+    David often watched a news channel that exaggerated crime rates in urban areas, making him fearful of his surroundings. The reports omitted context, such as long-term crime trends or the impact of socioeconomic factors. After attending a media literacy workshop, he learned to analyze crime data from official sources, realizing that the media’s selective reporting had distorted his perception of reality.
+
+Case Study 8: The Celebrity Hoax
+
+    Name: Emma, Gender: Female, Age: 29, Ethnicity: White, Country: France, Education: Bachelor's in Marketing, Employment: Social Media Manager
+    Emma saw a viral post claiming a famous actor had passed away. Distraught, she shared the news without verifying it. Hours later, the actor himself debunked the hoax. Realizing how easily misinformation spreads online, Emma now double-checks sources before posting and educates her colleagues on responsible social media practices.
+
+Case Study 9: Fake Job Scam
+
+    Name: Luis, Gender: Male, Age: 34, Ethnicity: Hispanic, Country: Spain, Education: High School Diploma, Employment: Freelancer
+    Luis received an email offering a high-paying remote job. The employer asked for an upfront payment for training materials, which he provided. When communication ceased, he realized he had been scammed. He now verifies job offers through official company websites and warns others about employment fraud in online job-seeking communities.
+
+Case Study 10: The AI-Generated News Hoax
+
+    Name: Fatima, Gender: Female, Age: 47, Ethnicity: Middle Eastern, Country: UAE, Education: Master's in Journalism, Employment: News Editor
+    Fatima encountered an AI-generated article filled with convincing but entirely fabricated news. Initially, she almost published it but later discovered inconsistencies. She now trains journalists to detect AI-generated misinformation, emphasizing cross-referencing sources, recognizing synthetic content, and critically evaluating emerging technologies in news production.

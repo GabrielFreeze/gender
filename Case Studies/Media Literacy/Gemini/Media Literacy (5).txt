@@ -1,0 +1,119 @@
+Case Study 1:
+
+Name: Maria Rodriguez
+Gender: Female
+Age: 42
+Ethnicity: Hispanic/Latina
+Country: USA
+Education: High School Diploma
+Employment: Retail Sales Associate
+
+Maria, a busy mother of two, primarily gets her news from social media.  She saw a post claiming that a popular vaccine causes autism. Despite scientific consensus against this, the post's emotional appeal and share rate convinced her.  She now hesitates to vaccinate her children, influenced by this misinformation. This case highlights the impact of emotional manipulation and echo chambers on social media.
+
+Case Study 2:
+
+Name: David Chen
+Gender: Male
+Age: 68
+Ethnicity: Asian
+Country: Canada
+Education: Bachelor's Degree
+Employment: Retired Engineer
+
+David regularly watches a news channel known for its sensationalized reporting.  He saw a segment about rising crime rates attributed solely to immigration.  Despite statistical evidence showing a more complex picture, David now believes all immigrants are dangerous, demonstrating the power of biased media narratives to shape perceptions.
+
+Case Study 3:
+
+Name: Aisha Diallo
+Gender: Female
+Age: 25
+Ethnicity: African
+Country: France
+Education: Master's Degree
+Employment: Teacher
+
+Aisha encountered an online article arguing that climate change is a hoax perpetrated by scientists for financial gain. Although her scientific background contradicts this, the article's professional layout and confident tone made her question the established consensus, illustrating how misinformation can target even educated individuals.
+
+Case Study 4:
+
+Name: Robert Jones
+Gender: Male
+Age: 55
+Ethnicity: White/Caucasian
+Country: UK
+Education: Vocational Training
+Employment: Construction Worker
+
+Robert follows several online forums where conspiracy theories are prevalent. He encountered a post claiming that a global elite controls world events. Despite the lack of credible evidence, the post resonated with his distrust of authority, leading him to adopt this worldview. This shows how misinformation can exploit existing anxieties.
+
+Case Study 5:
+
+Name: Elena Garcia
+Gender: Female
+Age: 38
+Ethnicity: Hispanic/Latina
+Country: Spain
+Education: Bachelor's Degree
+Employment: Graphic Designer
+
+Elena shared a social media post about a supposed cure for cancer. The post used scientific-sounding jargon and testimonials, making it seem legitimate.  Later, she discovered it was a hoax.  This experience highlights the persuasive power of misinformation disguised as scientific fact.
+
+Case Study 6:
+
+Name: Kenji Tanaka
+Gender: Male
+Age: 70
+Ethnicity: Asian
+Country: Japan
+Education: High School Diploma
+Employment: Retired Businessman
+
+Kenji relies heavily on messaging apps for news. He received a forwarded message claiming a specific political candidate is corrupt.  Without verifying the information, he shared it with his contacts, contributing to the spread of disinformation.  This demonstrates the ease with which misinformation spreads through closed networks.
+
+Case Study 7:
+
+Name: Fatima Ali
+Gender: Female
+Age: 32
+Ethnicity: Arab
+Country: USA
+Education: Master's Degree
+Employment: Social Worker
+
+Fatima encountered a manipulated video clip of a politician making inflammatory remarks.  Believing the video to be genuine, she became outraged. This illustrates the dangers of deepfakes and manipulated media in shaping public opinion.
+
+Case Study 8:
+
+Name: Patrick O'Connell
+Gender: Male
+Age: 48
+Ethnicity: White/Caucasian
+Country: Ireland
+Education: Secondary School
+Employment: Farmer
+
+Patrick listens to a radio show known for its nationalistic and xenophobic rhetoric.  He heard a segment blaming immigrants for economic problems.  This narrative resonated with his own economic anxieties, reinforcing his negative views on immigration.
+
+Case Study 9:
+
+Name: Ingrid Schmidt
+Gender: Female
+Age: 60
+Ethnicity: White/Caucasian
+Country: Germany
+Education: University Degree
+Employment: Retired Teacher
+
+Ingrid was targeted by online advertisements promoting a miracle weight loss product.  The ads used before-and-after photos and testimonials, making the product seem credible. Despite her education, she purchased the product, only to find it ineffective.  This demonstrates how targeted advertising can exploit vulnerabilities.
+
+Case Study 10:
+
+Name: Javier Lopez
+Gender: Male
+Age: 29
+Ethnicity: Hispanic/Latino
+Country: Mexico
+Education: Bachelor's Degree
+Employment: Journalist
+
+Javier works for a small news outlet that prioritizes speed over accuracy.  He published an article based on unverified information from social media, which later turned out to be false.  This case highlights the pressures faced by journalists in the fast-paced media landscape.

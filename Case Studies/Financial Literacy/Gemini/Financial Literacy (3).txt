@@ -1,0 +1,115 @@
+Case Study 1:
+
+    Name: Maria
+    Gender: Female
+    Age: 45
+    Ethnicity: Hispanic
+    Country of Origin: El Salvador
+    Country of Residence: USA
+    Education: High School Diploma
+    Employment: Housekeeper
+    Challenge: Maria struggles to manage her household budget due to irregular income and unexpected expenses. She lacks understanding of basic banking and credit concepts.
+
+Case Study 2:
+
+    Name: Kwame
+    Gender: Male
+    Age: 32
+    Ethnicity: African
+    Country of Origin: Ghana 1   
+
+1. Formative Moments: Kwame Dawes Named Jamaica Poet Laureate - Pacific University
+Source icon
+www.pacificu.edu
+
+    Country of Residence: UK
+    Education: Bachelor's Degree
+    Employment: IT Technician
+    Challenge: Kwame earns a good salary but has difficulty saving due to high rent and cost of living in London. He is interested in investment options but lacks knowledge.
+
+**Case Study
+
+    Age: 28
+    Ethnicity: Asian
+    Country of Origin: China
+    Country of Residence: Canada
+    Education: Master's Degree
+    Employment: Engineer
+    Challenge: Mei has significant student loan debt. She wants to pay it off quickly but needs help creating a repayment plan and understanding interest rates.
+
+Case Study 4:
+
+    Name: Javier
+    Gender: Male
+    Age: 50
+    Ethnicity: Hispanic
+    Country of Origin: Mexico
+    Country of Residence: USA
+    Education: Some College
+    Employment: Construction Worker
+    Challenge: Javier sends money home regularly to support his family. He needs advice on how to do
+    Age: 35
+    Ethnicity: Middle Eastern
+    Country of Origin: Syria
+    Country of Residence: Germany
+    Education: University Degree
+    Employment: Teacher (currently unemployed)
+    Challenge: Aisha is seeking employment but needs to manage her limited savings while she looks for a job. She is unfamiliar with the German welfare system.
+
+Case Study 6:
+
+    Name: David
+    Gender: Male
+    Age: 40
+    Ethnicity: Caucasian
+    Country of Origin: Poland
+    Country of Residence: Ireland
+    Education: Vocational Training
+    Employment: Plumber
+    Challenge: David wants to start his own plumbing business. He needs guidance on securing a loan, managing business finances, and understanding tax obligations.
+
+Case Study 7:
+
+    Age: 60
+    Ethnicity: Eastern European
+    Country of Origin: Russia
+    Country of Residence: Australia
+    Education: High School Diploma
+    Employment: Retired (formerly a seamstress)
+    Challenge: Elena relies on a fixed pension and struggles to keep up with rising living costs. She is concerned about managing her healthcare expenses.
+
+Case Study 8:
+
+    Name: Kenji
+    Gender: Male
+    Age: 38
+    Ethnicity: Asian
+    Country of Origin: Japan
+    Country of Residence: Brazil
+    Education: Bachelor's Degree
+    Employment: Restaurant Manager
+    Challenge: Kenji is saving for a down payment on a house. He needs advice on budgeting, saving strategies, and understanding the Brazilian real estate market.
+
+Case Study 9:
+
+    Name: Fatima
+    Gender: Female
+    Age: 25
+    Ethnicity: African
+    Country of Origin: Nigeria
+    Country of Residence: France
+    Education: Some College
+    Employment: Retail Assistant
+    Challenge: Fatima wants to further her education but needs financial assistance. She is exploring scholarship options and student loan possibilities.
+
+Case Study 10:
+
+    Name: Ricardo
+    Gender: Male
+    Age: 55
+    Ethnicity: Hispanic
+    Country of Origin: Dominican Republic
+    Country of Residence: Spain
+    Education: Some High School
+    Employment: Taxi Driver
+    Challenge: Ricardo is concerned about his retirement savings. He has limited knowledge of the Spanish pension system and needs help planning for his future.

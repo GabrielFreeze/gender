@@ -1,0 +1,109 @@
+Case Study 1:
+
+    Name: Maria
+    Gender: Female
+    Age: 42
+    Ethnicity: Latina
+    Country of Residence: USA
+    Education Level: High School Diploma
+    Employment Background: Housekeeper
+    Financial Issue: Maria struggles to budget her irregular income and often relies on high-interest payday loans, leading to a cycle of debt. She lacks knowledge of basic banking and saving strategies.
+
+Case Study 2:
+
+    Name: Kwame
+    Gender: Male
+    Age: 35
+    Ethnicity: African
+    Country of Residence: UK
+    Education Level: Bachelor's Degree
+    Employment Background: IT Technician
+    Financial Issue: Kwame has a good income but struggles to manage his finances due to a lack of understanding of the UK tax system and investment options. He worries about saving for his children's education.
+
+Case Study 3:
+
+    Name: Mei
+    Gender: Female
+    Age: 28
+    Ethnicity: Asian
+    Country of Residence: Canada
+    Education Level: Master's Degree
+    Employment Background: Research Scientist
+    Financial Issue: Mei is hesitant to invest her savings due to cultural beliefs and a lack of trust in financial institutions. She prefers to keep her money in low-interest savings accounts.
+
+Case Study 4:
+
+    Name: Javier
+    Gender: Male
+    Age: 50
+    Ethnicity: Hispanic
+    Country of Residence: USA
+    Education Level: Some College
+    Employment Background: Construction Worker
+    Financial Issue: Javier sends a large portion of his income to support his family back home. He struggles to make ends meet in the US and has little saved for retirement.
+
+Case Study 5:
+
+    Name: Anika
+    Gender: Female
+    Age: 31
+    Ethnicity: South Asian
+    Country of Residence: Australia
+    Education Level: Bachelor's Degree
+    Employment Background: Teacher
+    Financial Issue: Anika is overwhelmed by student loan debt and struggles to repay it while also managing other expenses. She is unaware of available repayment options.
+
+Case Study 6:
+
+    Name: Jean-Pierre
+    Gender: Male
+    Age: 45
+    Ethnicity: White
+    Country of Residence: France
+    Education Level: Vocational Training
+    Employment Background: Plumber
+    Financial Issue: Jean-Pierre recently started his own business and is struggling to manage his cash flow. He lacks knowledge of accounting and financial record-keeping.
+
+Case Study 7:
+
+    Name: Fatima
+    Gender: Female
+    Age: 26
+    Ethnicity: Arab
+    Country of Residence: Germany
+    Education Level: High School Diploma
+    Employment Background: Retail Worker
+    Financial Issue: Fatima is trying to save for a down payment on a house but finds it difficult due to low wages and high living costs. She is unsure about the process of applying for a mortgage.
+
+Case Study 8:
+
+    Name: Kenji
+    Gender: Male
+    Age: 38
+    Ethnicity: Asian
+    Country of Residence: UK
+    Education Level: Bachelor's Degree
+    Employment Background: Restaurant Manager
+    Financial Issue: Kenji is concerned about his retirement savings but is unsure how to invest wisely. He is also worried about the rising cost of living.
+
+Case Study 9:
+
+    Name: Sofia
+    Gender: Female
+    Age: 40
+    Ethnicity: Latina
+    Country of Residence: Canada
+    Education Level: Some College
+    Employment Background: Administrative Assistant
+    Financial Issue: Sofia is a single mother and struggles to manage her finances while supporting her children. She lacks knowledge of available government assistance programs.
+
+Case Study 10:
+
+    Name: David
+    Gender: Male
+    Age: 55
+    Ethnicity: African
+    Country of Residence: USA
+    Education Level: High School Diploma
+    Employment Background: Truck Driver
+    Financial Issue: David is nearing retirement age but has very little saved. He is worried about his financial security and healthcare costs.

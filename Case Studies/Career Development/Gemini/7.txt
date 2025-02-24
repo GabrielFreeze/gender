@@ -1,0 +1,69 @@
+Dialogue 1
+
+Counselor:  Anika Sharma, Female, 35, Indian, residing in Canada.  Master's in Counseling, 10 years experience in career counseling, previously worked in university career services.
+
+Client: David Miller, Male, 42, Caucasian, residing in Canada. Bachelor's in Business Administration, 15 years in sales, currently employed but seeking a change.
+
+David: Anika, thanks for seeing me again.  I'm still feeling stuck.  I've applied for a few marketing roles, but haven't had much luck.  I'm starting to wonder if I'm on the right track.  Sales is draining me, but I'm not sure if marketing is the answer.
+
+Anika:  David, it's common to feel this way.  Let's revisit your skills assessment.  Remember, we identified your strong analytical and communication skills.  Marketing uses those, but perhaps we should explore what kind of marketing.  Digital marketing is booming.  Have you considered that?
+
+David:  I've dabbled a bit.  I took an online course, but it feels overwhelming.
+
+Anika:  That's understandable.  Let's look at some specific digital marketing certifications and training programs.  We can also connect you with professionals in the field for informational interviews.  This will give you a clearer picture.
+
+Dialogue 2
+
+Counselor:  Anika Sharma, Female, 35, Indian, residing in Canada.  Master's in Counseling, 10 years experience in career counseling, previously worked in university career services.
+
+Client:  Maria Rodriguez, Female, 28, Hispanic/Latina, residing in the USA. Bachelor's in Fine Arts, 5 years freelance graphic design, currently self-employed.
+
+Maria:  Anika, I’m frustrated.  My freelance work is inconsistent.  Some months are great, others are a struggle.  I'm thinking about going back to school for a more stable career.
+
+Anika:  Maria, let's explore that.  You have a strong creative portfolio.  Before considering more schooling, have you looked into specializing?  UX/UI design is in high demand and utilizes your design skills.
+
+Maria:  I've heard of it.  It sounds technical.
+
+Anika:  It has a technical component, but your artistic eye is a huge asset.  We can research bootcamps and short courses that focus on UX/UI.  It's a faster route than a full degree.  Let's also discuss your pricing and marketing strategies for your freelance work.  Perhaps we can improve your current situation while you explore other options.
+
+Dialogue 3
+
+Counselor:  Anika Sharma, Female, 35, Indian, residing in Canada.  Master's in Counseling, 10 years experience in career counseling, previously worked in university career services.
+
+Client:  Kenji Ito, Male, 50, Japanese, residing in the UK.  Master's in Engineering, 20 years in engineering management, currently employed but feels stagnant.
+
+Kenji:  Anika, I appreciate your time.  I'm at a crossroads.  My career has plateaued.  I'm good at what I do, but I'm not passionate anymore.  I feel I need a new challenge.
+
+Anika:  Kenji, many people experience this mid-career.  Your experience is valuable.  Have you considered transitioning into consulting? Your expertise is highly sought after.
+
+Kenji:  Consulting? I haven't.  I've always been in-house.
+
+Anika:  It offers more autonomy and variety.  We can explore your transferable skills and create a plan to network with consulting firms. We can also look at executive coaching, which leverages your leadership experience.
+
+Dialogue 4
+
+Counselor:  Anika Sharma, Female, 35, Indian, residing in Canada.  Master's in Counseling, 10 years experience in career counseling, previously worked in university career services.
+
+Client:  Aisha Diallo, Female, 25, Black/African, residing in France. Bachelor's in Social Sciences, 2 years in non-profit work, currently unemployed.
+
+Aisha:  Anika, I’m feeling discouraged.  I’ve been searching for a job for months.  I want to stay in the non-profit sector, but it's so competitive.
+
+Anika:  Aisha, the non-profit world can be challenging.  Let's refine your job search strategy.  Your resume highlights your passion, but we need to showcase your quantifiable achievements.  Did you increase volunteer participation?  Did you manage a specific budget?
+
+Aisha:  I did manage a small budget for a community outreach program.
+
+Anika:  Excellent.  Let's quantify that.  We can also explore related fields, like public health or community development, where your skills might be transferable.  We can also work on your interviewing skills.
+
+Dialogue 5
+
+Counselor:  Anika Sharma, Female, 35, Indian, residing in Canada.  Master's in Counseling, 10 years experience in career counseling, previously worked in university career services.
+
+Client:  Ben Carter, Male, 30, Caucasian, residing in Australia.  Associate's Degree in IT, 8 years in IT support, currently employed, but wants to upskill.
+
+Ben:  Anika, I want to advance in IT.  I'm comfortable with support, but I want to move into cybersecurity.  It seems like the future.
+
+Anika:  Ben, it's a smart move.  Cybersecurity is a growing field.  Let's map out a learning path.  There are certifications like CompTIA Security+ and CISSP that are highly valued.  We can find online courses and resources to prepare you.  We can also look at entry-level cybersecurity roles to gain experience while you study.  Have you considered specializing in a particular area of cybersecurity?
+
+Ben:  Not really.  It all seems so complex.
+
+Anika:  It is, but we can break it down.  Do any areas interest you more than others, like network security or data protection?  Exploring those interests will help you focus your efforts.

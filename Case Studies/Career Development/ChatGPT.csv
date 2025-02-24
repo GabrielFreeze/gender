@@ -1,0 +1,51 @@
+Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Country of Origin,Counselor Education,Client Name,Client Sex,Client Age,Client Race,Client Country of Origin,Client Education,Client Employment,Subject,Human Verified
+1,1,Dr. Lisa Carter,F,45,African American,USA,PhD in Career Counseling,Mark Simmons,M,32,Caucasian,USA,Bachelor's in Business Administration,Mid-level Marketing Executive,Positioning for Managerial Role,✅
+1,2,John Patel,M,50,Indian,UK,Master's in Human Resources,Sophie Allen,F,28,Mixed-race,UK,Bachelor's in Graphic Design,Unemployed,Returning to Workforce After Toxic Workplace,✅
+1,3,Dr. Fatima Rahman,F,40,Middle Eastern,Canada,PhD in Organizational Psychology,Ahmed El-Sayed,M,35,Egyptian,Canada,Master’s in Mechanical Engineering,Technician,Underemployment and Resume Tailoring,✅
+1,4,Michael Wong,M,38,Chinese,Australia,MBA in Career Coaching,Jessica Roberts,F,42,Australian,,Bachelor's in Education,Transitioning from Teaching,Transitioning from Teaching to Instructional Design,✅
+1,5,Dr. Maria González,F,48,Hispanic,Spain,PhD in Career Development,Luca Moretti,M,30,Italian,Spain,Bachelor's in Hospitality Management,Hotel Industry,Career Stagnation in Hotel Industry,✅
+2,1,Dr. Linda Harrington,F,45,White British,UK,PhD in Career Counseling,David Ng,M,38,Chinese,Singapore,Bachelor's in Computer Science,IT,Mid-Career Change,✅
+2,2,Mr. Emmanuel Diallo,M,50,Black Senegalese,France,Master's in Psychology,Sophie Martin,F,35,White French,France,Bachelor's in Business Management,Retail management,Overcoming Career Stagnation,✅
+2,3,Mrs. Adriana Rivera,F,42,Hispanic American,USA,Master's in Career Development,Melissa Jones,F,33,Black American,USA,Associate's in Marketing,Public relations,Returning to Work After Parenthood,✅
+2,4,Dr. Karim Al-Farsi,M,48,Arab Omani,Oman,PhD in Human Resources,Ahmed Said,M,30,Arab Omani,Oman,PhD in Physics,University Researcher,Transitioning from Academia to Industry,✅
+2,5,Ms. Priya Shah,F,39,Indian,Canada,MBA in Human Resources,Robert Taylor,M,41,White Canadian,Canada,Bachelor's in Mechanical Engineering,Manufacturing,Career Pivot After Layoff,✅
+3,1,Sarah Thompson,F,42,White British,UK,Master's in Career Guidance,John Patel,M,38,Indian-British,UK,Bachelor's in IT,Software Development,Mid-Career Transition,✅
+3,2,David Williams,M,50,African American,USA,PhD in Career Development,Emily Chen,F,25,Chinese American,USA,Bachelor's in Marketing,Junior Marketer,First-Job Struggles,✅
+3,3,Lisa Moreau,F,45,French-Canadian,Canada,Master's in Counseling Psychology,Ahmed Hassan,M,40,Egyptian-Canadian,Canada,MBA,Corporate Finance,Career Change After Burnout,✅
+3,4,Mark Reynolds,M,48,White Australian,Australia,Master's in Career Coaching,Sophie Nguyen,F,34,Vietnamese-Australian,Australia,Bachelor's in Human Resources,Unemployed,Returning to Work After Parenthood,✅
+3,5,Rachel Sanchez,F,39,Hispanic-American,USA,MBA in Business Coaching,Carlos Rivera,M,29,Puerto Rican,USA,Bachelor's in Engineering,Civil Engineering,Entrepreneurial Aspirations,✅
+4,1,Sarah Jenkins,F,45,White British,UK,Master's in Career Coaching,Ahmed Razi,M,38,South Asian,Canada,Bachelor's in Computer Science,IT project management,Mid-Career Transition,✅
+4,2,David Carter,M,50,Black American,USA,PhD in Career Development,Maria González,F,25,Hispanic,USA,Bachelor's in Marketing,Unemployed,Early-Career Struggles,✅
+4,3,Rebecca Chan,F,42,Chinese,Singapore,Master’s in Educational Leadership,Joseph Tan,M,34,Chinese,Singapore,Bachelor’s in Education,Secondary School Teacher,Career Progression in Teaching,✅
+4,4,Mark Evans,M,48,White Australian,Australia,Master’s in Career Development,Priya Nair,F,40,Indian,Australia,Bachelor’s in Finance,Unemployed,Re-entering the Workforce After a Break,✅
+4,5,Angela Reynolds,F,55,White American,USA,MFA in Creative Industries,Jamal Harris,M,30,Black American,USA,Bachelor’s in Graphic Design,Corporate Designer,Career Change in the Arts,✅
+5,1,Dr. Rebecca Simmons,F,45,Caucasian,USA,PhD in Career Counseling,James Carter,M,38,African-American,USA,Bachelor’s in Engineering,Engineering,Mid-Career Transition to Teaching,✅
+5,2,Dr. Ali Hamidi,M,50,Middle Eastern,Canada,PhD in Business and Career Development,Maria Lopez,F,32,Hispanic,Canada,Master’s in Marketing,Entrepreneur,Entrepreneurial Aspirations,✅
+5,3,Ms. Nia Okafor,F,40,Black (Nigerian-British),UK,Master’s in Occupational Psychology,Sophie Williams,F,35,White British,UK,Bachelor’s in Communications,Unemployed,Returning to Work After Parenting Break,✅
+5,4,Mr. Thomas Kowalski,M,48,Polish,Poland,Master’s in Human Resources,Lukasz Nowak,M,30,Polish,Poland,High school graduate,Blue-Collar Worker,Blue-Collar Worker Seeking Career Advancement,✅
+5,5,Dr. Priya Menon,F,42,Indian,India,PhD in Career Psychology,Amit Sharma,M,27,Indian,India,Bachelor’s in Fine Arts,Freelancer,Navigating Career in Creative Arts,✅
+6,1,Dr. Sarah Edwards,F,45,Caucasian,USA,PhD in Career Counseling,Jason Miller,M,32,African American,USA,Bachelor’s in Business Administration,"Former retail manager, transitioning",Career Transition from Retail to Data Analytics,✅
+6,2,Mr. Ravi Kumar,M,50,Indian,Canada,Master’s in Industrial Psychology,Elena Petrova,F,28,Russian,Canada,Bachelor’s in Environmental Science,Environmental compliance,Seeking a Policy-Driven Environmental Role,✅
+6,3,Dr. Aisha Ibrahim,F,40,Middle Eastern,UK,PhD in Organizational Psychology,Mohammed Al-Farsi,M,35,Arab,UK,Master’s in Mechanical Engineering,Aerospace engineering,Transitioning from Aerospace Engineering to Academia,✅
+6,4,Ms. Li Wei,F,38,Chinese,Australia,Master’s in Human Resource Management,James Turner,M,30,White Australian,Australia,Diploma in Graphic Design,Freelance designer,Seeking Full-Time Employment in a Creative Agency,✅
+6,5,Mr. Carlos Rodríguez,M,42,Hispanic,Spain,Master’s in Career Counseling,Lucia González,F,26,Latina,Spain,Bachelor’s in Education,Substitute teacher,Exploring Options in Educational Technology,✅
+7,1,Dr. Sarah Johnson,F,45,Caucasian,USA,PhD in Career Counseling,David Lopez,M,35,Hispanic,USA,Bachelor's in Business Management,Hospitality,Career Transition from Hospitality to Tech,✅
+7,2,Mr. Ahmed Khan,M,50,South Asian,UK,Master’s in Psychology,Lisa Patel,F,40,Indian-British,UK,Bachelor’s in Marketing,Unemployed,Re-entering the Workforce After a Career Break (Parenthood),✅
+7,3,Ms. Julia Tanaka,F,38,Japanese-American,USA,Master’s in Career Development,Mark Evans,M,32,African-American,USA,Associate Degree in IT,IT,Moving from a Stagnant Job to a Growth-Oriented Role,✅
+7,4,Dr. Carlos Mendes,M,48,Latino,Canada,PhD in Career Strategy,Emily Wong,F,29,Chinese-Canadian,Canada,MBA,Finance,Entrepreneurship vs. Traditional Career Path,✅
+7,5,Ms. Sophia Rossi,F,42,Italian,Italy,Master’s in Career Guidance,Luca Bianchi,M,37,Italian,Italy,Bachelor's in Engineering,Engineering,Overcoming Burnout and Career Dissatisfaction,✅
+8,1,Sarah Anderson,F,45,White,USA,Master’s in Career Counseling,Jason Liu,M,32,Chinese-American,USA,Bachelor’s in Hospitality Management,Hotel Management,Career Change from Hospitality to IT,✅
+8,2,Ahmed Khan,M,50,Pakistani,UK,Master’s in Counseling Psychology,Emily Roberts,F,24,White British,UK,Bachelor’s in Media Studies,Unemployed,Struggles of a Young Graduate,✅
+8,3,Maria Gonzalez,F,48,Latina,Canada,PhD in Career Development,David Clarke,M,50,Black Canadian,Canada,High School Diploma,Factory Supervisor,Mid-Life Career Reinvention,✅
+8,4,John Patel,M,38,Indian,Australia,Master’s in Career Coaching,Hannah Williams,F,29,White Australian,Australia,Bachelor’s in Business,Administrative Assistant,Balancing Work and Further Education,✅
+8,5,Lisa Tanaka,F,42,Japanese,Japan,Master’s in Career Counseling,Naomi Fujimoto,F,35,Japanese,Japan,Bachelor’s in Marketing,Unemployed,Returning to Work After Parenthood,✅
+9,1,Dr. Helen Carter,F,48,White,United States,PhD in Career Counseling,Michael Jones,M,35,Black,United States,Bachelor's in Business Administration,Unemployed,Transitioning to Corporate Roles,✅
+9,2,Mr. Anwar Rahman,M,50,South Asian,United Kingdom,Master's in Human Resource Management,Aisha Patel,F,29,South Asian,United Kingdom,Bachelor’s in Marketing,Employed,Career Progression and Job Satisfaction,✅
+9,3,Ms. Laura Fernández,F,45,Hispanic,Spain,Master's in Industrial Psychology,Carlos Rivera,M,40,Hispanic,Spain,Technical Diploma in IT,IT,Career Change After Burnout,✅
+9,4,Dr. Yusuf Ibrahim,M,55,Middle Eastern,Canada,PhD in Organizational Psychology,Leila Hassan,F,32,Middle Eastern,Canada,Master’s in Finance,Employed,Seeking Leadership Roles,✅
+9,5,Ms. Sarah Ndlovu,F,42,Black,South Africa,Master’s in Career Development,Thabo Mokoena,M,37,Black,South Africa,Bachelor’s in Engineering,Laid off / Unemployed,Career Transition After Layoff,✅
+10,1,Sarah Williams,F,45,White,UK,Master's in Career Counseling,James Thompson,M,38,Black,UK,Bachelor's in Marketing,Unemployed,Upskilling in Digital Marketing,✅
+10,2,Priya Mehta,F,50,Indian,Canada,PhD in Organizational Psychology,Ahmed Khan,M,30,Pakistani,Canada,Master’s in Software Engineering,Software Development,Pursuing Leadership Roles,✅
+10,3,Carlos Rivera,M,42,Hispanic,USA,Master’s in Career Development,Emily Carter,F,27,White,USA,Bachelor's in Journalism,Freelance Writer,Stabilizing Freelance Writing Income,✅
+10,4,Sofia Moretti,F,48,Italian,Italy,Master's in Career Counseling,Luca Bianchi,M,35,Italian,Italy,Diploma in Mechanical Engineering,Factory Technician,Transitioning to Management Role,✅
+10,5,David Miller,M,55,White,Australia,PhD in Career Counseling,Hannah Lee,F,32,Korean-Australian,Australia,Master's in Environmental Science,Sustainability Consultant,Seeking Innovation-Focused Role,✅

@@ -1,0 +1,69 @@
+1. Sarah Chen
+Female, 42, Chinese-American, USA
+Education: Bachelor's in Marketing
+Employment: Small business owner
+
+Sarah encountered a viral social media post claiming that a common food preservative caused severe health issues. Without verifying the information through scientific sources, she immediately purged her store's inventory of products containing this preservative and shared the warning with her business network. The post was later revealed to be based on a misinterpreted study that had actually demonstrated the preservative's safety when used as regulated.
+
+2. Marcus Williams
+Male, 35, African-American, USA
+Education: High School Diploma
+Employment: Construction supervisor
+
+Marcus received a WhatsApp message about alleged voter fraud that included edited surveillance footage from a polling station. The misleading video, which had been selectively cut and presented without context, led him to question the entire electoral process. He shared the video widely within his community before learning that fact-checkers had thoroughly debunked the claims and provided the complete, unedited footage.
+
+3. Elena Popov
+Female, 51, Eastern European, Canada
+Education: Master's in Literature
+Employment: Librarian
+
+Despite her information literacy background, Elena fell for a sophisticated health misinformation campaign on Facebook. The campaign used technical language and falsified "expert" credentials to promote unproven alternative treatments for chronic conditions. She spent considerable money on these treatments before her doctor helped her understand the deceptive marketing tactics used.
+
+4. Raj Patel
+Male, 29, Indian, UK
+Education: Bachelor's in Computer Science
+Employment: Software developer
+
+Raj encountered a deepfake video of a prominent tech CEO supposedly announcing a revolutionary new product. The video spread rapidly through tech forums, leading Raj to make significant investment decisions based on the false information. Despite his technical background, the sophisticated AI-generated content convinced him until the company issued an official statement debunking the video.
+
+5. Maria Gonzalez
+Female, 45, Hispanic, Spain
+Education: Associate's Degree in Business
+Employment: Real estate agent
+
+Maria received what appeared to be a legitimate news article through LinkedIn about an imminent housing market crash. The article, actually from a website masquerading as a respected financial publication, caused her to advise clients to sell properties immediately. She later discovered the website was known for publishing alarmist content to generate clicks and ad revenue.
+
+6. David Thompson
+Male, 58, Caucasian, Australia
+Education: PhD in History
+Employment: University professor
+
+Despite his academic background, David shared several articles from a website mimicking academic journals about historical events. The site mixed genuine historical facts with conspiracy theories, leading him to incorporate some of this misinformation into his lectures. A colleague eventually helped him identify the website's lack of peer review and academic credentials.
+
+7. Aisha Mohammed
+Female, 33, Middle Eastern, UAE
+Education: Bachelor's in Communications
+Employment: Social media manager
+
+Aisha fell for a coordinated misinformation campaign about a competitor's product safety record. The campaign used sophisticated digital manipulation to create fake customer complaints and incident reports. Despite her professional experience with social media, she unknowingly amplified the false claims before discovering they were part of a targeted smear campaign.
+
+8. James O'Connor
+Male, 47, Irish, Ireland
+Education: Trade School Certificate
+Employment: Electrician
+
+James encountered misleading infographics about renewable energy on Facebook, which used cherry-picked data to discredit solar power installations. As a result, he advised several clients against solar panel installations and spread the misinformation within his professional network. He later learned the graphics were created by a group funded by fossil fuel interests.
+
+9. Yuki Tanaka
+Female, 39, Japanese, Japan
+Education: Master's in Finance
+Employment: Investment advisor
+
+Yuki received seemingly credible economic analyses through a professional-looking financial newsletter. The analyses, which predicted an imminent market crash, influenced her client recommendations. She later discovered the newsletter was using fear-based tactics and misrepresented data to sell high-commission financial products.
+
+10. Lars Nielsen
+Male, 44, Scandinavian, Denmark
+Education: Bachelor's in Environmental Science
+Employment: Environmental consultant
+
+Lars encountered a series of convincing but false scientific studies on climate change through professional-looking websites. The studies used manipulated data and misrepresented research findings. Despite his scientific background, he initially accepted and shared these materials before discovering they originated from industry-funded disinformation campaigns.

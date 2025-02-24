@@ -1,0 +1,30 @@
+Maria, 45, Latina, USA, High School, Housekeeper
+Maria moved to the U.S. 10 years ago and works as a housekeeper. She wants to buy a home but struggles with understanding mortgage terms and credit scores. Despite working full-time, her income is low, and she relies on payday loans for emergencies, leading to high interest payments. She is hesitant to open a bank account due to past negative experiences with overdraft fees. Maria seeks financial guidance on budgeting, saving, and credit building to achieve homeownership and improve her financial security.
+
+Ahmed, 38, Middle Eastern, Canada, Bachelor’s Degree, Taxi Driver
+Ahmed immigrated to Canada five years ago. With a background in engineering, he now drives a taxi while working towards re-credentialing. He struggles with managing fluctuating income and understanding tax obligations. Despite sending money to his family abroad, he wants to start saving for retirement but is unsure of investment options. He also has limited credit history, affecting his ability to secure a car loan. Ahmed seeks financial literacy education to navigate the Canadian banking system, taxes, and long-term financial planning.
+
+Li, 50, Chinese, Australia, High School, Restaurant Worker
+Li and her husband run a small restaurant but struggle with financial management. They have difficulty keeping track of business expenses and often mix personal and business finances. With English as her second language, she finds it challenging to understand financial documents and tax requirements. Recently, they faced a large unexpected bill due to a tax miscalculation. Li wants to improve her bookkeeping skills and understand business finance principles to ensure their restaurant remains profitable and sustainable.
+
+Kofi, 42, African, UK, Master’s Degree, IT Consultant
+Kofi moved to the UK and secured a job in IT. He earns a good salary but struggles with high rent and student loan repayments from his home country. Additionally, he is unfamiliar with the UK pension system and investment opportunities. He wants to build wealth but is unsure where to start. Kofi is interested in learning about property investment, tax-efficient savings, and how to balance debt repayment with wealth-building strategies.
+
+Elena, 32, Eastern European, Germany, Bachelor’s Degree, Freelancer
+Elena works as a freelance graphic designer in Germany. Managing irregular income is a challenge, and she finds the tax system complex. She struggles with setting aside money for taxes and savings, sometimes spending too much during high-earning months. She also needs health insurance but is confused about her options. Elena wants to learn how to budget effectively, build a financial cushion, and plan for long-term financial stability.
+
+Jorge, 55, Latino, USA, Primary School, Construction Worker
+Jorge has worked in construction for decades but never had a formal savings plan. With retirement approaching, he is concerned about not having enough funds. He also sends money to his family abroad and has limited knowledge of retirement accounts. Language barriers and lack of trust in financial institutions have prevented him from seeking help. Jorge wants to learn about retirement planning, social security benefits, and how to make the most of his remaining working years.
+
+Aisha, 29, South Asian, New Zealand, Bachelor’s Degree, Retail Manager
+Aisha moved to New Zealand and works as a retail manager. She is financially independent but struggles with managing her student loan from her home country while building credit locally. She recently fell into credit card debt and wants to learn better money management skills. Aisha seeks financial literacy education on debt repayment strategies, budgeting, and understanding the impact of credit scores on future financial opportunities.
+
+Pavel, 60, Eastern European, France, Vocational Training, Factory Worker
+Pavel has worked in a factory for years but lacks savings. He is worried about his financial security in retirement and is unfamiliar with the French pension system. His children encourage him to invest, but he is skeptical about financial products. He also struggles with digital banking. Pavel wants to learn about pension options, simple investment strategies, and how to safely navigate online banking.
+
+Fatima, 35, Middle Eastern, Sweden, High School, Caregiver
+Fatima works as a caregiver while raising three children. Her husband manages most financial matters, but she wants to become financially independent. She is unfamiliar with budgeting and struggles with saving money due to household expenses. Fatima seeks financial literacy education on managing household finances, saving for emergencies, and understanding her rights regarding financial independence.
+
+Carlos, 48, Latino, Spain, Bachelor’s Degree, Small Business Owner
+Carlos owns a small grocery store in Spain but struggles with managing cash flow. Unexpected expenses often disrupt his business, and he is unsure about tax deductions and financial planning for growth. He recently took out a loan but is concerned about high interest rates. Carlos wants to learn better financial management skills, business budgeting, and strategies for expanding his store sustainably.
+

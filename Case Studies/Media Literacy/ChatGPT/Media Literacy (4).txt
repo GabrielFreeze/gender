@@ -1,0 +1,81 @@
+Case Study 1: Vaccine Hesitancy Due to Misinformation
+
+    Person: Maria, Female, 45, Hispanic, USA
+    Education: High school diploma
+    Employment: Retail worker
+
+Maria followed a Facebook group that frequently posted about vaccine dangers. Despite health officials’ reassurances, she believed mRNA vaccines altered DNA. She refused COVID-19 vaccination, influenced by viral stories of alleged side effects. When she contracted COVID-19, she experienced severe complications. Later, her doctor clarified the misinformation, but Maria remained skeptical, citing online testimonials over expert advice.
+
+Case Study 2: Political Disinformation on WhatsApp
+
+    Person: Raj, Male, 55, Indian, UK
+    Education: Bachelor’s degree
+    Employment: Small business owner
+
+Raj was an active participant in WhatsApp groups discussing UK politics. During elections, he received forwarded messages falsely claiming a political candidate planned to raise taxes on small businesses. Without verifying, he shared the message widely, convinced it was true. Later, fact-checkers debunked the claim, but Raj still believed it, arguing mainstream media was biased.
+
+Case Study 3: Climate Change Denial via YouTube
+
+    Person: Thomas, Male, 60, White, Australia
+    Education: Technical certification
+    Employment: Retired electrician
+
+Thomas, an avid YouTube user, watched videos claiming climate change was a hoax. He dismissed scientific evidence, convinced that climate policies were a government control strategy. When Australia experienced extreme weather events, he attributed them to natural cycles. His skepticism influenced his family, discouraging them from supporting environmental policies.
+
+Case Study 4: 5G and Health Scare on TikTok
+
+    Person: Amina, Female, 38, Arab, Canada
+    Education: High school diploma
+    Employment: Stay-at-home mother
+
+Amina frequently watched TikTok videos claiming 5G technology caused cancer. She refused to let her children near 5G towers and discouraged neighbors from using 5G phones. When her town upgraded its mobile infrastructure, she started a protest. Experts explained 5G’s safety, but Amina trusted social media influencers over scientists.
+
+Case Study 5: Financial Scam via Fake News Website
+
+    Person: Jean-Pierre, Male, 50, Black, France
+    Education: Master’s degree
+    Employment: Engineer
+
+Jean-Pierre read an article claiming a well-known entrepreneur had discovered a secret cryptocurrency investment method. The website appeared legitimate, with fake testimonials. He invested €5,000, expecting high returns. When the website disappeared, he realized he had been scammed. Despite warnings from financial authorities, he blamed banks for covering up investment opportunities.
+
+Case Study 6: QAnon Conspiracy Theories on Telegram
+
+    Person: Linda, Female, 48, White, USA
+    Education: Associate degree
+    Employment: Administrative assistant
+
+Linda joined a Telegram group that promoted QAnon conspiracies. She became convinced of a secret global elite controlling governments. When a mass arrest prophecy failed, she rationalized it as part of a bigger plan. Her belief in these theories led to conflicts with family, who struggled to bring her back to reality.
+
+Case Study 7: Anti-Immigrant Misinformation on Twitter
+
+    Person: Jürgen, Male, 52, White, Germany
+    Education: Bachelor’s degree
+    Employment: Factory supervisor
+
+Jürgen followed social media accounts sharing misleading crime statistics about immigrants. A viral post falsely claimed refugees committed most violent crimes in Germany. Though official statistics disproved this, he continued sharing similar content, believing mainstream media suppressed the truth. His views influenced workplace discussions, creating tensions among colleagues.
+
+Case Study 8: False Health Cure Promoted on Facebook
+
+    Person: Sofia, Female, 58, Hispanic, Argentina
+    Education: High school diploma
+    Employment: Self-employed baker
+
+Sofia believed in alternative medicine and followed a Facebook group promoting a homemade herbal remedy for diabetes. Encouraged by testimonials, she stopped taking prescribed medication. Her condition worsened, and her doctor warned her about the risks of untreated diabetes. She remained convinced pharmaceuticals were harmful, citing social media over medical professionals.
+
+Case Study 9: Deepfake Video Manipulation on Instagram
+
+    Person: Karim, Male, 40, Arab, UAE
+    Education: Master’s degree
+    Employment: IT consultant
+
+Karim saw a viral deepfake video showing a political leader making controversial statements. Outraged, he shared it, unaware it was AI-generated. Fact-checkers later debunked it, but Karim insisted the politician was still corrupt, demonstrating how initial misinformation shaped his perception even after correction.
+
+Case Study 10: Phishing Scam via Fake News Email
+
+    Person: Elena, Female, 62, White, Spain
+    Education: High school diploma
+    Employment: Retired teacher
+
+Elena received an email claiming her bank account was compromised due to a cyberattack reported on news sites. The email looked official, with links to a fake banking login page. She entered her credentials, unknowingly giving scammers access. When she lost money, she realized too late that she had been deceived.
+
+Would you like any modifications or additional details?

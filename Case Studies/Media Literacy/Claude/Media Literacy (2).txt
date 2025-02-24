@@ -1,0 +1,41 @@
+# Case Studies: Adults and Media Disinformation
+
+## Case 1: Health Misinformation
+Maria Rodriguez (Female, 45, Hispanic, USA, Bachelor's in Business, Small Business Owner)
+After watching multiple social media influencers promote "detox" supplements, Maria invested $2,000 in these products, believing they would cure her chronic fatigue. The influencers cited "clinical studies" that were actually paid marketing content. Maria experienced adverse effects and later discovered that many testimonials were from paid actors. She had overlooked FDA warnings about these supplements because they weren't prominent in her social media feeds.
+
+## Case 2: Financial Scam
+James Chen (Male, 52, Asian-American, USA, Master's in Engineering, Software Developer)
+Following a cryptocurrency investing group on Telegram, James invested his retirement savings in a new token promoted as "the next Bitcoin." The group moderators showed seemingly legitimate technical analysis and celebrity endorsements. After the token's value skyrocketed, the creators disappeared with investors' money in a "rug pull" scheme. James had dismissed traditional financial advice as "outdated thinking."
+
+## Case 3: Political Manipulation
+Sarah Thompson (Female, 38, White, UK, High School Diploma, Retail Manager)
+During a national election, Sarah shared dozens of inflammatory political memes without verifying their sources. These memes contained manipulated statistics about immigration and crime. When fact-checking organizations debunked these claims, Sarah dismissed them as "part of the establishment," having been convinced by online groups that fact-checkers were politically biased. Her voting decisions were significantly influenced by this false information.
+
+## Case 4: Pandemic Conspiracy
+Abdul Rahman (Male, 61, Middle Eastern, Canada, Ph.D. in Chemistry, Retired Professor)
+Despite his scientific background, Abdul became convinced by well-produced YouTube documentaries that COVID-19 was engineered in a laboratory. He began refusing conventional medical treatments and promoting alternative remedies on Facebook. The documentary's professional quality and interviews with people claiming to be experts led him to overlook peer-reviewed research contradicting these claims.
+
+## Case 5: Environmental Hoax
+Emma O'Brien (Female, 42, White, Ireland, Master's in Marketing, Communications Director)
+Emma encountered a viral social media campaign claiming wind turbines were causing mass bird extinctions. The campaign used genuine photos of dead birds from unrelated incidents. As an environmental enthusiast, she organized local protests against wind energy projects, unknowingly spreading oil industry-funded propaganda. She had failed to cross-reference the claims with ornithological research data.
+
+## Case 6: Technology Fear
+Victor Patel (Male, 49, Indian, Australia, Bachelor's in Accounting, Bank Manager)
+After reading several sensationalized articles about AI dangers, Victor implemented strict technology bans in his department, believing AI would steal banking jobs within months. The articles cited "expert opinions" without context and used cherry-picked data. His decision impacted team productivity and was based on misunderstanding AI capabilities and limitations in the banking sector.
+
+## Case 7: Medical Misconception
+Diana Kim (Female, 55, Korean, New Zealand, Associate Degree in Nursing, Healthcare Administrator)
+Diana fell for a coordinated Facebook campaign promoting expensive "electromagnetic protection" devices. The campaign used scientific-sounding jargon and testimonials from supposed medical professionals. She spent $3,000 on these ineffective devices and convinced several colleagues to do the same, misinterpreting correlation as causation in the testimonials she read.
+
+## Case 8: Investment Deception
+Marcus Johnson (Male, 41, African American, USA, Bachelor's in Psychology, HR Manager)
+Through LinkedIn, Marcus connected with supposed investment experts promoting a "guaranteed return" real estate investment scheme. Professional-looking websites and fake testimonials convinced him to invest his family's savings. The scammers used stolen identities of real business people and fabricated property documents. Marcus ignored warning signs because the scheme was promoted by "trusted" LinkedIn connections.
+
+## Case 9: Educational Fraud
+Sophia Müller (Female, 35, White, Germany, Master's in Education, Elementary School Teacher)
+Sophia was misled by a viral TikTok trend promoting pseudoscientific learning methods. She implemented these methods in her classroom after watching carefully edited videos showing "miraculous" results. The trend used manipulated before-and-after footage and fake expert endorsements. She had bypassed educational research journals in favor of social media "evidence."
+
+## Case 10: Consumer Deception
+Liu Wei (Male, 58, Chinese, Singapore, Bachelor's in Economics, Restaurant Owner)
+Liu fell victim to fake reviews and manipulated ratings on e-commerce platforms while sourcing restaurant equipment. He purchased substandard equipment from a company using bot-generated reviews and paid testimonials. The company had created an artificial sense of credibility through coordinated social media campaigns. Liu had prioritized quantity of reviews over verification of their authenticity.

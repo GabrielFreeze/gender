@@ -1,0 +1,89 @@
+Dialogue 1
+
+Educator: Maria (Female, 45, Hispanic/Latina, USA, Master's in Public Health, Community Health Worker)
+
+Student: David (Male, 62, White, USA, High School Diploma, Retired Construction Worker)
+
+Dialogue:
+
+Educator: "David, last week we discussed the importance of reading food labels.  I noticed in our practice examples some confusion about serving sizes. Can you share what you found challenging?"
+
+David: "Yeah, well, it says 'serving size: 3 oz.'  But who eats just 3 oz of chicken?  I usually eat a whole breast, which is way more. So, the calories and fat listed, are those just for 3oz?"
+
+Educator: "Exactly. The nutritional information is per serving. So, if you eat the whole breast, you're consuming more than one serving, meaning you need to multiply the listed values.  It's a common misconception. Many people overlook this and underestimate their intake."
+
+David: "Wow, I never realized that.  That makes a big difference. I need to pay closer attention."
+
+Educator: "Absolutely. It's a crucial step in managing your diet, especially if you're watching your weight or have specific health concerns like diabetes."
+
+Dialogue 2
+
+Educator: Maria (Female, 45, Hispanic/Latina, USA, Master's in Public Health, Community Health Worker)
+
+Student: Aisha (Female, 38, Black/African American, USA, Some College,  Home Health Aide)
+
+Dialogue:
+
+Educator: "Aisha, we’ve talked about the importance of regular physical activity.  What are some of the barriers you face in incorporating it into your daily routine?"
+
+Aisha: "Time is a big one. I work long hours, and by the time I get home, I'm exhausted.  Plus, my neighborhood isn't the safest for walking at night."
+
+Educator: "Those are valid concerns.  Have you considered shorter bursts of activity throughout the day?  Even 10-15 minutes of brisk walking or dancing can make a difference.  Perhaps you could find some exercise videos you enjoy and do them at home?"
+
+Aisha: "I hadn't thought about breaking it up like that.  And the videos are a good idea. I like to dance. I’ll look into that."
+
+Educator:  "Great!  Remember, any movement is better than none.  Start small and gradually increase the duration and intensity."
+
+Dialogue 3
+
+Educator: Maria (Female, 45, Hispanic/Latina, USA, Master's in Public Health, Community Health Worker)
+
+Student:  Kenji (Male, 50, Asian/Japanese, USA, Bachelor's Degree, Accountant)
+
+Dialogue:
+
+Educator: "Kenji, we discussed stress management techniques last week.  How have you been doing with the mindfulness exercises we practiced?"
+
+Kenji: "Honestly, I've been struggling to find the time to do them consistently. My work is very demanding, and I often bring it home with me."
+
+Educator: "I understand.  It's challenging to prioritize self-care when you're busy.  Perhaps you could try incorporating shorter mindfulness breaks throughout your workday? Even a few minutes of deep breathing can be beneficial."
+
+Kenji: "That's a good suggestion. I could probably squeeze in 5 minutes here and there. I’ll try that."
+
+Educator: "Excellent.  Remember, consistency is key.  Even small, regular practices can have a cumulative effect over time."
+
+Dialogue 4
+
+Educator: Maria (Female, 45, Hispanic/Latina, USA, Master's in Public Health, Community Health Worker)
+
+Student:  Sarah (Female, 28, White, USA, Associate's Degree,  Administrative Assistant)
+
+Dialogue:
+
+Educator: "Sarah, we've talked about the importance of preventative health screenings.  Have you scheduled your annual check-up yet?"
+
+Sarah: "Not yet. I've been putting it off.  I'm a bit nervous about it, to be honest."
+
+Educator: "I understand.  It's normal to feel anxious about medical appointments.  Is there anything specific you're concerned about?"
+
+Sarah: "Just the thought of something being wrong.  I know it's important, but I get really stressed out."
+
+Educator: "I hear you.  Remember, preventative screenings are about being proactive about your health.  They can help detect potential issues early when they're often easier to treat.  Try to focus on the positive aspects of taking care of yourself."
+
+Dialogue 5
+
+Educator: Maria (Female, 45, Hispanic/Latina, USA, Master's in Public Health, Community Health Worker)
+
+Student:  Omar (Male, 35, Middle Eastern/Lebanese, USA,  High School Diploma, Small Business Owner)
+
+Dialogue:
+
+Educator: "Omar, we discussed the importance of healthy communication within families.  How have you been applying some of the techniques we talked about?"
+
+Omar: "It's been a work in progress.  Especially with my teenage son. We have very different communication styles."
+
+Educator: "That's common.  Teenagers are going through a lot of changes, and it can be challenging to bridge the communication gap.  Have you tried active listening?"
+
+Omar: "I'm trying, but it's hard not to jump in with my own opinions and advice."
+
+Educator: "It takes practice.  Try to focus on truly understanding his perspective before offering your own.  Ask open-ended questions and reflect back what you're hearing."

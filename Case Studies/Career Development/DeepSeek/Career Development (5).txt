@@ -1,0 +1,80 @@
+Dialogue 1
+
+Participants:
+
+    Career Counsellor: Dr. Priya Sharma, Female, 42, Indian, Canada, PhD in Career Psychology, 15 years of experience.
+
+    Student: Michael Thompson, Male, 29, Caucasian, Canada, Bachelor’s in Business Administration, currently unemployed.
+
+Dialogue:
+Dr. Sharma: Michael, it’s good to see you again. Last time, we discussed your interest in transitioning into the tech industry. How have you been exploring that?
+Michael: Hi, Dr. Sharma. I’ve been taking online courses in data analysis and coding. I’m enjoying it, but I’m worried about my lack of formal experience.
+Dr. Sharma: That’s a great start. Upskilling is essential, but let’s also focus on how to leverage your business background. Have you considered roles like business analyst or product manager?
+Michael: I’ve thought about it, but I’m not sure how to position myself for those roles.
+Dr. Sharma: Your business degree is a strong foundation. Highlight your analytical skills and any projects you’ve worked on. Networking is also key—have you reached out to professionals in those roles?
+Michael: Not yet. I’m not sure how to approach them.
+Dr. Sharma: Let’s work on crafting a LinkedIn message template. Also, consider informational interviews to learn more about these roles.
+Michael: That sounds helpful. I’ll start working on that.
+Dialogue 2
+
+Participants:
+
+    Career Counsellor: Mr. Carlos Rivera, Male, 38, Hispanic, USA, Master’s in Career Development, 10 years of experience.
+
+    Student: Aisha Patel, Female, 34, South Asian, USA, Master’s in Public Health, currently working part-time in healthcare administration.
+
+Dialogue:
+Mr. Rivera: Aisha, welcome back. Last session, we talked about your desire to move into a leadership role. How’s that going?
+Aisha: Hi, Mr. Rivera. I’ve been applying for managerial positions, but I’m not getting many responses.
+Mr. Rivera: Let’s review your resume. Are you tailoring it to highlight leadership skills like project management or team coordination?
+Aisha: I’ve tried, but I’m not sure if it’s strong enough.
+Mr. Rivera: Your experience in healthcare administration is valuable. Let’s emphasize specific achievements, like streamlining processes or leading teams. Also, have you considered certifications like PMP?
+Aisha: I’ve heard of it, but I’m not sure if it’s worth the investment.
+Mr. Rivera: It can boost your credibility. Let’s explore scholarships or employer-sponsored programs.
+Aisha: That’s a good idea. I’ll look into it.
+Dialogue 3
+
+Participants:
+
+    Career Counsellor: Ms. Emily Zhang, Female, 45, Chinese, Australia, Master’s in Counselling Psychology, 12 years of experience.
+
+    Student: James O’Connor, Male, 31, Caucasian, Australia, Bachelor’s in Engineering, currently working as a junior engineer.
+
+Dialogue:
+Ms. Zhang: James, it’s good to see you. Last time, we discussed your dissatisfaction with your current role. What’s changed since then?
+James: Hi, Ms. Zhang. I’ve realized I want to move into renewable energy, but I’m not sure how to make the switch.
+Ms. Zhang: That’s a growing field. Have you researched companies or roles that align with your interests?
+James: I’ve looked, but most require experience I don’t have.
+Ms. Zhang: Let’s focus on transferable skills, like project management or technical expertise. Have you considered volunteering or internships?
+James: I hadn’t thought of that.
+Ms. Zhang: It’s a great way to gain experience and network. Let’s identify some opportunities.
+Dialogue 4
+
+Participants:
+
+    Career Counsellor: Dr. Ahmed Ali, Male, 50, Middle Eastern, UK, PhD in Career Guidance, 20 years of experience.
+
+    Student: Sarah Johnson, Female, 27, African American, UK, Bachelor’s in Psychology, currently working in retail.
+
+Dialogue:
+Dr. Ali: Sarah, welcome back. Last session, we discussed your interest in counselling. How’s that going?
+Sarah: Hi, Dr. Ali. I’ve been researching programs, but I’m worried about the cost.
+Dr. Ali: That’s a valid concern. Have you looked into scholarships or part-time programs?
+Sarah: I’ve started, but it’s overwhelming.
+Dr. Ali: Let’s break it down. We’ll create a list of programs and funding options. Also, consider gaining experience through volunteering.
+Sarah: That sounds manageable.
+Dialogue 5
+
+Participants:
+
+    Career Counsellor: Ms. Maria Gonzalez, Female, 40, Hispanic, USA, Master’s in Career Counselling, 12 years of experience.
+
+    Student: David Kim, Male, 36, Asian American, USA, Bachelor’s in Computer Science, currently working as a software developer.
+
+Dialogue:
+Ms. Gonzalez: David, it’s good to see you. Last time, we discussed your desire for a more creative role. What’s new?
+David: Hi, Ms. Gonzalez. I’ve been exploring UX design, but I’m not sure how to transition.
+Ms. Gonzalez: UX design is a great fit. Have you taken any courses or built a portfolio?
+David: I’ve started, but I’m not confident in my work.
+Ms. Gonzalez: Let’s review your portfolio and identify areas for improvement. Networking with UX professionals can also help.
+David: That sounds like a plan.

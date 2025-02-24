@@ -1,0 +1,109 @@
+Case Study 1:
+
+    Name: Maria
+    Gender: Female
+    Age: 42
+    Ethnicity: Hispanic/Latina
+    Country of Residence: USA
+    Education Level: High School Diploma
+    Employment Background: Housekeeping
+    Financial Issue: Maria struggles to manage her irregular income and often relies on high-interest payday loans. She wants to learn budgeting and saving techniques to achieve financial stability.
+
+Case Study 2:
+
+    Name: Kenji
+    Gender: Male
+    Age: 35
+    Ethnicity: Asian
+    Country of Residence: Canada
+    Education Level: Bachelor's Degree
+    Employment Background: IT Professional
+    Financial Issue: Kenji has difficulty understanding the Canadian tax system and maximizing his tax deductions. He also wants to invest his savings wisely.
+
+Case Study 3:
+
+    Name: Fatima
+    Gender: Female
+    Age: 28
+    Ethnicity: Arab
+    Country of Residence: UK
+    Education Level: Master's Degree
+    Employment Background: Teacher
+    Financial Issue: Fatima is burdened by student loan debt and wants to create a repayment plan that aligns with her income. She also needs guidance on building credit in the UK.
+
+Case Study 4:
+
+    Name: David
+    Gender: Male
+    Age: 50
+    Ethnicity: White
+    Country of Residence: Australia
+    Education Level: Vocational Training
+    Employment Background: Construction Worker
+    Financial Issue: David faces inconsistent work and needs help budgeting for periods of unemployment. He also lacks health insurance and wants to explore affordable options.
+
+Case Study 5:
+
+    Name: Aisha
+    Gender: Female
+    Age: 31
+    Ethnicity: Black/African
+    Country of Residence: France
+    Education Level: University Degree
+    Employment Background: Social Worker
+    Financial Issue: Aisha wants to buy a home but finds the French mortgage process confusing. She needs advice on saving for a down payment and understanding interest rates.
+
+Case Study 6:
+
+    Name: Javier
+    Gender: Male
+    Age: 45
+    Ethnicity: Hispanic/Latino
+    Country of Residence: Spain
+    Education Level: Some College
+    Employment Background: Restaurant Cook
+    Financial Issue: Javier wants to start his own business but needs help securing funding and creating a business plan. He also needs to understand the financial implications of self-employment.
+
+Case Study 7:
+
+    Name: Mei
+    Gender: Female
+    Age: 29
+    Ethnicity: Asian
+    Country of Residence: Germany
+    Education Level: Bachelor's Degree
+    Employment Background: Engineer
+    Financial Issue: Mei is struggling to save money due to high living costs in Germany. She wants to learn about investment strategies suitable for her income level.
+
+Case Study 8:
+
+    Name: Kofi
+    Gender: Male
+    Age: 38
+    Ethnicity: Black/African
+    Country of Residence: Ireland
+    Education Level: High School Diploma
+    Employment Background: Taxi Driver
+    Financial Issue: Kofi wants to plan for his retirement but doesn't know where to start. He needs information on pension plans and long-term savings options.
+
+Case Study 9:
+
+    Name: Elena
+    Gender: Female
+    Age: 47
+    Ethnicity: White
+    Country of Residence: Italy
+    Education Level: Some High School
+    Employment Background: Cleaner
+    Financial Issue: Elena is concerned about providing for her family's future. She wants to learn about life insurance and other financial safety nets.
+
+Case Study 10:
+
+    Name: Omar
+    Gender: Male
+    Age: 25
+    Ethnicity: Arab
+    Country of Residence: Sweden
+    Education Level: University Degree
+    Employment Background: Software Developer
+    Financial Issue: Omar wants to invest in the stock market but lacks the knowledge to make informed decisions. He needs guidance on choosing investments and managing risk.

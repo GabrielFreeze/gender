@@ -1,0 +1,119 @@
+Case Study 1:
+
+    Name: Maria Rodriguez
+    Gender: Female
+    Age: 42
+    Ethnicity: Hispanic/Latina
+    Country: USA
+    Education: High School Diploma
+    Employment: Restaurant Server
+
+Maria, influenced by social media posts claiming vaccines cause autism, refused to vaccinate her children. Despite evidence disproving this link, she trusts "mommy bloggers" over scientific consensus.  This decision, based on misinformation, puts her children and community at risk.  Discussion point: How can we help Maria evaluate the credibility of online sources?
+
+Case Study 2:
+
+    Name: Jean-Pierre Dubois
+    Gender: Male
+    Age: 65
+    Ethnicity: Caucasian
+    Country: France
+    Education: Bachelor's Degree
+    Employment: Retired Teacher
+
+Jean-Pierre regularly watches news programs that reinforce his pre-existing biases about immigration. He shares articles on social media that demonize immigrants, unaware of the skewed data and inflammatory language used. He genuinely believes he's sharing facts, but is contributing to the spread of harmful stereotypes. Discussion point: How can we encourage critical analysis of news sources, even those that seem to align with our views?
+
+Case Study 3:
+
+    Name: Kofi Asante
+    Gender: Male
+    Age: 38
+    Ethnicity: Black/African
+    Country: Ghana
+    Education: Secondary School
+    Employment: Small Business Owner
+
+Kofi relies heavily on WhatsApp groups for news. He recently shared a voice note claiming a popular soft drink contains a dangerous chemical.  The message went viral, causing panic.  Later, it was debunked as a hoax.  Kofi, though embarrassed, acknowledges the ease with which misinformation spreads. Discussion point:  How can we promote verification of information before sharing?
+
+Case Study 4:
+
+    Name: Mei Lin
+    Gender: Female
+    Age: 29
+    Ethnicity: Asian/Chinese
+    Country: Australia
+    Education: University Degree
+    Employment: Marketing Executive
+
+Mei was drawn into a conspiracy theory about a global cabal controlling world events, propagated through online forums and YouTube videos.  The complex narrative and “insider information” felt compelling.  Although initially skeptical, constant exposure made her question established narratives.  Discussion point: What are the psychological factors that make conspiracy theories appealing?
+
+Case Study 5:
+
+    Name: David O'Connell
+    Gender: Male
+    Age: 55
+    Ethnicity: Caucasian
+    Country: Ireland
+    Education: Vocational Training
+    Employment: Construction Worker
+
+David reads a tabloid newspaper that consistently exaggerates crime statistics, particularly those involving certain minority groups.  This skewed reporting reinforces his anxieties about safety and contributes to prejudice. He is unaware of the paper's biased editorial slant. Discussion point: How can we educate about media ownership and its influence on content?
+
+Case Study 6:
+
+    Name: Aisha Khan
+    Gender: Female
+    Age: 24
+    Ethnicity: South Asian/Pakistani
+    Country: UK
+    Education: A-Levels
+    Employment: Retail Assistant
+
+Aisha is constantly bombarded with idealized images of beauty on social media, leading her to feel insecure about her own appearance.  Filters and editing software create unrealistic standards, impacting her self-esteem. She spends excessive time trying to emulate these fabricated images. Discussion point:  How can young adults be empowered to critically assess the images they consume online?
+
+Case Study 7:
+
+    Name: Carlos Ramirez
+    Gender: Male
+    Age: 48
+    Ethnicity: Hispanic/Latino
+    Country: Mexico
+    Education: Primary School
+    Employment: Farmer
+
+Carlos believes misinformation about genetically modified crops spread through local radio programs.  He refuses to use improved seeds, hindering his yields and income. He trusts these programs due to his reliance on them for local news and information. Discussion point: How can we reach vulnerable communities with reliable information about science and technology?
+
+Case Study 8:
+
+    Name: Elena Rossi
+    Gender: Female
+    Age: 70
+    Ethnicity: Caucasian
+    Country: Italy
+    Education: Middle School
+    Employment: Retired
+
+Elena shares fabricated news articles about politicians on Facebook, believing them to be true.  She gets her news primarily from social media and doesn't verify the information before sharing. This contributes to the spread of political disinformation within her community.  Discussion point: How can we encourage older adults to be more discerning consumers of online news?
+
+Case Study 9:
+
+    Name: Samuel Johnson
+    Gender: Male
+    Age: 35
+    Ethnicity: Black/African American
+    Country: USA
+    Education: GED
+    Employment: Truck Driver
+
+Samuel watched a documentary claiming that climate change is a hoax perpetrated by scientists for financial gain. Despite the overwhelming scientific consensus, the film’s persuasive narrative convinced him.  He now actively disputes climate change, ignoring factual evidence. Discussion point:  How can we address misinformation related to complex scientific issues?
+
+Case Study 10:
+
+    Name: Fatima Hassan
+    Gender: Female
+    Age: 60
+    Ethnicity: Arab/Lebanese
+    Country: Lebanon
+    Education: High School
+    Employment: Homemaker
+
+Fatima encountered a website promoting a miracle cure for cancer.  Desperate for a solution after a family member’s diagnosis, she bought the product.  It proved to be a scam, costing her money and delaying proper medical treatment. Discussion point: How can individuals be protected from health-related scams and misinformation?

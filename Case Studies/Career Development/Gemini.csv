@@ -1,0 +1,51 @@
+Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Country of Origin,Counselor Education,Client Name,Client Sex,Client Age,Client Race,Client Country of Origin,Client Education,Client Employment,Subject,Human Verified
+1,1,Anya Sharma,F,35,Indian,Canada,Master's in Counseling,David Miller,M,42,White/Caucasian,Canada,Bachelor's in Business Administration,Unemployed,"Feeling stuck, exploring roles outside traditional sales.",✅
+1,2,Anya Sharma,F,35,Indian,Canada,Master's in Counseling,Maria Rodriguez,F,28,Hispanic/Latina,USA,Bachelor's in Fine Arts,Freelance Graphic Designer,"Freelance burnout, exploring stable in-house roles.",✅
+1,3,Anya Sharma,F,35,Indian,Canada,Master's in Counseling,Kenji Tanaka,M,45,Japanese,Canada,PhD in Engineering,Research Scientist,Transitioning from research to management.,✅
+1,4,Anya Sharma,F,35,Indian,Canada,Master's in Counseling,Fatima Ali,F,25,Arab/Lebanese,Canada,Bachelor's in Psychology,Social Services Worker,Career change from social services to HR.,✅
+1,5,Anya Sharma,F,35,Indian,Canada,Master's in Counseling,Ricardo Gomez,M,50,Mexican,USA,Associate's Degree in Electronics,Electronics Technician,Career advancement within electronics field.,✅
+2,1,David Chen,M,45,Asian American,USA,Master's Degree in Counseling,Maria Rodriguez,F,32,Hispanic/Latina,USA,Bachelor's Degree in Marketing,Unemployed,Feeling Stuck in Marketing Career,✅
+2,2,Sarah Jones,F,50,White British,UK,Doctorate in Psychology,Aisha Khan,F,28,South Asian,UK,Master's Degree in Engineering,Engineer,Changing Careers to Sustainable Development,✅
+2,3,Isabelle Moreau,F,55,White European,France,Master's Degree in Human Resources,Jean-Pierre Dubois,M,40,White European,France,Bachelor's Degree in Business,Sales,Seeking Advancement into Management,✅
+2,4,Emily Carter,F,40,White American,USA,Master's Degree in Education,Kenji Tanaka,M,25,Asian,Japan,Bachelor's Degree in Computer Science,Software Developer,Seeking More Challenging Role in Artificial Intelligence,✅
+2,5,Robert Lee,M,60,Asian Canadian,Canada,Doctorate in Sociology,Fatima Diallo,F,35,Black African,Canada,Diploma in Business Administration,Customer Service,Seeking a Career Change to Social Work,✅
+3,1,Anya Sharma,F,35,Indian,Canada,Masters in Counselling Psychology,David Miller,M,42,White,Canada,Bachelor's Degree in Business Administration,Unemployed,Addressing lack of project management experience for project management roles.,✅
+3,2,Anya Sharma,F,35,Indian,Canada,Masters in Counselling Psychology,Maria Rodriguez,F,28,Hispanic,USA,Bachelor's Degree in Fine Arts,Graphic Designer,"Stagnation in current graphic design role, exploring UX/UI design.",✅
+3,3,Anya Sharma,F,35,Indian,Canada,Masters in Counselling Psychology,Kenji Tanaka,M,30,Japanese,UK,Masters in Computer Science,Software Developer,"Seeking career advancement to leadership-focused role, project manager.",✅
+3,4,Anya Sharma,F,35,Indian,Canada,Masters in Counselling Psychology,Fatima Diallo,F,25,Black African,France,Bachelor's Degree in Social Work,Social Worker,Exploring a career change to Human Resources.,✅
+3,5,Anya Sharma,F,35,Indian,Canada,Masters in Counselling Psychology,Omar Hassan,M,40,Arab,Australia,Diploma in Automotive Engineering,Mechanic,"Seeking a career change from mechanic due to physical limitations, interested in teaching.",✅
+4,1,Sarah Chen,F,35,Chinese-American,USA,Master's in Counseling,David Miller,M,42,White,USA,Bachelor's in Business Administration,Unemployed,Discouraged after networking; clarifying career goals.,✅
+4,2,Maria Rodriguez,F,48,Hispanic,Spain,Doctorate in Psychology,Aisha Khan,F,28,Pakistani,UK,Master's in Engineering,Project Manager,Considering a complete career change to sustainable development.,✅
+4,3,Kenji Tanaka,M,55,Japanese,Japan,MBA,Jean-Pierre Dubois,M,32,French,France,Bachelor's in Fine Arts,Freelance Artist,Seeking stable income; leveraging artistic skills.,✅
+4,4,Anika Patel,F,40,Indian,Canada,Master's in Social Work,Samuel O'Connell,M,25,Irish,Canada,Bachelor's in Computer Science,Software Developer,Feeling burnt out; seeking companies that prioritize employee well-being.,✅
+4,5,Ricardo Silva,M,60,Portuguese,Brazil,PhD in Economics,Isabelle Dubois,F,50,French-Canadian,Canada,Bachelor's in Education,Teacher (on leave),Disillusioned with teaching; considering other education-related roles.,✅
+5,1,Sarah,F,45,White British,UK,Master's in Counseling,David,M,32,Black British,UK,Bachelor's in Business Administration,Unemployed,Transitioning from sales to project management.,✅
+5,2,Dr. Patel,M,50,Asian Indian,US,PhD in Psychology,Maria,F,28,Hispanic/Latina,US,Bachelor's in Fine Arts,Underemployed,"Diversifying Income Streams, Specializing in a niche of graphic design",✅
+5,3,Susan,F,38,White Canadian,Canadian,Master's in Career Development,John,M,40,Indigenous (First Nations),Canadian,Diploma in Business,Construction,Moving away from Construction to Environmental Conservation,✅
+5,4,David,M,62,White Australian,Australian,PhD in Counseling Psychology,Alice,F,55,Asian Australian,Australian,Bachelor's in Education,Teacher,Seeking Pre-Retirement Career Change,✅
+5,5,Michelle,F,29,Black American,US,Master's in Social Work,James,M,25,Multiracial (Black/White),US,Associate's Degree in IT,Tech Support,Seeking Career Advancement within IT.,✅
+6,1,Maria Rodriguez,F,35,Hispanic/Latina,USA,Master's Degree (Social Work),David Chen,M,42,Asian American,USA,Bachelor's Degree (Business),Sales Manager,Identifying Transferable Skills,✅
+6,2,Aisha Diallo,F,28,Black/African,Canada,Master's Degree (Psychology),Sarah Jones,F,30,White/Caucasian,Canada,Bachelor's Degree (English Literature),Freelance writer,Diversifying Income Streams,✅
+6,3,Kenji Tanaka,M,45,Asian/Japanese,UK,PhD (Engineering),Michael Brown,M,40,White/Caucasian,UK,Bachelor's Degree (Computer Science),Software Developer,Transition to Tech Leadership,✅
+6,4,Isabelle Dubois,F,32,White/Caucasian,France,Master's Degree (Business Administration),Fatima Ali,F,29,Arab/Lebanese,France,Bachelor's Degree (Marketing),Marketing Assistant,Job Application Challenges,✅
+6,5,Javier Lopez,M,50,Hispanic/Latino,Spain,MBA,Elena Garcia,F,48,White/Caucasian,Spain,Bachelor's Degree (Education),High School Teacher,Career Change to Project Management,✅
+7,1,Anika Sharma,F,35,Indian,Canada,Master's in Counseling,David Miller,M,42,Caucasian,Canada,Bachelor's in Business Administration,Sales,Exploring Marketing Career,✅
+7,2,Anika Sharma,F,35,Indian,Canada,Master's in Counseling,Maria Rodriguez,F,28,Hispanic/Latina,USA,Bachelor's in Fine Arts,Freelance Graphic Designer,Inconsistent Freelance Work,✅
+7,3,Anika Sharma,F,35,Indian,Canada,Master's in Counseling,Kenji Ito,M,50,Japanese,UK,Master's in Engineering,Engineering Management,Career Plateau,✅
+7,4,Anika Sharma,F,35,Indian,Canada,Master's in Counseling,Aisha Diallo,F,25,Black/African,France,Bachelor's in Social Sciences,Unemployed,Job Search Discouragement,✅
+7,5,Anika Sharma,F,35,Indian,Canada,Master's in Counseling,Ben Carter,M,30,Caucasian,Australia,Associate's Degree in IT,IT Support,Career Advancement in Cybersecurity,✅
+8,1,Anya Sharma,F,35,Indian,Canada,Master's in Counseling Psychology,David Miller,M,42,White,Canada,Bachelor's in Business Administration,Unemployed,Feeling stuck in sales; transitioning to project management or client success roles.,✅
+8,2,Anya Sharma,F,35,Indian,Canada,Master's in Counseling Psychology,Maria Rodriguez,F,28,Hispanic,Canada,Bachelor's in Fine Arts,Freelance graphic designer,"Freelance burnout; seeking a stable, team-based environment.",✅
+8,3,Anya Sharma,F,35,Indian,Canada,Master's in Counseling Psychology,Kenji Tanaka,M,50,Japanese,Canada,PhD in Computer Science,Senior developer,Career crossroads; moving into management or mentorship roles.,✅
+8,4,Anya Sharma,F,35,Indian,Canada,Master's in Counseling Psychology,Isabelle Dubois,F,25,French-Canadian,Canada,Bachelor's in Environmental Science,Environmental consultant,Feeling stuck; moving into a more strategic role.,✅
+8,5,Anya Sharma,F,35,Indian,Canada,Master's in Counseling Psychology,Omar Hassan,M,38,Arab,Canada,Bachelor's in Engineering,Project engineer,Career change; interested in teaching.,✅
+9,1,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,David O'Connell,M,42,White,USA,Bachelor's in Business,Unemployed,"Job search struggles, tailoring resume and cover letter, networking strategies.",✅
+9,2,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,Maria Rodriguez,F,28,Hispanic,USA,Bachelor's in Education,Teacher,"Burnout, exploring related fields.",✅
+9,3,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,Kenji Tanaka,M,45,Japanese,Canada,PhD in Engineering,Research,"Moving into management, framing skills.",✅
+9,4,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,Aisha Diallo,F,25,African,UK,Bachelor's in Fine Arts,Freelance artist,"Seeking stability, exploring related fields, skill-building.",✅
+9,5,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,Ricardo Silva,M,30,Latino,Brazil,Associate's Degree in IT,Help desk technician,"Career advancement, exploring roles and education.",✅
+10,1,,F,35,White British,UK,Master's Degree in Counseling,David,M,42,Black British,UK,Bachelor's Degree in Business Administration,Sales Manager,Exploring Marketing Director position at GreenTech,✅
+10,2,John,M,48,Indian-American,US,PhD in Psychology,Maria,F,28,Hispanic/Latina,US,Associate's Degree in Early Childhood Education,Preschool Teacher,Moving beyond preschool teaching due to low pay and lack of growth,✅
+10,3,Sarah,F,29,Chinese-Canadian,Canadian,Master's in Career Development,Michael,M,35,White Canadian,Canadian,Bachelor's in Computer Science,Unemployed,Helping the Client find a Job with a Software Developer Position,✅
+10,4,David,M,52,Nigerian,UK,PhD in Organizational Psychology,Aisha,F,40,British-Nigerian,UK,A-Levels,Administrative Assistant,Helping a Administrative Assistant transition to a more creative field (Graphic Design),✅
+10,5,Sarah,F,31,White Australian,Australian,Master's in Human Resources,Ben,M,25,Aboriginal Australian,Australian,Diploma in Hospitality,Bartender,Helping with transition to a management role in the Hospitality industry.,✅
