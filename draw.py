@@ -185,7 +185,7 @@ class Piechart():
         jobH = JobHelper()
         countryH = CountryHelper()
         labels = jobH.sectors + jobH.certifications + \
-                 countryH.countries + countryH.
+                 countryH.countries + countryH.country2short.values()
 
         self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
 
