@@ -11,8 +11,7 @@ from typing import List, Dict, Union, Tuple
 from matplotlib.colors import LogNorm, Normalize
 
 class CountryHelper:
-    def __init__(self,models):
-        self.models = models
+    def __init__(self):
         
         hispanic = ['Argentina','Bolivia','Bouvet Island','Brazil','Chile','Colombia','Ecuador','Falkland Islands','French Guiana','Guyana','Paraguay','Peru','South Georgia and the South Sandwich Islands','Suriname','Uruguay','Venezuela','Belize','Costa Rica','El Salvador','Guatemala','Honduras','Mexico','Nicaragua','Panama']
         
@@ -91,14 +90,24 @@ class CountryHelper:
             'Vatican':'Vatican City','Venezuelan':'Venezuela','Vietnamese':'Vietnam','Welsh':'Wales','Yemeni':'Yemen','Zambian':'Zambia','Zimbabwean':'Zimbabwe'        
         }
 
+        self.countries = list(set([
+            country for sublist in self._race2country.values()
+                    for country in (sublist if isinstance(sublist, list) else [sublist])
+        ]))
+
+        self.country2short = {
+            'United States of America':'USA',
+            'United Kingdom':'UK',
+            'United Arab Emirates':'UAE',
+            'Czech Republic':'Czechia',
+        }
+
     def race2country(self,race:str) -> list[str]:
         
         #Take second instance in case of / (Gemini Output)
         if len(k:=race.split('/')) > 1:
             return self._race2country[k[1]]
             
-            
-        
         return self._race2country[race]
 
     def fix_country_naming(self, series:pd.Series) -> pd.Series:
@@ -106,24 +115,20 @@ class CountryHelper:
         series = series.str\
             .replace('USA'          ,'United States of America')\
             .replace('US'           ,'United States of America') \
-            .replace('United States','United States of America') \
-            .replace('UK'           ,'United Kingdom')            \
-            .replace('Britian'      ,'United Kingdom')             \
-            .replace('UAE'          ,'United Arab Emirates')        \
-            .replace('Turkiye'      ,'Turkey')                       \
-            .replace('Türkiye'      ,'Turkey')                        \
+            .replace('United States','United States of America')  \
+            .replace('UK'           ,'United Kingdom')             \
+            .replace('Britian'      ,'United Kingdom')              \
+            .replace('UAE'          ,'United Arab Emirates')         \
+            .replace('Turkiye'      ,'Turkey')                        \
+            .replace('Türkiye'      ,'Turkey')                         \
                 
         return series
     
-    def shorten_country_naming(self,country:str) -> str:
-        
-        country = {
-            'United States of America':'USA',
-            'United Kingdom':'UK',
-            'United Arab Emirates':'UAE',
-            'Czech Republic':'Czechia',
-        }.get(country,country)
-        return country
+    def shorten_country_naming(self,series:pd.Series) -> str:
+        return series.apply(
+            lambda country: self.country2short[country]
+            if country in self.country2short else country
+        )
 
     def get_country_frequency(self,series:pd.Series):
         counts = {}
@@ -142,72 +147,6 @@ class CountryHelper:
                     counts[item] = 1
         return pd.Series(counts, name='count').reset_index().rename(columns={'index': series.name})
 
-    
-    def display_map(self,series:pd.Series,
-                    title:str,cmap:str,
-                    ax:Union[Tuple[Tuple[matplotlib.axes._axes.Axes]],None]=None,
-                    show:bool=False,log:bool=False,
-                    low_poly:bool=False,legend:bool=True,
-                    max_count:int=15,legend_loc=[0,0,0,0]) -> matplotlib.axes._axes.Axes:
-        
-        legend_loc = [[0.15, 0.06, 0.71, 0.02][i]+j for i,j in enumerate(legend_loc)]
-
-        if ax is None:
-            fig = plt.figure(figsize=(14, 7))
-            ax = fig.add_subplot(1, 1, 1, projection=ccrs.Robinson())
-            
-        world = gpd.read_file(os.path.join("world_data",f"ne_{11 if low_poly else 1}0m_admin_0_countries.shp"))
-        world.boundary.plot(ax=ax, transform=ccrs.PlateCarree(), linewidth=0)
-
-        origin_counts = self.get_country_frequency(series)
-        world = world.merge(
-            origin_counts,
-            how='left', left_on='NAME', right_on=series.name
-        )
-        world['count'] = world['count'].fillna(0)
-        world['log_count'] = world['count'].replace(0, 0.1)
-
-        #Calculate min and max for better tick control
-        vmin = 0.1 if log else 0
-        vmax = max_count
-        custom_ticks = [0,0.1,1,5,10,15] if log else [0,1,2,3,4, 5,6,7,8,9,10,11,12,13,14,15]
-        custom_ticks = [t for t in custom_ticks if vmin <= t <= vmax]
-
-        world.plot(
-            column='log_count',
-            cmap=cmap,
-            transform=ccrs.PlateCarree(),
-            linewidth=0.05,
-            edgecolor='black',
-            legend=True,
-            ax=ax,
-            norm=LogNorm(vmin=vmin, vmax=vmax) if log else Normalize(vmin=vmin, vmax=vmax),
-            legend_kwds={
-                'label': "Count",
-                'orientation': "horizontal",
-                'format': ticker.FuncFormatter(lambda x, _: f'{int(x)}' if x >= 1 else f'{x:.1f}'),
-                'ticks': custom_ticks,
-                'extend': 'max',
-                'cax': ax.figure.add_axes(legend_loc)
-            } if legend else {
-                'label': "",
-                'shrink':0.0000001,
-                'ticks': [],
-                'extend': 'neither',
-                'cax': ax.figure.add_axes([0.5,0.5,0.001,0.001])
-                
-            }
-        )
-        ax.set_facecolor('#A6CAE0')
-        ax.set_title(title, fontsize=12)
-        ax.set_global()  # Set global extent
-        ax.gridlines(draw_labels=False, alpha=0.1)
-
-        if show:
-            plt.tight_layout()
-            plt.show()
-        return ax
-    
     def histogram(self,df:pd.DataFrame,x:str, dataset:str=None,
                   aggregate:bool=False):
         
@@ -300,11 +239,11 @@ class CountryHelper:
         
         return plt
     
-    
-    
+
+
 class JobHelper:
     def __init__(self):
-        
+
         #Keep collapsed  
         self._job_title_to_sector = {
             'Restaurant kitchen supervisor': 'Hospitality, Retail and Other Services Managers',
@@ -640,7 +579,13 @@ class JobHelper:
             'Project engineer': 'Science and Engineering Professionals'
         }
 
-        pass
+        self.certifications = [
+            "Associate Degree","Technical Education",
+            "Bachelor's Degree","Master's Degree",
+            "Ph.D","Diploma","Non-tertiary Education"
+        ]
+        
+        self.sectors = list(set(self._job_title_to_sector.values()))
 
     def employment2sector(self,job_title:str):
         if job_title in self._job_title_to_sector:
