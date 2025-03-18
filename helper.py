@@ -10,6 +10,7 @@ import matplotlib.gridspec as gridspec
 from typing import List, Dict, Union, Tuple
 from matplotlib.colors import LogNorm, Normalize
 
+# https://unstats.un.org/unsd/methodology/m49/  + with the inclusion of Kosovo, Taiwan
 class CountryHelper:
     def __init__(self):
         
@@ -19,15 +20,15 @@ class CountryHelper:
         west_africa = ['Benin', 'Burkina Faso', 'Cabo Verde', "Côte d'Ivoire", 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau', 'Liberia', 'Mali', 'Mauritania', 'Niger', 'Nigeria', 'Saint Helena', 'Senegal', 'Sierra Leone', 'Togo']
         north_africa =['Algeria','Egypt','Libya','Morocco','Sudan','Tunisia','W. Sahara']
         east_africa = ['Burundi','Comoros','Djibouti','Eritrea','Ethiopia','Kenya','Madagascar','Malawi','Mauritius','Mayotte','Mozambique','Réunion','Rwanda','Seychelles','Somalia','S. Sudan','Uganda','Tanzania','Zambia','Zimbabwe']
-        africa = west_africa + north_africa + east_africa + ['British Indian Ocean Territory','Burundi','Comoros','Djibouti','Eritrea','Ethiopia','French Southern Territories','Kenya','Madagascar','Malawi','Mauritius','Mayotte','Mozambique','Réunion','Rwanda','Seychelles','Somalia','S. Sudan','Uganda','United Republic of Tanzania','Zambia','Zimbabwe','Middle Africa','Angola','Cameroon','Central African Rep.','Chad','Congo','Dem. Rep. Congo','Eq. Guinea','Gabon','Sao Tome and Principe','Southern Africa','Botswana','Eswatini','Lesotho','Namibia','South Africa']
+        africa = west_africa + north_africa + east_africa + ['British Indian Ocean Territory','Burundi','Comoros','Djibouti','Eritrea','Ethiopia','French Southern Territories','Kenya','Madagascar','Malawi','Mauritius','Mayotte','Mozambique','Réunion','Rwanda','Seychelles','Somalia','S. Sudan','Uganda','Tanzania','Zambia','Zimbabwe','Angola','Cameroon','Central African Rep.','Chad','Congo','Dem. Rep. Congo','Eq. Guinea','Gabon','Sao Tome and Principe','Botswana','Eswatini','Lesotho','Namibia','South Africa']
         africa = list(set(africa))
         south_asian = ['Afghanistan','Bangladesh','Bhutan','India','Iran','Maldives','Nepal','Pakistan','Sri Lanka']
         east_asian = ['China','Japan','Mongolia','North Korea','South Korea','Taiwan']
-        asia = ['Turkey','Kazakhstan','Kyrgyzstan','Tajikistan','Turkmenistan','Uzbekistan','Eastern Asia','China','North Korea','Japan','Mongolia','South Korea','Brunei','Cambodia','Indonesia','Laos','Malaysia','Myanmar','Philippines','Singapore','Thailand','Timor-Leste','Vietnam']
+        asia = ['Turkey','Kazakhstan','Kyrgyzstan','Tajikistan','Turkmenistan','Uzbekistan','China','North Korea','Japan','Mongolia','South Korea','Brunei','Cambodia','Indonesia','Laos','Malaysia','Myanmar','Philippines','Singapore','Thailand','Timor-Leste','Vietnam']
         asia += ['Armenia','Azerbaijan','Georgia']
         east_europe = ['Kosovo','Poland','Belarus','Czechia','Slovakia','Hungary','Romania','Bulgaria','Moldova','Ukraine','Russia']
         balkan = ['Greece','Serbia','Croatia','Bosnia and Herz.','Albania','North Macedonia','Kosovo','Montenegro','Bulgaria','Romania','Slovenia','Moldova']
-        europe = east_europe + ['Denmark','Estonia','Finland','Iceland','Ireland','Isle of Man','Latvia','Lithuania','Norway','Sweden','United Kingdom','Albania','Andorra','Bosnia and Herz.','Croatia','Greece','Holy See','Italy','Malta','Montenegro','North Macedonia','Portugal','San Marino','Serbia','Slovenia','Spain','Austria','Belgium','France','Germany','Liechtenstein','Luxembourg','Monaco','Netherlands','Switzerland']
+        europe = east_europe + ['Denmark','Estonia','Finland','Iceland','Ireland','Latvia','Lithuania','Norway','Sweden','United Kingdom','Albania','Andorra','Bosnia and Herz.','Croatia','Greece','Italy','Malta','Montenegro','North Macedonia','Portugal','San Marino','Serbia','Slovenia','Spain','Austria','Belgium','France','Germany','Liechtenstein','Luxembourg','Monaco','Netherlands','Switzerland']
         
         white = europe + ['United States of America','Canada','Australia','New Zealand','United Kingdom']
         black = africa
@@ -90,17 +91,291 @@ class CountryHelper:
             'Vatican':'Vatican City','Venezuelan':'Venezuela','Vietnamese':'Vietnam','Welsh':'Wales','Yemeni':'Yemen','Zambian':'Zambia','Zimbabwean':'Zimbabwe'        
         }
 
+        self. _country2region = {
+            # Africa - Northern Africa
+            "Algeria": {"region": "Africa", "subregion": "Northern Africa"},
+            "Egypt": {"region": "Africa", "subregion": "Northern Africa"},
+            "Libya": {"region": "Africa", "subregion": "Northern Africa"},
+            "Morocco": {"region": "Africa", "subregion": "Northern Africa"},
+            "Sudan": {"region": "Africa", "subregion": "Northern Africa"},
+            "Tunisia": {"region": "Africa", "subregion": "Northern Africa"},
+            "W. Sahara": {"region": "Africa", "subregion": "Northern Africa"},
+
+            # Africa - Eastern Africa
+            "British Indian Ocean Territory": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Burundi": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Comoros": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Djibouti": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Eritrea": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Ethiopia": {"region": "Africa", "subregion": "Eastern Africa"},
+            "French Southern Territories": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Kenya": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Madagascar": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Malawi": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Mauritius": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Mayotte": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Mozambique": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Réunion": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Rwanda": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Seychelles": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Somalia": {"region": "Africa", "subregion": "Eastern Africa"},
+            "S. Sudan": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Uganda": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Tanzania": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Zambia": {"region": "Africa", "subregion": "Eastern Africa"},
+            "Zimbabwe": {"region": "Africa", "subregion": "Eastern Africa"},
+
+            # Africa - Middle Africa
+            "Angola": {"region": "Africa", "subregion": "Middle Africa"},
+            "Cameroon": {"region": "Africa", "subregion": "Middle Africa"},
+            "Central African Rep.": {"region": "Africa", "subregion": "Middle Africa"},
+            "Chad": {"region": "Africa", "subregion": "Middle Africa"},
+            "Congo": {"region": "Africa", "subregion": "Middle Africa"},
+            "Dem. Rep. Congo": {"region": "Africa", "subregion": "Middle Africa"},
+            "Eq. Guinea": {"region": "Africa", "subregion": "Middle Africa"},
+            "Gabon": {"region": "Africa", "subregion": "Middle Africa"},
+            "Sao Tome and Principe": {"region": "Africa", "subregion": "Middle Africa"},
+            
+            # Africa - Southern Africa
+            "Botswana": {"region": "Africa", "subregion": "Southern Africa"},
+            "Eswatini": {"region": "Africa", "subregion": "Southern Africa"},
+            "Lesotho": {"region": "Africa", "subregion": "Southern Africa"},
+            "Namibia": {"region": "Africa", "subregion": "Southern Africa"},
+            "South Africa": {"region": "Africa", "subregion": "Southern Africa"},
+            
+            # Africa - Western Africa
+            "Benin": {"region": "Africa", "subregion": "Western Africa"},
+            "Burkina Faso": {"region": "Africa", "subregion": "Western Africa"},
+            "Cabo Verde": {"region": "Africa", "subregion": "Western Africa"},
+            "Côte d'Ivoire": {"region": "Africa", "subregion": "Western Africa"},
+            "Gambia": {"region": "Africa", "subregion": "Western Africa"},
+            "Ghana": {"region": "Africa", "subregion": "Western Africa"},
+            "Guinea": {"region": "Africa", "subregion": "Western Africa"},
+            "Guinea-Bissau": {"region": "Africa", "subregion": "Western Africa"},
+            "Liberia": {"region": "Africa", "subregion": "Western Africa"},
+            "Mali": {"region": "Africa", "subregion": "Western Africa"},
+            "Mauritania": {"region": "Africa", "subregion": "Western Africa"},
+            "Niger": {"region": "Africa", "subregion": "Western Africa"},
+            "Nigeria": {"region": "Africa", "subregion": "Western Africa"},
+            "Saint Helena": {"region": "Africa", "subregion": "Western Africa"},
+            "Senegal": {"region": "Africa", "subregion": "Western Africa"},
+            "Sierra Leone": {"region": "Africa", "subregion": "Western Africa"},
+            "Togo": {"region": "Africa", "subregion": "Western Africa"},
+            
+             # Americas - Caribbean
+            "Anguilla": {"region": "Americas", "subregion": "Caribbean"},
+            "Antigua and Barbuda": {"region": "Americas", "subregion": "Caribbean"},
+            "Aruba": {"region": "Americas", "subregion": "Caribbean"},
+            "Bahamas": {"region": "Americas", "subregion": "Caribbean"},
+            "Barbados": {"region": "Americas", "subregion": "Caribbean"},
+            "Cayman Islands": {"region": "Americas", "subregion": "Caribbean"},
+            "Cuba": {"region": "Americas", "subregion": "Caribbean"},
+            "Curaçao": {"region": "Americas", "subregion": "Caribbean"},
+            "Dominican Rep.": {"region": "Americas", "subregion": "Caribbean"},
+            "Grenada": {"region": "Americas", "subregion": "Caribbean"},
+            "Haiti": {"region": "Americas", "subregion": "Caribbean"},
+            "Jamaica": {"region": "Americas", "subregion": "Caribbean"},
+            "Puerto Rico": {"region": "Americas", "subregion": "Caribbean"},
+            "Saint Kitts and Nevis": {"region": "Americas", "subregion": "Caribbean"},
+            "Saint Lucia": {"region": "Americas", "subregion": "Caribbean"},
+            "Trinidad and Tobago": {"region": "Americas", "subregion": "Caribbean"},
+
+            # Americas - Central America
+            "Belize": {"region": "Americas", "subregion": "Central America"},
+            "Costa Rica": {"region": "Americas", "subregion": "Central America"},
+            "El Salvador": {"region": "Americas", "subregion": "Central America"},
+            "Guatemala": {"region": "Americas", "subregion": "Central America"},
+            "Honduras": {"region": "Americas", "subregion": "Central America"},
+            "Mexico": {"region": "Americas", "subregion": "Central America"},
+            "Nicaragua": {"region": "Americas", "subregion": "Central America"},
+            "Panama": {"region": "Americas", "subregion": "Central America"},
+
+            # Americas - South America
+            "Argentina": {"region": "Americas", "subregion": "South America"},
+            "Bolivia": {"region": "Americas", "subregion": "South America"},
+            "Bouvet Island": {"region": "Americas", "subregion": "South America"},
+            "Brazil": {"region": "Americas", "subregion": "South America"},
+            "Chile": {"region": "Americas", "subregion": "South America"},
+            "Colombia": {"region": "Americas", "subregion": "South America"},
+            "Ecuador": {"region": "Americas", "subregion": "South America"},
+            "Falkland Islands": {"region": "Americas", "subregion": "South America"},
+            "French Guiana": {"region": "Americas", "subregion": "South America"},
+            "Guyana": {"region": "Americas", "subregion": "South America"},
+            "Paraguay": {"region": "Americas", "subregion": "South America"},
+            "Peru": {"region": "Americas", "subregion": "South America"},
+            "South Georgia and the South Sandwich Islands": {"region": "Americas", "subregion": "South America"},
+            "Suriname": {"region": "Americas", "subregion": "South America"},
+            "Uruguay": {"region": "Americas", "subregion": "South America"},
+            "Venezuela": {"region": "Americas", "subregion": "South America"},
+
+            # Americas - Northern America
+            "Bermuda": {"region": "Americas", "subregion": "Northern America"},
+            "Canada": {"region": "Americas", "subregion": "Northern America"},
+            "Greenland": {"region": "Americas", "subregion": "Northern America"},
+
+            "United States": {"region": "Americas", "subregion": "Northern America"},
+            "United States of America": {"region": "Americas", "subregion": "Northern America"},
+            "US": {"region": "Americas", "subregion": "Northern America"},
+            "USA": {"region": "Americas", "subregion": "Northern America"},
+            
+            # Asia - Central Asia
+            "Kazakhstan": {"region": "Asia", "subregion": "Central Asia"},
+            "Kyrgyzstan": {"region": "Asia", "subregion": "Central Asia"},
+            "Tajikistan": {"region": "Asia", "subregion": "Central Asia"},
+            "Turkmenistan": {"region": "Asia", "subregion": "Central Asia"},
+            "Uzbekistan": {"region": "Asia", "subregion": "Central Asia"},
+            
+            # Asia - Eastern Asia
+            "China": {"region": "Asia", "subregion": "Eastern Asia"},
+            "Taiwan": {"region": "Asia", "subregion": "Eastern Asia"},
+            "North Korea": {"region": "Asia", "subregion": "Eastern Asia"},
+            "Japan": {"region": "Asia", "subregion": "Eastern Asia"},
+            "Mongolia": {"region": "Asia", "subregion": "Eastern Asia"},
+            "South Korea": {"region": "Asia", "subregion": "Eastern Asia"},
+            
+            # Asia - South-eastern Asia
+            "Brunei": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Cambodia": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Indonesia": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Laos": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Malaysia": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Myanmar": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Philippines": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Singapore": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Thailand": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Timor-Leste": {"region": "Asia", "subregion": "South-eastern Asia"},
+            "Vietnam": {"region": "Asia", "subregion": "South-eastern Asia"},
+            
+            # Asia - Southern Asia
+            "Afghanistan": {"region": "Asia", "subregion": "Southern Asia"},
+            "Bangladesh": {"region": "Asia", "subregion": "Southern Asia"},
+            "Bhutan": {"region": "Asia", "subregion": "Southern Asia"},
+            "India": {"region": "Asia", "subregion": "Southern Asia"},
+            "Iran": {"region": "Asia", "subregion": "Southern Asia"},
+            "Maldives": {"region": "Asia", "subregion": "Southern Asia"},
+            "Nepal": {"region": "Asia", "subregion": "Southern Asia"},
+            "Pakistan": {"region": "Asia", "subregion": "Southern Asia"},
+            "Sri Lanka": {"region": "Asia", "subregion": "Southern Asia"},
+            
+            # Asia - Western Asia
+            "Armenia": {"region": "Asia", "subregion": "Western Asia"},
+            "Azerbaijan": {"region": "Asia", "subregion": "Western Asia"},
+            "Bahrain": {"region": "Asia", "subregion": "Western Asia"},
+            "Cyprus": {"region": "Asia", "subregion": "Western Asia"},
+            "Georgia": {"region": "Asia", "subregion": "Western Asia"},
+            "Iraq": {"region": "Asia", "subregion": "Western Asia"},
+            "Israel": {"region": "Asia", "subregion": "Western Asia"},
+            "Jordan": {"region": "Asia", "subregion": "Western Asia"},
+            "Kuwait": {"region": "Asia", "subregion": "Western Asia"},
+            "Lebanon": {"region": "Asia", "subregion": "Western Asia"},
+            "Oman": {"region": "Asia", "subregion": "Western Asia"},
+            "Qatar": {"region": "Asia", "subregion": "Western Asia"},
+            "Saudi Arabia": {"region": "Asia", "subregion": "Western Asia"},
+            "Palestine": {"region": "Asia", "subregion": "Western Asia"},
+            "Syria": {"region": "Asia", "subregion": "Western Asia"},
+            "Türkiye": {"region": "Asia", "subregion": "Western Asia"},
+            "Turkey": {"region": "Asia", "subregion": "Western Asia"},
+            "UAE": {"region": "Asia", "subregion": "Western Asia"},
+            "United Arab Emirates": {"region": "Asia", "subregion": "Western Asia"},
+            "Yemen": {"region": "Asia", "subregion": "Western Asia"},
+            
+            # Europe - Eastern Europe
+            "Belarus": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Bulgaria": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Czechia": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Hungary": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Poland": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Moldova": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Romania": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Russia": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Slovakia": {"region": "Europe", "subregion": "Eastern Europe"},
+            "Ukraine": {"region": "Europe", "subregion": "Eastern Europe"},
+            
+            # Europe - Northern Europe
+            "Denmark": {"region": "Europe", "subregion": "Northern Europe"},
+            "Estonia": {"region": "Europe", "subregion": "Northern Europe"},
+            "Finland": {"region": "Europe", "subregion": "Northern Europe"},
+            "Iceland": {"region": "Europe", "subregion": "Northern Europe"},
+            "Ireland": {"region": "Europe", "subregion": "Northern Europe"},
+            "Latvia": {"region": "Europe", "subregion": "Northern Europe"},
+            "Lithuania": {"region": "Europe", "subregion": "Northern Europe"},
+            "Norway": {"region": "Europe", "subregion": "Northern Europe"},
+            "Sweden": {"region": "Europe", "subregion": "Northern Europe"},
+            "United Kingdom": {"region": "Europe", "subregion": "Northern Europe"},
+            
+            # Europe - Southern Europe
+            "Albania": {"region": "Europe", "subregion": "Southern Europe"},
+            "Andorra": {"region": "Europe", "subregion": "Southern Europe"},
+            "Bosnia and Herz.": {"region": "Europe", "subregion": "Southern Europe"},
+            "Croatia": {"region": "Europe", "subregion": "Southern Europe"},
+            "Gibraltar": {"region": "Europe", "subregion": "Southern Europe"},
+            "Greece": {"region": "Europe", "subregion": "Southern Europe"},
+            "Italy": {"region": "Europe", "subregion": "Southern Europe"},
+            "Malta": {"region": "Europe", "subregion": "Southern Europe"},
+            "Montenegro": {"region": "Europe", "subregion": "Southern Europe"},
+            "North Macedonia": {"region": "Europe", "subregion": "Southern Europe"},
+            "Portugal": {"region": "Europe", "subregion": "Southern Europe"},
+            "San Marino": {"region": "Europe", "subregion": "Southern Europe"},
+            "Serbia": {"region": "Europe", "subregion": "Southern Europe"},
+            "Kosovo": {"region": "Europe", "subregion": "Southern Europe"},
+            "Slovenia": {"region": "Europe", "subregion": "Southern Europe"},
+            "Spain": {"region": "Europe", "subregion": "Southern Europe"},
+            
+            # Europe - Western Europe
+            "Austria": {"region": "Europe", "subregion": "Western Europe"},
+            "Belgium": {"region": "Europe", "subregion": "Western Europe"},
+            "France": {"region": "Europe", "subregion": "Western Europe"},
+            "Germany": {"region": "Europe", "subregion": "Western Europe"},
+            "Liechtenstein": {"region": "Europe", "subregion": "Western Europe"},
+            "Luxembourg": {"region": "Europe", "subregion": "Western Europe"},
+            "Monaco": {"region": "Europe", "subregion": "Western Europe"},
+            "Netherlands": {"region": "Europe", "subregion": "Western Europe"},
+            "Switzerland": {"region": "Europe", "subregion": "Western Europe"},
+            
+            # Oceania - Australia and New Zealand
+            "Australia": {"region": "Oceania", "subregion": "Australia and New Zealand"},
+            "New Zealand": {"region": "Oceania", "subregion": "Australia and New Zealand"},
+            
+            # Oceania - Melanesia
+            "Fiji": {"region": "Oceania", "subregion": "Melanesia"},
+            "New Caledonia": {"region": "Oceania", "subregion": "Melanesia"},
+            "Papua New Guinea": {"region": "Oceania", "subregion": "Melanesia"},
+            "Solomon Islands": {"region": "Oceania", "subregion": "Melanesia"},
+            "Vanuatu": {"region": "Oceania", "subregion": "Melanesia"},
+            
+            # Oceania - Micronesia
+            "Guam": {"region": "Oceania", "subregion": "Micronesia"},
+            "Kiribati": {"region": "Oceania", "subregion": "Micronesia"},
+            "Marshall Islands": {"region": "Oceania", "subregion": "Micronesia"},
+            "Micronesia": {"region": "Oceania", "subregion": "Micronesia"},
+            "Nauru": {"region": "Oceania", "subregion": "Micronesia"},
+            "Palau": {"region": "Oceania", "subregion": "Micronesia"},
+            
+            # Oceania - Polynesia
+            "Cook Islands": {"region": "Oceania", "subregion": "Polynesia"},
+            "Niue": {"region": "Oceania", "subregion": "Polynesia"},
+            "Samoa": {"region": "Oceania", "subregion": "Polynesia"},
+            "Tonga": {"region": "Oceania", "subregion": "Polynesia"},
+            "Tuvalu": {"region": "Oceania", "subregion": "Polynesia"},
+        }
+       
         self.countries = list(set([
             country for sublist in self._race2country.values()
                     for country in (sublist if isinstance(sublist, list) else [sublist])
         ]))
 
-        self.country2short = {
+        self._country2short = {
             'United States of America':'USA',
             'United Kingdom':'UK',
             'United Arab Emirates':'UAE',
             'Czech Republic':'Czechia',
         }
+
+    def country2region(self,country_name):
+        try:
+            return self._country2region[country_name]
+        except KeyError:
+            raise KeyError(f"Country '{country_name}' not found in the UNSD taxonomy")
 
     def race2country(self,race:str) -> list[str]:
         
@@ -124,12 +399,9 @@ class CountryHelper:
                 
         return series
     
-    def shorten_country_naming(self,series:pd.Series) -> str:
-        return series.apply(
-            lambda country: self.country2short[country]
-            if country in self.country2short else country
-        )
-
+    def country2short(self,country_name:str) -> str:
+        return self._country2short[country_name] if country_name in self._country2short else country_name
+        
     def get_country_frequency(self,series:pd.Series):
         counts = {}
         for item in series:
@@ -239,8 +511,6 @@ class CountryHelper:
         
         return plt
     
-
-
 class JobHelper:
     def __init__(self):
 

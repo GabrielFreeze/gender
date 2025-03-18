@@ -14,10 +14,31 @@ from helper import JobHelper,CountryHelper
 class Histogram():
     def __init__(self, models):
         self.models = models
-        pass
+        self.jobH = JobHelper()
+        self.countryH = CountryHelper()
+
+        labels = self.jobH.sectors + self.jobH.certifications + \
+                 self.countryH.countries + list(self.countryH._country2short.values())
+        labels = list(set(labels))
+        self._label2color = dict(zip(labels, sns.color_palette("tab20", len(labels))))
+
+        regions = list(set([
+            region['subregion'] for region in self.countryH._country2region.values()
+        ]))
+        self._region2color = dict(zip(regions, sns.color_palette("tab20", len(regions))))
+
+
+    def label2color(self, label: str) -> str:
+        return self._label2color[label]
+    
+    def region2color(self, region: str) -> str:
+        return self._region2color[region]
+        
 
     def draw(self,df:pd.DataFrame,x:str, dataset:str=None,
-                  aggregate:bool=False):
+             aggregate:bool=False, hue:str=None,
+             long_layout:bool=False,ylim:int=15,
+             xtick_label_max_len:int=0):
         
         plt.rcParams.update({
             'font.family': 'sans-serif',
@@ -33,11 +54,10 @@ class Histogram():
         sns.set_style("ticks", {'grid.linestyle': '--', 'grid.alpha': 0.6})
         
         if aggregate:
-            fig, ax = plt.subplots(figsize=(10, 8))
+            fig, ax = plt.subplots(figsize=(10, 8) if not long_layout else (24,6))
             
             ax = sns.countplot(data=df, x=x,
                 hue='model',palette='Set1',
-                order=df[x].value_counts().index,
                 saturation=0.9,edgecolor='black',
                 linewidth=0.8
             )
@@ -46,7 +66,7 @@ class Histogram():
             plt.xlabel(x, fontsize=14, fontweight='medium', labelpad=15)
             plt.ylabel("Count", fontsize=14, fontweight='medium', labelpad=15)
             plt.xticks(rotation=45, ha='center', fontsize=12)
-            plt.yticks(range(16), fontsize=12)
+            plt.yticks(range(ylim+1), fontsize=12)
 
             legend = plt.legend(title='Model',frameon=True, 
                 framealpha=0.95, fontsize=14,title_fontsize=15,
@@ -67,36 +87,71 @@ class Histogram():
             plt.tight_layout()
             return plt
 
-        fig = plt.figure(figsize=(16, 12))
-        gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=0.3)
+        if long_layout:
+            fig = plt.figure(figsize=(30, 6))
+            gs = gridspec.GridSpec(4, 1, figure=fig, wspace=0.2, hspace=0.3)
+        else:
+            fig = plt.figure(figsize=(16, 12))
+            gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=0.3)
         colors = sns.color_palette("Set1", len(self.models))
 
         for i, model_name in enumerate(self.models):
-            ax = fig.add_subplot(gs[i//2, i%2])
             
+            ax = fig.add_subplot(
+                gs[i//2, i%2] if not long_layout else gs[i,0]
+            )
             sns.countplot(
                 data=df[df['model'] == model_name],
-                x=x,
-                order=df[x].value_counts().index,
-                color=colors[i],
+                x=x, hue=hue,
+                palette=self._label2color if not hue else self._region2color,
                 edgecolor='black',
                 linewidth=0.7,
                 ax=ax,
-                saturation=1.0
+                saturation=1.0,
+                legend=(i==0)
             )
+            if hue and i==0:
+                ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title=hue)
             
             ax.set_title(f"{model_name}", fontsize=16, fontweight='bold', pad=0)
             ax.set_xlabel("")
             ax.set_ylabel("Count", fontsize=14, fontweight='medium', labelpad=10)
             ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha='center', fontsize=11, fontweight='medium')
-            ax.set_yticks(range(16))
-            ax.yaxis.grid(True, linestyle='--', alpha=0.7)
-            
-            for spine in ax.spines.values():
-                spine.set_linewidth(0.8)
-                spine.set_color('#444444')
-            
             ax.set_ylim(bottom=0)
+
+            ax.set_yticks(range(ylim+1) if not long_layout else range(0,ylim+1,5))
+
+
+            #TODO: The below if statement is messing up with the ordering of the labels, messing everything up.
+            #Shorten xtick_label
+            if xtick_label_max_len > 0:
+                ax.set_xticklabels([
+                    f'{label.get_text()[:xtick_label_max_len]}..'
+                    if len(label.get_text()) > xtick_label_max_len else label.get_text()
+                    for label in ax.get_xticklabels()
+                ])
+
+
+                #If shortening xtick_labels and long_layout==True, move ytick_labels on bars
+                if long_layout:
+                    for p, label in zip(ax.patches, ax.get_xticklabels()):
+                        ax.annotate(
+                            text=label.get_text(),
+                            xy=(p.get_x() + p.get_width() / 2., (len(label.get_text())-0.4)//5+1),
+                            ha='center', va='center',
+                            xytext=(0, 9), textcoords='offset points',
+                            fontsize=max(6, min(12, p.get_width() * 10)),  # Adjust fontsize based on p.get_width
+                            fontweight='light', color='black',
+                            rotation=90
+                        )
+                    ax.set_xticklabels([])
+            
+            #No Grids and spines if we are offsetting the xticklabels
+            else:
+                ax.yaxis.grid(True, linestyle='--', alpha=0.7)
+                for spine in ax.spines.values():
+                    spine.set_linewidth(0.8)
+                    spine.set_color('#444444')
 
         fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(f'Frequency of {x} by Model', 
@@ -112,6 +167,13 @@ class Map():
     def __init__(self,models):
         self.models = models
         self.countryH = CountryHelper()
+        self.jobH = JobHelper()
+
+        labels = self.jobH.sectors + self.jobH.certifications + \
+                 self.countryH.countries + list(self.countryH._country2short.values())
+
+        self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
+
 
     def draw(self,series:pd.Series,
                     title:str,cmap:str,
@@ -185,7 +247,7 @@ class Piechart():
         jobH = JobHelper()
         countryH = CountryHelper()
         labels = jobH.sectors + jobH.certifications + \
-                 countryH.countries + countryH.country2short.values()
+                 countryH.countries + list(countryH._country2short.values())
 
         self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
 
