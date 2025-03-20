@@ -377,6 +377,10 @@ class CountryHelper:
         except KeyError:
             raise KeyError(f"Country '{country_name}' not found in the UNSD taxonomy")
 
+    def region2continent(self, region):
+        pass
+
+
     def race2country(self,race:str) -> list[str]:
         
         #Take second instance in case of / (Gemini Output)
@@ -510,344 +514,33 @@ class CountryHelper:
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
         
         return plt
+
+class ColorHelper:
+    def __init__(self):
+        jobH = JobHelper()
+        countryH = CountryHelper()
+        labels = jobH.sectors + jobH.subsectors + jobH.certifications + \
+                 countryH.countries + list(countryH._country2short.values())
+        self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
+
+        continents = list(set([
+            continent['region'] for continent in countryH._country2region.values()
+        ]))
+        self._continent2color = dict(zip(continents, sns.color_palette("pastel", len(continents))))
     
+    def label2color(self, label: str) -> str:
+        return self._label2color[label.replace('\n',' ')]
+    
+    def continent2color(self, region: str) -> str:
+        return self._continent2color[region]
+        
+  
 class JobHelper:
     def __init__(self):
 
         #Keep collapsed  
-        self._job_title_to_sector = {
-            'Restaurant kitchen supervisor': 'Hospitality, Retail and Other Services Managers',
-            'Research scientist': 'Science and Engineering Professionals',
-            'Administrative Assistant': 'Business and Administration Associate Professionals',
-            'Retial Management': 'Administrative and Commercial Managers',
-            'Middle Manager in Retail': 'Administrative and Commercial Managers',
-            'Retail Worker': 'Sales Workers',
-            'Marketing Manager': 'Administrative and Commercial Managers',
-            'Taxi Driver': 'Drivers and Mobile Plant Operators',
-            'Construction worker': 'Building and Related Trades Workers (excluding Electricians)',
-            'Retired Nurse': 'Health Professionals',
-            'Environmental Scientist': 'Science and Engineering Professionals',
-            'Sales manager': 'Administrative and Commercial Managers',
-            'Manufacturing supervisor': 'Production and Specialized Services Managers',
-            'Senior developer': 'Information and Communications Technology Professionals',
-            'Mental health and stress management': 'Health Professionals', #Assuming this means practicing in the field
-            'Freelance translator': 'Legal, Social and Cultural Professionals',
-            'Taxi driver': 'Drivers and Mobile Plant Operators',
-            'Retired Office Worker': 'General and Keyboard Clerks',
-            'Shop Owner': 'Administrative and Commercial Managers',
-            'Teacher (unemployed)': 'Teaching Professionals',
-            'Farmer': 'Market-oriented Skilled Agricultural Workers',
-            'Construction foreman': 'Building and Related Trades Workers (excluding Electricians)',
-            'Retired factory worker': 'Stationary Plant and Machine Operators',
-            'Daycare center owner': 'Hospitality, Retail and Other Services Managers',
-            'Bank Manager': 'Administrative and Commercial Managers',
-            'Factory worker': 'Stationary Plant and Machine Operators',
-            'Factory Shift Supervisor': 'Production and Specialized Services Managers',
-            'IT': 'Information and Communications Technology Professionals',
-            'Banker': 'Business and Administration Professionals',
-            'Freelance Translator': 'Legal, Social and Cultural Professionals',
-            'Housekeeping supervisor': 'Hospitality, Retail and Other Services Managers',
-            'Retail Sales Associate': 'Sales Workers',
-            'Help desk technician': 'Information and Communications Technicians',
-            'Stay-at-Home Mother': 'Unemployed', # Or could be considered 'Personal Service Workers' but unemployed is more appropriate
-            'Auto Mechanic': 'Metal, Machinery and Related Trades Workers',
-            'Works in hospitality.': 'Personal Service Workers', #Assuming generic worker in hospitality
-            'Civil Engineering': 'Science and Engineering Professionals',
-            'Retired Gardener': 'Market-oriented Skilled Agricultural Workers',
-            'Construction': 'Building and Related Trades Workers (excluding Electricians)',
-            'Retail management': 'Administrative and Commercial Managers',
-            'Self-employed seamstress': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers',
-            'IT Professional': 'Information and Communications Technology Professionals',
-            'Accounting clerk, former bank employee in China': 'Numerical and Material Recording Clerks',
-            'IT technician': 'Information and Communications Technicians',
-            'Food truck owner': 'Hospitality, Retail and Other Services Managers',
-            'IT Project Manager': 'Information and Communications Technology Professionals',
-            'Corporate Marketing': 'Administrative and Commercial Managers',
-            'Caregiver': 'Personal Care Workers',
-            'Civil engineer at a construction firm': 'Science and Engineering Professionals',
-            'Factory worker, former civil engineer': 'Stationary Plant and Machine Operators',
-            'Blue-Collar Worker': 'Labourers in Mining, Construction, Manufacturing and Transport', #Broad definition
-            'Farmworker': 'Agricultural, Forestry and Fishery Labourers',
-            'Warehouse Worker': 'Labourers in Mining, Construction, Manufacturing and Transport',
-            'Part-time bookkeeper': 'Business and Administration Associate Professionals',
-            'Senior Software Engineer': 'Information and Communications Technology Professionals',
-            'Resturant Manager': 'Hospitality, Retail and Other Services Managers',
-            'Marketing Director at FMCG company': 'Administrative and Commercial Managers',
-            'Software developer': 'Information and Communications Technology Professionals',
-            'Freelance graphic designer': 'Legal, Social and Cultural Professionals',
-            'Restaurant worker': 'Personal Service Workers',
-            'Part-time accountant': 'Business and Administration Associate Professionals',
-            'Self-Employed': 'Administrative and Commercial Managers', #Broad, as a business owner.
-            'Researcher': 'Science and Engineering Professionals',
-            'Works as a Cashier': 'Customer Services Clerks',
-            'Former retail manager, transitioning': 'Administrative and Commercial Managers',
-            'Construction project manager': 'Science and Engineering Professionals',
-            'Finance': 'Business and Administration Professionals',
-            'Marketing Assistant': 'Business and Administration Associate Professionals',
-            'Small import business owner': 'Administrative and Commercial Managers',
-            'Tech Support': 'Information and Communications Technicians',
-            'Social Media Manager': 'Business and Administration Professionals',
-            'Works part-time as a care assistant': 'Personal Care Workers',
-            'Freelance Writer': 'Legal, Social and Cultural Professionals',
-            'Social media manager': 'Business and Administration Professionals',
-            'Librarian': 'Legal, Social and Cultural Professionals',
-            'Research Scientist': 'Science and Engineering Professionals',
-            'Middle Manager at Retail Chain': 'Administrative and Commercial Managers',
-            'Graphic Design': 'Legal, Social and Cultural Professionals',
-            'Office Manager': 'Business and Administration Professionals',
-            'Retired postal worker': 'Other Clerical Support Workers',
-            'Environment Consultant': 'Science and Engineering Professionals',
-            'Marketing Executive': 'Administrative and Commercial Managers',
-            'Landscaping': 'Market-oriented Skilled Agricultural Workers',
-            'Project Manager': 'Business and Administration Professionals',
-            'Part-time shopkeeper': 'Sales Workers',
-            'Self-employed baker': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers',
-            'Marketing manager': 'Administrative and Commercial Managers',
-            'Software Development': 'Information and Communications Technology Professionals',
-            'Language tutor': 'Teaching Professionals',
-            'Retired teacher': 'Teaching Professionals',
-            'Marketing Director': 'Administrative and Commercial Managers',
-            'Self-employed contractor': 'Building and Related Trades Workers (excluding Electricians)',
-            'Journalist': 'Legal, Social and Cultural Professionals',
-            'Part-time Waitress': 'Personal Service Workers',
-            'Retail manager': 'Administrative and Commercial Managers',
-            'Social Work': 'Legal, Social and Cultural Professionals',
-            'Part-time Cashier': 'Customer Services Clerks',
-            'Investment advisor': 'Business and Administration Professionals',
-            'Small business owner, former retail manager': 'Administrative and Commercial Managers',
-            'Mid-level Marketing Executive': 'Administrative and Commercial Managers',
-            'Care Worker': 'Personal Care Workers',
-            'Junior Engineer': 'Science and Engineering Associate Professionals',
-            'Non-profit organization': 'Administrative and Commercial Managers', #Managerial role within the org?
-            'Retired Businessman': 'Administrative and Commercial Managers',
-            'Sales': 'Sales Workers',
-            'Retired Engineer': 'Science and Engineering Professionals',
-            'Retired Factory Worker': 'Stationary Plant and Machine Operators',
-            'Senior Marketing Manager': 'Administrative and Commercial Managers',
-            'Factory supervisor': 'Production and Specialized Services Managers',
-            'Office Administrator': 'Business and Administration Professionals',
-            'Works as a software engineer': 'Information and Communications Technology Professionals',
-            'Retired Restaurant Owner': 'Hospitality, Retail and Other Services Managers',
-            'Unemployed': 'Unemployed',
-            'Semi-retired Plumber': 'Building and Related Trades Workers (excluding Electricians)',
-            'Registered Nurse': 'Health Professionals',
-            'Childcare provider': 'Personal Care Workers',
-            'Factory Supervisor': 'Production and Specialized Services Managers',
-            'Corporate executive': 'Chief Executives, Senior Officials and Legislators',
-            'Shopkeeper': 'Sales Workers',
-            'Bookkeeping': 'Business and Administration Associate Professionals',
-            'Public Relations': 'Business and Administration Professionals',
-            'IT Specialist': 'Information and Communications Technology Professionals',
-            'Office administrator': 'Business and Administration Professionals',
-            'Accountant': 'Business and Administration Professionals',
-            'University professor': 'Teaching Professionals',
-            'Self-employed plumber': 'Building and Related Trades Workers (excluding Electricians)',
-            'Restaurant Manager': 'Hospitality, Retail and Other Services Managers',
-            'Elder care worker': 'Personal Care Workers',
-            'Hotel Industry': 'Hospitality, Retail and Other Services Managers',
-            'Environmental consultant': 'Science and Engineering Professionals',
-            'Retired sales manager': 'Administrative and Commercial Managers',
-            'Retired Civil Engineer': 'Science and Engineering Professionals',
-            'News Editor': 'Legal, Social and Cultural Professionals',
-            'Sales Manager': 'Administrative and Commercial Managers',
-            'Truck driver': 'Drivers and Mobile Plant Operators',
-            'Part-time freelance designer': 'Legal, Social and Cultural Professionals',
-            'Engineer': 'Science and Engineering Professionals',
-            'Elementary school teacher': 'Teaching Professionals',
-            'Corporate Designer': 'Legal, Social and Cultural Professionals',
-            'Restaurant Owner': 'Hospitality, Retail and Other Services Managers',
-            'Housekeeper': 'Personal Service Workers',
-            'Electronics repair technician': 'Electrical and Electronics Trades Workers',
-            'Retail sales associate': 'Sales Workers',
-            'Retired': 'Unemployed',
-            'Freelance Graphic Designer': 'Legal, Social and Cultural Professionals',
-            'Real Estate': 'Business and Administration Professionals', #Agent/Sales Role
-            'Full-Time Mother': 'Unemployed', #Or Personal Service Workers, but unemployed is more suitable
-            'High School Teacher': 'Teaching Professionals',
-            'Stay-at-home mom': 'Unemployed',#Or Personal Service Workers, but unemployed is more suitable
-            'Construction Worker': 'Building and Related Trades Workers (excluding Electricians)',
-            'High School English Teacher': 'Teaching Professionals',
-            'Financial Analyst': 'Business and Administration Professionals',
-            'Restaurant Worker': 'Personal Service Workers',
-            'Bartender': 'Personal Service Workers',
-            'Plumber': 'Building and Related Trades Workers (excluding Electricians)',
-            'Part-time retail worker': 'Sales Workers',
-            'Works as a Mechanic': 'Metal, Machinery and Related Trades Workers',
-            'Substitute teacher': 'Teaching Professionals',
-            'Engineering Management': 'Science and Engineering Professionals', #Implies they are MANAGING engineering work
-            'Service Industry (Waitress)': 'Personal Service Workers',
-            'Healthcare aide, small online business owner': 'Personal Care Workers',
-            'Part-time': 'Unemployed', #Broad and ambiguous, need more info.  Assuming unemployed or very occasional work
-            'Retired Shop Owner': 'Administrative and Commercial Managers',
-            'Freelance Artist': 'Legal, Social and Cultural Professionals',
-            'Drafting technician': 'Science and Engineering Associate Professionals',
-            'Small business owner': 'Administrative and Commercial Managers',
-            'Maintenance supervisor': 'Production and Specialized Services Managers',
-            'Freelance Copywriter': 'Legal, Social and Cultural Professionals',
-            'IT project manager': 'Information and Communications Technology Professionals',
-            'Restaurant Server': 'Personal Service Workers',
-            'Auto mechanic': 'Metal, Machinery and Related Trades Workers',
-            'Homemaker': 'Unemployed', #Or Personal Service Workers, but unemployed is more suitable
-            'Banking': 'Business and Administration Professionals', #General role
-            'Marketing Manager in multinational corporation': 'Administrative and Commercial Managers',
-            'High School History Teacher': 'Teaching Professionals',
-            'HR Manager': 'Business and Administration Professionals',
-            'Domestic Worker': 'Personal Service Workers',
-            'Stay-at-home mother.': 'Unemployed', #Or Personal Service Workers, but unemployed is more suitable
-            'Works as a taxi driver.': 'Drivers and Mobile Plant Operators',
-            'Digitial Marketing': 'Business and Administration Professionals',
-            'Software Developer': 'Information and Communications Technology Professionals',
-            'Retired Construction Worker': 'Building and Related Trades Workers (excluding Electricians)',
-            'Digital Marketing': 'Business and Administration Professionals',
-            'Retired Accountant': 'Business and Administration Professionals',
-            'Office Worker': 'General and Keyboard Clerks',
-            'Communications Director': 'Administrative and Commercial Managers',
-            'Administrative assistant': 'Business and Administration Associate Professionals',
-            'Business Owner': 'Administrative and Commercial Managers',
-            'Retail': 'Sales Workers', #General retail work
-            'Junior Marketer': 'Business and Administration Associate Professionals',
-            'Works as a hairdresser': 'Personal Service Workers',
-            'IT Support': 'Information and Communications Technicians',
-            'Warehouse worker': 'Labourers in Mining, Construction, Manufacturing and Transport',
-            'Real estate agent': 'Business and Administration Professionals', #Agent/Sales Role
-            'Security Guard': 'Protective Services Workers',
-            'Corporate Finance': 'Business and Administration Professionals',
-            'Restaurant Cook': 'Food Preparation Assistants',
-            'Hotel management, former restaurant owner': 'Hospitality, Retail and Other Services Managers',
-            'Home health aide': 'Personal Care Workers',
-            'Environmental compliance': 'Science and Engineering Professionals',
-            'Primary School Teacher': 'Teaching Professionals',
-            'Office manager': 'Business and Administration Professionals',
-            'Mechanic': 'Metal, Machinery and Related Trades Workers',
-            'Delivery service driver': 'Drivers and Mobile Plant Operators',
-            'Financial Analyst at Big 4 Consulting Firm': 'Business and Administration Professionals',
-            'Construction site supervisor': 'Building and Related Trades Workers (excluding Electricians)',
-            'Community outreach worker': 'Legal, Social and Cultural Professionals',
-            'Nurse': 'Health Professionals',
-            'Academic (University Tutor)': 'Teaching Professionals',
-            'Human Resources Director': 'Administrative and Commercial Managers',
-            'Mid-level marketing manager': 'Administrative and Commercial Managers',
-            'Retired Teacher': 'Teaching Professionals',
-            'Retired administrative assistant': 'Business and Administration Associate Professionals',
-            'Marketing Professional': 'Business and Administration Professionals',
-            'Laid off / Unemployed': 'Unemployed',
-            'Daycare Provider': 'Personal Care Workers',
-            'Truck Driver': 'Drivers and Mobile Plant Operators',
-            'Retail store supervisor': 'Hospitality, Retail and Other Services Managers',
-            'Freelance writer': 'Legal, Social and Cultural Professionals',
-            'Retail Management': 'Administrative and Commercial Managers',
-            'Delivery Driver': 'Drivers and Mobile Plant Operators',
-            'Manufacturing': 'Production and Specialized Services Managers', #Management
-            'Entrepreneur': 'Administrative and Commercial Managers', #General
-            'Community Health Roles': 'Health Associate Professionals',
-            'University Professor': 'Teaching Professionals',
-            'Retired Professor': 'Teaching Professionals',
-            'Warehouse Supervisor': 'Production and Specialized Services Managers',
-            'Factory Technician': 'Science and Engineering Associate Professionals',
-            'Retired Farmer': 'Market-oriented Skilled Agricultural Workers',
-            'Former Nurse': 'Health Professionals',
-            'Retail worker': 'Sales Workers',
-            'Restaurant owner': 'Hospitality, Retail and Other Services Managers',
-            'Digital Marketing Manager': 'Administrative and Commercial Managers',
-            'IT Consultant': 'Information and Communications Technology Professionals',
-            'Auto mechanic, shop owner': 'Metal, Machinery and Related Trades Workers',
-            'Construction Management': 'Science and Engineering Professionals',
-            'Transitioning from Teaching': 'Teaching Professionals', #Current sector.
-            'Sustainability Consultant': 'Science and Engineering Professionals',
-            'Electrician': 'Electrical and Electronics Trades Workers',
-            'Customer Service': 'Customer Services Clerks',
-            'Chef': 'Food Preparation Assistants',
-            'Part-time Healthcare Administration': 'Business and Administration Professionals',
-            'Retail Manager': 'Administrative and Commercial Managers',
-            'Freelance Social Media Manager': 'Business and Administration Professionals',
-            'Healthcare Administrator': 'Business and Administration Professionals',
-            "Nurse's Assistant": 'Health Associate Professionals',
-            'Home Health Aide': 'Personal Care Workers',
-            'Construction Site Supervisor': 'Building and Related Trades Workers (excluding Electricians)',
-            'Real Estate Agent': 'Business and Administration Professionals',
-            'Part-time Retail Worker, Caregiver': 'Sales Workers', #Primarily retail
-            'Freelance artist': 'Legal, Social and Cultural Professionals',
-            'Works in Childcare': 'Personal Care Workers',
-            'Police Officer': 'Protective Services Workers',
-            'Underemployed': 'Unemployed',
-            'Small Business Owner': 'Administrative and Commercial Managers',
-            'Restaurant manager': 'Hospitality, Retail and Other Services Managers',
-            'Freelancer': 'Unemployed', # Need more info on the industry, could also be Admin and Commerical Managers
-            'Retired electrician': 'Electrical and Electronics Trades Workers',
-            'Hospitality Worker': 'Personal Service Workers',
-            'Housewife': 'Unemployed', #Or Personal Service Workers, but unemployed is more suitable
-            'Middle Manager at Banking Sector': 'Administrative and Commercial Managers',
-            'Lawyer': 'Legal, Social and Cultural Professionals',
-            'Stay-at-home Mom': 'Unemployed',#Or Personal Service Workers, but unemployed is more suitable
-            'Stay-at-home mother': 'Unemployed',#Or Personal Service Workers, but unemployed is more suitable
-            'Engineering': 'Science and Engineering Professionals',
-            'Secondary School Teacher': 'Teaching Professionals',
-            'IT consultant': 'Information and Communications Technology Professionals',
-            'Software Engineer': 'Information and Communications Technology Professionals',
-            'Mid-Level Manager in Manufacturing': 'Production and Specialized Services Managers',
-            'IT project management': 'Information and Communications Technology Professionals',
-            'Pharmaceutical Research': 'Science and Engineering Professionals',
-            'Healthcare assistant': 'Health Associate Professionals',
-            'Retail Assistant': 'Sales Workers',
-            'Employed': 'Other', #Need more information
-            'Retail Sales': 'Sales Workers',
-            'Aerospace engineer (retired)': 'Science and Engineering Professionals',
-            'Laboratory technician': 'Science and Engineering Associate Professionals',
-            'Licensed Practical Nurse': 'Health Professionals',
-            'Professor': 'Teaching Professionals',
-            'Technician': 'Science and Engineering Associate Professionals',
-            'Graphic Designer': 'Legal, Social and Cultural Professionals',
-            'Cashier': 'Customer Services Clerks',
-            'Works as a cashier.': 'Customer Services Clerks',
-            'Electronics Technician': 'Electrical and Electronics Trades Workers',
-            'Elementary School Teacher': 'Teaching Professionals',
-            'Construction Foreman': 'Building and Related Trades Workers (excluding Electricians)',
-            'Tutor': 'Teaching Professionals',
-            'Teacher, private tutor': 'Teaching Professionals',
-            'Civil engineer': 'Science and Engineering Professionals',
-            'Auto repair shop owner': 'Metal, Machinery and Related Trades Workers',
-            'Hospitality': 'Hospitality, Retail and Other Services Managers',
-            'Investment Banking': 'Business and Administration Professionals',
-            'Social Services Worker': 'Legal, Social and Cultural Professionals',
-            'University Researcher': 'Science and Engineering Professionals',
-            'Musician': 'Legal, Social and Cultural Professionals',
-            'Teacher (on leave)': 'Teaching Professionals',
-            'Factory Worker': 'Stationary Plant and Machine Operators',
-            'Aerospace engineering': 'Science and Engineering Professionals',
-            'Social Worker': 'Legal, Social and Cultural Professionals',
-            'Teacher': 'Teaching Professionals',
-            'Automotive Manufacturing': 'Production and Specialized Services Managers',
-            'Retail Supervisor': 'Hospitality, Retail and Other Services Managers',
-            'IT Manager': 'Information and Communications Technology Professionals',
-            'Auditing': 'Business and Administration Professionals',
-            'Management Consultant': 'Business and Administration Professionals',
-            'Data analyst': 'Business and Administration Professionals',
-            'Hotel Management': 'Hospitality, Retail and Other Services Managers',
-            'Healthcare Assistant': 'Health Associate Professionals',
-            'Freelance Graphic Designer and Digital Artist': 'Legal, Social and Cultural Professionals',
-            'Freelance designer': 'Legal, Social and Cultural Professionals',
-            'Lab technician': 'Science and Engineering Associate Professionals',
-            'Senior Software Engineer at Financial Services Firm': 'Information and Communications Technology Professionals',
-            'Public relations': 'Business and Administration Professionals',
-            'Self-Employed Electrician': 'Electrical and Electronics Trades Workers',
-            'Advertising': 'Business and Administration Professionals',
-            'Housekeeping': 'Personal Service Workers',
-            'Home-based daycare provider': 'Personal Care Workers',
-            'Construction supervisor': 'Building and Related Trades Workers (excluding Electricians)',
-            'Translator': 'Legal, Social and Cultural Professionals',
-            'Works as a construction worker.': 'Building and Related Trades Workers (excluding Electricians)',
-            'Research Scientist in Pharmaceutical Company': 'Science and Engineering Professionals',
-            'Retired mechanic': 'Metal, Machinery and Related Trades Workers',
-            'Stay-at-home Mother': 'Unemployed',#Or Personal Service Workers, but unemployed is more suitable
-            'Restaurant server, former small business owner in Mexico': 'Personal Service Workers',
-            'Cleaner': 'Cleaners and Helpers',
-            'IT Technician': 'Information and Communications Technicians',
-            'Retired (Seamstress)': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers',
-            'Research': 'Science and Engineering Professionals',
-            'Preschool Teacher': 'Teaching Professionals',
-            'Junior engineer': 'Science and Engineering Associate Professionals',
-            'Project engineer': 'Science and Engineering Professionals'
-        }
+        # https://unstats.un.org/unsd/classifications/Family/Detail/1067 ISCO-08 classification is used
+        self._job_title_to_sector = {'Restaurant kitchen supervisor': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Research scientist': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Administrative Assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Retial Management': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Middle Manager in Retail': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Retail Worker': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Marketing Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Taxi Driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Construction worker': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Retired Nurse': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Environmental Scientist': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Sales manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Manufacturing supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Senior developer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Mental health and stress management': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Freelance translator': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Taxi driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Retired Office Worker': {'sector': 'Clerical Support Workers', 'subsector': 'General and Keyboard Clerks'}, 'Shop Owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Teacher (unemployed)': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Farmer': {'sector': 'Skilled Agricultural, Forestry and Fishery Workers', 'subsector': 'Market-oriented Skilled Agricultural Workers'}, 'Construction foreman': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Retired factory worker': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Stationary Plant and Machine Operators'}, 'Daycare center owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Bank Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Factory worker': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Stationary Plant and Machine Operators'}, 'Factory Shift Supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'IT': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Banker': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Freelance Translator': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Housekeeping supervisor': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Retail Sales Associate': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Help desk technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Information and Communications Technicians'}, 'Stay-at-Home Mother': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Auto Mechanic': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Works in hospitality.': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Civil Engineering': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Retired Gardener': {'sector': 'Skilled Agricultural, Forestry and Fishery Workers', 'subsector': 'Market-oriented Skilled Agricultural Workers'}, 'Construction': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Retail management': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Self-employed seamstress': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers'}, 'IT Professional': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Accounting clerk, former bank employee in China': {'sector': 'Clerical Support Workers', 'subsector': 'Numerical and Material Recording Clerks'}, 'IT technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Information and Communications Technicians'}, 'Food truck owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'IT Project Manager': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Corporate Marketing': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Caregiver': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Civil engineer at a construction firm': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Factory worker, former civil engineer': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Stationary Plant and Machine Operators'}, 'Blue-Collar Worker': {'sector': 'Elementary Occupations', 'subsector': 'Labourers in Mining, Construction, Manufacturing and Transport'}, 'Farmworker': {'sector': 'Elementary Occupations', 'subsector': 'Agricultural, Forestry and Fishery Labourers'}, 'Warehouse Worker': {'sector': 'Elementary Occupations', 'subsector': 'Labourers in Mining, Construction, Manufacturing and Transport'}, 'Part-time bookkeeper': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Senior Software Engineer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Resturant Manager': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Marketing Director at FMCG company': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Software developer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Freelance graphic designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Restaurant worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Part-time accountant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Self-Employed': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Researcher': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Works as a Cashier': {'sector': 'Clerical Support Workers', 'subsector': 'Customer Services Clerks'}, 'Former retail manager, transitioning': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Construction project manager': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Finance': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Marketing Assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Small import business owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Tech Support': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Information and Communications Technicians'}, 'Social Media Manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Works part-time as a care assistant': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Freelance Writer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Social media manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Librarian': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Research Scientist': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Middle Manager at Retail Chain': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Graphic Design': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Office Manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Retired postal worker': {'sector': 'Clerical Support Workers', 'subsector': 'Other Clerical Support Workers'}, 'Environment Consultant': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Marketing Executive': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Landscaping': {'sector': 'Skilled Agricultural, Forestry and Fishery Workers', 'subsector': 'Market-oriented Skilled Agricultural Workers'}, 'Project Manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Part-time shopkeeper': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Self-employed baker': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers'}, 'Marketing manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Software Development': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Language tutor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Retired teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Marketing Director': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Self-employed contractor': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Journalist': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Part-time Waitress': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Retail manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Social Work': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Part-time Cashier': {'sector': 'Clerical Support Workers', 'subsector': 'Customer Services Clerks'}, 'Investment advisor': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Small business owner, former retail manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Mid-level Marketing Executive': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Care Worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Junior Engineer': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Non-profit organization': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Retired Businessman': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Sales': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Retired Engineer': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Retired Factory Worker': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Stationary Plant and Machine Operators'}, 'Senior Marketing Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Factory supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Office Administrator': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Works as a software engineer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Retired Restaurant Owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Unemployed': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Semi-retired Plumber': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Registered Nurse': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Childcare provider': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Factory Supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Corporate executive': {'sector': 'Managers', 'subsector': 'Chief Executives, Senior Officials and Legislators'}, 'Shopkeeper': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Bookkeeping': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Public Relations': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'IT Specialist': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Office administrator': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Accountant': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'University professor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Self-employed plumber': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Restaurant Manager': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Elder care worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Hotel Industry': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Environmental consultant': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Retired sales manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Retired Civil Engineer': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'News Editor': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Sales Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Truck driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Part-time freelance designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Engineer': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Elementary school teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Corporate Designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Restaurant Owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Housekeeper': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Electronics repair technician': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Electrical and Electronics Trades Workers'}, 'Retail sales associate': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Retired': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Freelance Graphic Designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Real Estate': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Full-Time Mother': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'High School Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Stay-at-home mom': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Construction Worker': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'High School English Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Financial Analyst': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Restaurant Worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Bartender': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Plumber': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Part-time retail worker': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Works as a Mechanic': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Substitute teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Engineering Management': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Service Industry (Waitress)': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Healthcare aide, small online business owner': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Part-time': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Retired Shop Owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Freelance Artist': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Drafting technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Small business owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Maintenance supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Freelance Copywriter': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'IT project manager': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Restaurant Server': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Auto mechanic': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Homemaker': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Banking': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Marketing Manager in multinational corporation': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'High School History Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'HR Manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Domestic Worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Stay-at-home mother.': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Works as a taxi driver.': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Digitial Marketing': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Software Developer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Retired Construction Worker': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Digital Marketing': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Retired Accountant': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Office Worker': {'sector': 'Clerical Support Workers', 'subsector': 'General and Keyboard Clerks'}, 'Communications Director': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Administrative assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Business Owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Retail': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Junior Marketer': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Works as a hairdresser': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'IT Support': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Information and Communications Technicians'}, 'Warehouse worker': {'sector': 'Elementary Occupations', 'subsector': 'Labourers in Mining, Construction, Manufacturing and Transport'}, 'Real estate agent': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Security Guard': {'sector': 'Service and Sales Workers', 'subsector': 'Protective Services Workers'}, 'Corporate Finance': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Restaurant Cook': {'sector': 'Elementary Occupations', 'subsector': 'Food Preparation Assistants'}, 'Hotel management, former restaurant owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Home health aide': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Environmental compliance': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Primary School Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Office manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Mechanic': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Delivery service driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Financial Analyst at Big 4 Consulting Firm': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Construction site supervisor': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Community outreach worker': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Nurse': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Academic (University Tutor)': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Human Resources Director': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Mid-level marketing manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Retired Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Retired administrative assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Business and Administration Associate Professionals'}, 'Marketing Professional': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Laid off / Unemployed': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Daycare Provider': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Truck Driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Retail store supervisor': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Freelance writer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Retail Management': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Delivery Driver': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Drivers and Mobile Plant Operators'}, 'Manufacturing': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Entrepreneur': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Community Health Roles': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Health Associate Professionals'}, 'University Professor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Retired Professor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Warehouse Supervisor': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Factory Technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Retired Farmer': {'sector': 'Skilled Agricultural, Forestry and Fishery Workers', 'subsector': 'Market-oriented Skilled Agricultural Workers'}, 'Former Nurse': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Retail worker': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Restaurant owner': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Digital Marketing Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'IT Consultant': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Auto mechanic, shop owner': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Construction Management': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Transitioning from Teaching': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Sustainability Consultant': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Electrician': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Electrical and Electronics Trades Workers'}, 'Customer Service': {'sector': 'Clerical Support Workers', 'subsector': 'Customer Services Clerks'}, 'Chef': {'sector': 'Elementary Occupations', 'subsector': 'Food Preparation Assistants'}, 'Part-time Healthcare Administration': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Retail Manager': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Freelance Social Media Manager': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Healthcare Administrator': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, "Nurse's Assistant": {'sector': 'Technicians and Associate Professionals', 'subsector': 'Health Associate Professionals'}, 'Home Health Aide': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Construction Site Supervisor': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Real Estate Agent': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Part-time Retail Worker, Caregiver': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Freelance artist': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Works in Childcare': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Police Officer': {'sector': 'Service and Sales Workers', 'subsector': 'Protective Services Workers'}, 'Underemployed': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Small Business Owner': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Restaurant manager': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Freelancer': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Retired electrician': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Electrical and Electronics Trades Workers'}, 'Hospitality Worker': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Housewife': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Middle Manager at Banking Sector': {'sector': 'Managers', 'subsector': 'Administrative and Commercial Managers'}, 'Lawyer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Stay-at-home Mom': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Stay-at-home mother': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Engineering': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Secondary School Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'IT consultant': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Software Engineer': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Mid-Level Manager in Manufacturing': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'IT project management': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Pharmaceutical Research': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Healthcare assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Health Associate Professionals'}, 'Retail Assistant': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Employed': {'sector': 'Other', 'subsector': 'Other'}, 'Retail Sales': {'sector': 'Service and Sales Workers', 'subsector': 'Sales Workers'}, 'Aerospace engineer (retired)': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Laboratory technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Licensed Practical Nurse': {'sector': 'Professionals', 'subsector': 'Health Professionals'}, 'Professor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Graphic Designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Cashier': {'sector': 'Clerical Support Workers', 'subsector': 'Customer Services Clerks'}, 'Works as a cashier.': {'sector': 'Clerical Support Workers', 'subsector': 'Customer Services Clerks'}, 'Electronics Technician': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Electrical and Electronics Trades Workers'}, 'Elementary School Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Construction Foreman': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Tutor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Teacher, private tutor': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Civil engineer': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Auto repair shop owner': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Hospitality': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Investment Banking': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Social Services Worker': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'University Researcher': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Musician': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Teacher (on leave)': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Factory Worker': {'sector': 'Plant and Machine Operators, and Assemblers', 'subsector': 'Stationary Plant and Machine Operators'}, 'Aerospace engineering': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Social Worker': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Automotive Manufacturing': {'sector': 'Managers', 'subsector': 'Production and Specialized Services Managers'}, 'Retail Supervisor': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'IT Manager': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Auditing': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Management Consultant': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Data analyst': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Hotel Management': {'sector': 'Managers', 'subsector': 'Hospitality, Retail and Other Services Managers'}, 'Healthcare Assistant': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Health Associate Professionals'}, 'Freelance Graphic Designer and Digital Artist': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Freelance designer': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Lab technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Senior Software Engineer at Financial Services Firm': {'sector': 'Professionals', 'subsector': 'Information and Communications Technology Professionals'}, 'Public relations': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Self-Employed Electrician': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Electrical and Electronics Trades Workers'}, 'Advertising': {'sector': 'Professionals', 'subsector': 'Business and Administration Professionals'}, 'Housekeeping': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Home-based daycare provider': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Care Workers'}, 'Construction supervisor': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Translator': {'sector': 'Professionals', 'subsector': 'Legal, Social and Cultural Professionals'}, 'Works as a construction worker.': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Building and Related Trades Workers (excluding Electricians)'}, 'Research Scientist in Pharmaceutical Company': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Retired mechanic': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Metal, Machinery and Related Trades Workers'}, 'Stay-at-home Mother': {'sector': 'Unemployed', 'subsector': 'Unemployed'}, 'Restaurant server, former small business owner in Mexico': {'sector': 'Service and Sales Workers', 'subsector': 'Personal Service Workers'}, 'Cleaner': {'sector': 'Elementary Occupations', 'subsector': 'Cleaners and Helpers'}, 'IT Technician': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Information and Communications Technicians'}, 'Retired (Seamstress)': {'sector': 'Craft and Related Trades Workers', 'subsector': 'Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers'}, 'Research': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}, 'Preschool Teacher': {'sector': 'Professionals', 'subsector': 'Teaching Professionals'}, 'Junior engineer': {'sector': 'Technicians and Associate Professionals', 'subsector': 'Science and Engineering Associate Professionals'}, 'Project engineer': {'sector': 'Professionals', 'subsector': 'Science and Engineering Professionals'}}
 
         self.certifications = [
             "Associate Degree","Technical Education",
@@ -855,11 +548,23 @@ class JobHelper:
             "Ph.D","Diploma","Non-tertiary Education"
         ]
         
-        self.sectors = list(set(self._job_title_to_sector.values()))
+        self.sectors = list(set([
+            info['sector'] for info in self._job_title_to_sector.values()
+        ]))
+        
+        self.subsectors = list(set([
+            info['subsector'] for info in self._job_title_to_sector.values()
+        ]))
 
     def employment2sector(self,job_title:str):
         if job_title in self._job_title_to_sector:
-            return self._job_title_to_sector[job_title]
+            return self._job_title_to_sector[job_title]['sector']
+        else:
+            return 'Other'
+        
+    def employment2subsector(self,job_title:str):
+        if job_title in self._job_title_to_sector:
+            return self._job_title_to_sector[job_title]['subsector']
         else:
             return 'Other'
     
@@ -886,3 +591,46 @@ class JobHelper:
             return "Diploma"
         
         return "Non-tertiary Education"
+    
+
+def squeeze_text(txt:str, width:int=25)->str:
+    def get_idx(txt:str, width:int=15)->int:
+        idx = 0
+        prev_idx = 0
+        distance = None
+        best_distance = float('inf')
+
+        #Get index of best space to convert to newline
+        while True:
+            idx += txt[idx:].find(' ') + 1
+            distance = abs(width-idx)            
+
+            if distance >= best_distance:
+                return prev_idx-1
+
+            best_distance = distance
+            prev_idx = idx        
+    
+    if len(txt) <= width:
+        return txt
+    
+    #Perform first replacement
+    prev_txt = txt
+    idx = get_idx(txt,width)
+    
+    if idx == -1:
+        return txt
+    
+    txt = txt[:idx]+'\n'+txt[idx+1:]
+    prev_idx = idx
+
+    #Perform while the text keeps changing
+    while (prev_txt != txt) and (len(txt[idx:]) >= width):
+        prev_txt = txt
+        prev_idx = idx
+        
+        idx = get_idx(txt[idx:],width)
+        idx += prev_idx
+        txt = txt[:idx]+'\n'+txt[idx+1:]
+        
+    return txt

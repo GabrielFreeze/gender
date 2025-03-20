@@ -9,36 +9,22 @@ import matplotlib.ticker as ticker
 import matplotlib.gridspec as gridspec
 from typing import List, Dict, Union, Tuple
 from matplotlib.colors import LogNorm, Normalize
-from helper import JobHelper,CountryHelper
+from helper import JobHelper,CountryHelper,ColorHelper, squeeze_text
 
 class Histogram():
     def __init__(self, models):
         self.models = models
         self.jobH = JobHelper()
         self.countryH = CountryHelper()
-
-        labels = self.jobH.sectors + self.jobH.certifications + \
-                 self.countryH.countries + list(self.countryH._country2short.values())
-        labels = list(set(labels))
-        self._label2color = dict(zip(labels, sns.color_palette("tab20", len(labels))))
-
-        regions = list(set([
-            region['subregion'] for region in self.countryH._country2region.values()
-        ]))
-        self._region2color = dict(zip(regions, sns.color_palette("tab20", len(regions))))
-
-
-    def label2color(self, label: str) -> str:
-        return self._label2color[label]
-    
-    def region2color(self, region: str) -> str:
-        return self._region2color[region]
         
-
+        self.colorH = ColorHelper()
+          
     def draw(self,df:pd.DataFrame,x:str, dataset:str=None,
              aggregate:bool=False, hue:str=None,
              long_layout:bool=False,ylim:int=15,
-             xtick_label_max_len:int=0):
+             xtick_label_max_len:int=0, rotation:int=90,
+             text_width:int=None,figsize:Tuple[int,int]=(16,12),
+             hspace:int=0.3,title_size:int=12):
         
         plt.rcParams.update({
             'font.family': 'sans-serif',
@@ -53,8 +39,13 @@ class Histogram():
         })
         sns.set_style("ticks", {'grid.linestyle': '--', 'grid.alpha': 0.6})
         
+        #Delimit text with new lines for better drawing
+        if text_width is not None:
+            df = df.copy()
+            df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
+        
         if aggregate:
-            fig, ax = plt.subplots(figsize=(10, 8) if not long_layout else (24,6))
+            fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
             ax = sns.countplot(data=df, x=x,
                 hue='model',palette='Set1',
@@ -88,11 +79,11 @@ class Histogram():
             return plt
 
         if long_layout:
-            fig = plt.figure(figsize=(30, 6))
-            gs = gridspec.GridSpec(4, 1, figure=fig, wspace=0.2, hspace=0.3)
+            fig = plt.figure(figsize=figsize)
+            gs = gridspec.GridSpec(4, 1, figure=fig, wspace=0.2, hspace=hspace)
         else:
-            fig = plt.figure(figsize=(16, 12))
-            gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=0.3)
+            fig = plt.figure(figsize=figsize)
+            gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=hspace)
         colors = sns.color_palette("Set1", len(self.models))
 
         for i, model_name in enumerate(self.models):
@@ -103,26 +94,24 @@ class Histogram():
             sns.countplot(
                 data=df[df['model'] == model_name],
                 x=x, hue=hue,
-                palette=self._label2color if not hue else self._region2color,
+                palette={**self.colorH._label2color, **self.colorH._continent2color},
                 edgecolor='black',
                 linewidth=0.7,
                 ax=ax,
                 saturation=1.0,
+                order=df[df['model']==model_name][x].value_counts().index,
                 legend=(i==0)
             )
             if hue and i==0:
                 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title=hue)
             
-            ax.set_title(f"{model_name}", fontsize=16, fontweight='bold', pad=0)
+            ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
             ax.set_xlabel("")
             ax.set_ylabel("Count", fontsize=14, fontweight='medium', labelpad=10)
-            ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha='center', fontsize=11, fontweight='medium')
+            ax.tick_params(axis='x', rotation=rotation, labelsize=11)
             ax.set_ylim(bottom=0)
-
             ax.set_yticks(range(ylim+1) if not long_layout else range(0,ylim+1,5))
 
-
-            #TODO: The below if statement is messing up with the ordering of the labels, messing everything up.
             #Shorten xtick_label
             if xtick_label_max_len > 0:
                 ax.set_xticklabels([
@@ -131,19 +120,30 @@ class Histogram():
                     for label in ax.get_xticklabels()
                 ])
 
-
-                #If shortening xtick_labels and long_layout==True, move ytick_labels on bars
+                #If shortening xtick_labels and long_layout==True, move xtick_labels on bars
                 if long_layout:
-                    for p, label in zip(ax.patches, ax.get_xticklabels()):
+                    
+                    # Get the tick positions and labels
+                    positions = ax.get_xticks()
+                    labels = [item.get_text() for item in ax.get_xticklabels()]
+
+                    # Add annotations at the exact tick positions
+                    for i, (pos, label) in enumerate(zip(positions, labels)):
                         ax.annotate(
-                            text=label.get_text(),
-                            xy=(p.get_x() + p.get_width() / 2., (len(label.get_text())-0.4)//5+1),
-                            ha='center', va='center',
-                            xytext=(0, 9), textcoords='offset points',
-                            fontsize=max(6, min(12, p.get_width() * 10)),  # Adjust fontsize based on p.get_width
+                            text=label,
+                            xy=(pos, 0),  # Use the exact tick position
+                            ha='center', va='bottom',
+                            xytext=(0, 9),
+                            textcoords='offset points',
+                            fontsize=max(6.5, 
+                                min(12,#The less unique countires = the wider the bars = the larger the text
+                                0.06 * (196 - len(df[df['model']==model_name][x].unique()))
+                            )),
                             fontweight='light', color='black',
-                            rotation=90
+                            rotation=rotation
                         )
+
+                    # Remove xticklabels
                     ax.set_xticklabels([])
             
             #No Grids and spines if we are offsetting the xticklabels
@@ -157,7 +157,7 @@ class Histogram():
         fig.suptitle(f'Frequency of {x} by Model', 
                     fontsize=20, y=0.98, fontweight='bold', color='#333333')
         fig.text(0.5, 1, dataset, 
-                ha='center', fontsize=14, color='#666666', style='italic')
+                ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
         
@@ -173,7 +173,6 @@ class Map():
                  self.countryH.countries + list(self.countryH._country2short.values())
 
         self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
-
 
     def draw(self,series:pd.Series,
                     title:str,cmap:str,
@@ -243,58 +242,7 @@ class Map():
 class Piechart():
     def __init__(self,models):
         self.models = models
-        
-        jobH = JobHelper()
-        countryH = CountryHelper()
-        labels = jobH.sectors + jobH.certifications + \
-                 countryH.countries + list(countryH._country2short.values())
-
-        self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
-
-    def squeeze_text(self,txt:str, width:int=25)->str:
-        def get_idx(txt:str, width:int=15)->int:
-            idx = 0
-            prev_idx = 0
-            distance = None
-            best_distance = float('inf')
-
-            #Get index of best space to convert to newline
-            while True:
-                idx += txt[idx:].find(' ') + 1
-                distance = abs(width-idx)            
-
-                if distance >= best_distance:
-                    return prev_idx-1
-
-                best_distance = distance
-                prev_idx = idx        
-        
-        if len(txt) <= width:
-            return txt
-        
-        #Perform first replacement
-        prev_txt = txt
-        idx = get_idx(txt,width)
-        
-        if idx == -1:
-            return txt
-        
-        txt = txt[:idx]+'\n'+txt[idx+1:]
-        prev_idx = idx
-
-        #Perform while the text keeps changing
-        while (prev_txt != txt) and (len(txt[idx:]) >= width):
-            prev_txt = txt
-            prev_idx = idx
-            
-            idx = get_idx(txt[idx:],width)
-            idx += prev_idx
-            txt = txt[:idx]+'\n'+txt[idx+1:]
-            
-        return txt
-
-    def label2color(self, label:str):
-        return self._label2color[label.replace('\n',' ')]
+        self.colorH = ColorHelper()
 
     def draw(self,df:pd.DataFrame,x:str,
                  dataset:str=None,aggregate:bool=False,
@@ -316,7 +264,8 @@ class Piechart():
         
         if text_width is not None:
             #Delimit text with new lines for better drawing
-            df[x] = df[x].apply(lambda x: self.squeeze_text(x,text_width))
+            df = df.copy()
+            df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
 
         if aggregate:
             fig, ax = plt.subplots(figsize=(9, 7))
@@ -335,7 +284,7 @@ class Piechart():
                 data,
                 labels=[l if pct >= other*100 else '' for l,pct in zip(data.index, 100.*data/data.sum())],
                 autopct=lambda pct: f'{round(pct)}%' if pct >= other*100 else '',
-                colors=list(map(self.label2color, data.index)),
+                colors=list(map(self.colorH.label2color, data.index)),
                 startangle=rotation,textprops={'fontsize': 10}
             )   
 
@@ -389,3 +338,9 @@ class Piechart():
 
         return plt
 
+class StackedBar():
+    def __init__(self):
+        pass
+    def draw(self, df:pd.DataFrame,x:str,hue:str):
+        pass
+        
