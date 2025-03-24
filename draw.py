@@ -431,7 +431,7 @@ class StackedBar():
                 spine.set_color('#444444')
 
         # Set the overall title and other texts
-        title = f'Frequency of {stacked_hue} by {x}' if x == '№' else f'Frequency of {stacked_hue} by order of responses'
+        title = f'Frequency of {stacked_hue} by {x}' if x != '№' else f'Frequency of {stacked_hue} by order of responses'
         fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(title, fontsize=20, y=0.93, fontweight='bold', color='#333333')
         fig.text(0.5, 0.95, dataset, ha='center', fontsize=14, color='#666666', style='italic')
