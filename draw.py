@@ -48,10 +48,13 @@ class Histogram():
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
-            ax = sns.countplot(data=df, x=x,
-                hue='model',palette='Set1',
+            ax = sns.countplot(
+                data=df, x=x,
+                hue=hue,
+                order=df[x].value_counts().index,
+                palette={**self.colorH._label2color, **self.colorH._continent2color},
                 saturation=0.9,edgecolor='black',
-                linewidth=0.8
+                linewidth=0.8,
             )
 
             plt.title(f"Frequency of {x} by Model", fontsize=18, fontweight='bold', pad=20, color='#333333')
@@ -157,8 +160,7 @@ class Histogram():
         fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(f'Frequency of {x} by Model', 
                     fontsize=20, y=0.98, fontweight='bold', color='#333333')
-        fig.text(0.5, 1, dataset, 
-                ha='center', fontsize=title_size-2, color='#666666', style='italic')
+        fig.text(0.5, 1, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
         
@@ -372,57 +374,72 @@ class Piechart():
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
 
         return plt
-
     
 class StackedBar():
     def __init__(self,models):
         self.models=models
         self.colorH = ColorHelper()
 
-    def draw(self, df: pd.DataFrame, x: str, stacked_hue: str,
-         dataset: str = None, hue: str = 'model', ylim: int = 5,
-         figsize: Tuple[int, int] = (16, 12), space: float = 0):
+    def draw(self, df:pd.DataFrame, x:str, stacked_hue:str,
+         dataset:str=None, hue:str='model', ylim:int=5, ystep:int=1,
+         figsize:Tuple[int, int]=(16,12), space:float=0, bar_labels:bool=False):
 
         fig = plt.figure(figsize=figsize)
         gs = gridspec.GridSpec(4, 1, figure=fig, wspace=space, hspace=space)
 
+        #To ensure x-axis and stacked_hue ordering is consistent across different hues
+        x_ordering = {v: j for j, v in enumerate(df[x].unique())}
+        y_ordering = {v: j for j, v in enumerate(df[stacked_hue].unique())}
+
         for i, hue_i in enumerate(df[hue].unique()):
 
-            # Prepare the data for stacking
+            #Prepare the data for stacking
             data = df[df['model'] == hue_i] \
                         .groupby([x, stacked_hue]) \
                         .size() \
                         .reset_index(name='Frequency')
 
-            # Pivot data to have each stacked_hue category as a separate column
+            #Pivot data to have each stacked_hue category as a separate column
             pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
+            pivot_df = pivot_df.reindex(sorted(x_ordering.keys(), key=lambda k: x_ordering[k]), fill_value=0)
+            bottoms = [0] * len(pivot_df) 
+
+            #Ensure consistent ordering of stacked_hue categories across different hue_i
+            ordered_columns = sorted(
+                pivot_df.columns,
+                key=lambda col: y_ordering[col]
+            )
 
             ax = fig.add_subplot(gs[i, 0])
 
-            # Create the stacked bars using matplotlib
-            bottoms = [0] * len(pivot_df)  # Track the bottoms for stacking
-
-            # Loop through each column (stacked_hue category)
-            for stacked_label in pivot_df.columns:
-                ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
-                        color=self.colorH.label2color(stacked_label), label=stacked_label)
-
-                # Update bottoms for the next stacked hue
+            for stacked_label in ordered_columns:
+                bars = ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
+                              color=self.colorH.label2color(stacked_label), label=stacked_label)
                 bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
 
-            # Set the legend only for the first subplot
-            if i == 0:
-                ax.legend(loc='upper right', bbox_to_anchor=(1.15, 1), title=stacked_hue)
+                #Display values on bar
+                if bar_labels:
+                    for bar in bars:
+                        h = bar.get_height()
+                        if h > 1:
+                            ax.text(
+                                x=bar.get_x()+bar.get_width()/2,
+                                y=bar.get_y()+h/2,
+                                s=f'{int(h)}',
+                                ha='center', va='center', fontsize=10, color='white'
+                            )
 
-            # Title and labels
+            if i == 0:
+                ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
+
+            #Title and labels
             ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
             ax.yaxis.grid(True, linestyle='--', alpha=0.7)
             ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
             ax.set_xticks(range(len(pivot_df)))
-            ax.set_xticklabels(ax.get_xticklabels() if i == len(df[hue].unique()) - 1 else [])
 
             # Set y-axis limits and labels
-            ax.set_yticks(range(0, ylim + 1))
+            ax.set_yticks(range(0, ylim+1, ystep))
             ax.set_ylabel('Frequency')
 
             # Style the spines
@@ -432,7 +449,7 @@ class StackedBar():
 
         # Set the overall title and other texts
         title = f'Frequency of {stacked_hue} by {x}' if x != '№' else f'Frequency of {stacked_hue} by order of responses'
-        fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
+        # fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(title, fontsize=20, y=0.93, fontweight='bold', color='#333333')
         fig.text(0.5, 0.95, dataset, ha='center', fontsize=14, color='#666666', style='italic')
 
