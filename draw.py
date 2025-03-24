@@ -7,6 +7,7 @@ import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.gridspec as gridspec
+import matplotlib.patheffects as path_effects 
 from typing import List, Dict, Union, Tuple
 from matplotlib.colors import LogNorm, Normalize
 from helper import JobHelper,CountryHelper,ColorHelper, squeeze_text
@@ -244,10 +245,11 @@ class Piechart():
         self.models = models
         self.colorH = ColorHelper()
 
-    def draw(self,df:pd.DataFrame,x:str,
+    def draw(self,df:pd.DataFrame,x:str, hue:str='model',
                  dataset:str=None,aggregate:bool=False,
                  text_width:int=None, other:float=None,
-                 rotation:int=140):
+                 rotation:int=140, space:float=-0.1,
+                 figsize:Tuple[int,int]=(16,12)):
         plt.rcParams.update({
             'font.family': 'sans-serif',
             'font.sans-serif': ['Bahnschrift', 'Verdana'],
@@ -268,7 +270,7 @@ class Piechart():
             df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
 
         if aggregate:
-            fig, ax = plt.subplots(figsize=(9, 7))
+            fig, ax = plt.subplots(figsize=figsize)
             
             data = df[x].value_counts()
             
@@ -289,16 +291,43 @@ class Piechart():
             )   
 
             title = f"Distribution of {x} - Aggregate"
-
+            
+            for text in ax.texts:
+                if '%' in text.get_text():
+                    text.set_fontsize(11)  # pct
+                else:
+                    text.set_fontsize(8)  # labels
+                
+                #Add white border around each character to ensure legibility
+                text.set_path_effects([
+                    matplotlib.patheffects.Stroke(linewidth=2, foreground='white'),
+                    matplotlib.patheffects.Normal()
+                ])
+ 
         else:
 
-            fig = plt.figure(figsize=(16, 12))
-            gs = gridspec.GridSpec(2, 2, figure=fig, wspace=-0.1)
+            fig = plt.figure(figsize=figsize)
+            
+            hues = df[hue].unique()
+            n_hues = len(hues) 
+            
+            match n_hues:
+                case 2:
+                    gs = gridspec.GridSpec(1, 2, figure=fig, wspace=space,hspace=space)
+                case 3:
+                    gs = gridspec.GridSpec(2, 2, figure=fig, wspace=space)
+                    gs.update(left=0.05, right=0.95, top=0.95, bottom=0.05, hspace=space)
+                    gs[1, 0].set_position(gs[1, 0].get_position(fig).translated(0.25, 0))
+                case 4:
+                    gs = gridspec.GridSpec(2, 2, figure=fig, wspace=space,hspace=space)
+                case _:
+                    gs = gridspec.GridSpec(1, n_hues, figure=fig, wspace=space,hspace=space)      
 
-            for i, model_name in enumerate(self.models):
+            for i, hue_i in enumerate(df[hue].unique()):
+                data = df[df['model'] == hue_i][x].value_counts()
+                
                 ax = fig.add_subplot(gs[i//2, i%2])
                 
-                data = df[df['model'] == model_name][x].value_counts()
                 if other is not None: #Group classes with less than [other]% representation in an Other class
                     total = data.sum()
                     data = data[data >= other * total]
@@ -306,7 +335,7 @@ class Piechart():
                     if other_count > 0:
                         data['Other'] = other_count
 
-                colors = list(map(self.label2color,data.index))
+                colors = list(map(self.colorH.label2color,data.index))
 
                 ax.pie(
                     data,
@@ -316,15 +345,21 @@ class Piechart():
                     explode=[max((10-pct)/35,0) for pct in 100.*data/data.sum()]
                 )   
 
-                #Set font size of labels differently from pct
+                # Set font size of labels differently from pct
                 for text in ax.texts:
                     if '%' in text.get_text():
-                        text.set_fontsize(11) #pct
+                        text.set_fontsize(11)  # pct
                     else:
-                        text.set_fontsize(8) #labels
+                        text.set_fontsize(8)  # labels
+                    
+                    #Add white border around each character to ensure legibility
+                    text.set_path_effects([
+                        matplotlib.patheffects.Stroke(linewidth=2, foreground='white'),
+                        matplotlib.patheffects.Normal()
+                    ])
 
                 title = f'Distribution of {x} by Model'
-                ax.set_title(f"{model_name}", fontsize=16, fontweight='bold', pad=0)
+                ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
                 ax.yaxis.grid(True, linestyle='--', alpha=0.7)
                 
                 for spine in ax.spines.values():
@@ -338,9 +373,70 @@ class Piechart():
 
         return plt
 
+    
 class StackedBar():
-    def __init__(self):
-        pass
-    def draw(self, df:pd.DataFrame,x:str,hue:str):
-        pass
-        
+    def __init__(self,models):
+        self.models=models
+        self.colorH = ColorHelper()
+
+    def draw(self, df: pd.DataFrame, x: str, stacked_hue: str,
+         dataset: str = None, hue: str = 'model', ylim: int = 5,
+         figsize: Tuple[int, int] = (16, 12), space: float = 0):
+
+        fig = plt.figure(figsize=figsize)
+        gs = gridspec.GridSpec(4, 1, figure=fig, wspace=space, hspace=space)
+
+        for i, hue_i in enumerate(df[hue].unique()):
+
+            # Prepare the data for stacking
+            data = df[df['model'] == hue_i] \
+                        .groupby([x, stacked_hue]) \
+                        .size() \
+                        .reset_index(name='Frequency')
+
+            # Pivot data to have each stacked_hue category as a separate column
+            pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
+
+            ax = fig.add_subplot(gs[i, 0])
+
+            # Create the stacked bars using matplotlib
+            bottoms = [0] * len(pivot_df)  # Track the bottoms for stacking
+
+            # Loop through each column (stacked_hue category)
+            for stacked_label in pivot_df.columns:
+                ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
+                        color=self.colorH.label2color(stacked_label), label=stacked_label)
+
+                # Update bottoms for the next stacked hue
+                bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
+
+            # Set the legend only for the first subplot
+            if i == 0:
+                ax.legend(loc='upper right', bbox_to_anchor=(1.15, 1), title=stacked_hue)
+
+            # Title and labels
+            ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
+            ax.yaxis.grid(True, linestyle='--', alpha=0.7)
+            ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
+            ax.set_xticks(range(len(pivot_df)))
+            ax.set_xticklabels(ax.get_xticklabels() if i == len(df[hue].unique()) - 1 else [])
+
+            # Set y-axis limits and labels
+            ax.set_yticks(range(0, ylim + 1))
+            ax.set_ylabel('Frequency')
+
+            # Style the spines
+            for spine in ax.spines.values():
+                spine.set_linewidth(0.8)
+                spine.set_color('#444444')
+
+        # Set the overall title and other texts
+        title = f'Frequency of {stacked_hue} by {x}' if x == '№' else f'Frequency of {stacked_hue} by order of responses'
+        fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
+        fig.suptitle(title, fontsize=20, y=0.93, fontweight='bold', color='#333333')
+        fig.text(0.5, 0.95, dataset, ha='center', fontsize=14, color='#666666', style='italic')
+
+        # Adjust layout to prevent overlap
+        plt.tight_layout(rect=[0, 0.04, 1, 0.94])
+
+        return plt
