@@ -545,8 +545,10 @@ class ColorHelper:
         }
         
         self._label2color.update({
-            'Male'  : 'steelblue',
-            'Female': 'hotpink',
+            'Female':'#D81B60',
+            'Male'  :'#1E88E5',
+            'Female Surplus':'#AD1457',
+            'Male Surplus':'#1565C0',
             'Other' : 'rebeccapurple',
         })
 

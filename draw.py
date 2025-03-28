@@ -374,6 +374,141 @@ class Piechart():
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
 
         return plt
+ 
+class PopulationPyramid():
+    def __init__(self, models):
+        self.models=models
+        self.colorH = ColorHelper()
+        self.model_hatches = {
+            'ChatGPT' : 4*'o',
+            'Claude'  : 4*'/', 
+            'Gemini'  : 4*'.', 
+            'DeepSeek': 4*'x',
+        }
+
+    def draw(self, df:pd.DataFrame,x:str,stacked_hue:str,xlabels:List[str],dataset:str,
+             aggregate:bool=False,xlim:int=10, xstep:int=1,hue:str='model',
+             dodge:int=1.5,bar_width:float=0.2,fontsize:int=10):
+        
+        y='pct'
+        hatches = {"/\\|-+xo*."[i]*4:hue_i for i,hue_i in enumerate(df[hue].unique())} \
+                  if hue!='model' else self.model_hatches
+        
+        #Prepare data for population pyramid
+        df = df.groupby([stacked_hue, x,hue]).size().reset_index(name='count')
+        df[y] = (df['count'] / df['count'].sum()) * 100
+
+        if aggregate:
+            plt.figure(figsize=(10, 6))
+
+            #Separate males and females
+            males   = df[df[stacked_hue] == 'Male'  ].groupby(x)[y].sum().reindex(xlabels, fill_value=0)
+            females = df[df[stacked_hue] == 'Female'].groupby(x)[y].sum().reindex(xlabels, fill_value=0)
+            female_surplus = (females-males).apply(lambda j: max(j,0))
+            male_surplus   = (females-males).apply(lambda j: min(j,0))
+
+            plt.barh(females.index, females-female_surplus,
+                    color='#D81B60' , alpha=0.7, label='Females')
+            plt.barh(
+                females.index, female_surplus, left=males,
+                color='#AD1457',alpha=0.7, label='Female Surplus',
+            )
+
+            plt.barh(males.index, -males-male_surplus, color='#1E88E5', alpha=0.7, label='Males')
+            plt.barh(
+                males.index, male_surplus,
+                left=-females,
+                color='#1565C0',alpha=0.7, label='Male Surplus',
+            )
+
+            for i, (m,f) in enumerate(zip(males,females)):
+                plt.text(f+0.5, i, f'{f:.1f}%' if f else "", va='center', ha='left', color='black')
+                plt.text(-m-3 , i, f'{m:.1f}%' if m else "", va='center', ha='left', color='black')
+
+        else:
+            plt.figure(figsize=(16, 9), dpi=300)  # Larger figure, higher DPI
+            plt.style.use('seaborn-v0_8-whitegrid')  # More professional background
+            for i,hue_i in enumerate(df[hue].unique()):
+
+                #Get model-specific data
+                model_df = df[df[hue] == hue_i]
+                males   = model_df[model_df[stacked_hue] == 'Male'  ] \
+                            .groupby(x)[y].sum().reindex(xlabels, fill_value=0)
+                females = model_df[model_df[stacked_hue] == 'Female'] \
+                            .groupby(x)[y].sum().reindex(xlabels, fill_value=0)
+                
+                female_surplus = (females-males).apply(lambda j: max(j,0))
+                male_surplus   = (females-males).apply(lambda j: min(j,0))
+                
+                bar_adjust = bar_width*(i-dodge)
+                female_x = [idx + bar_adjust for idx in range(len(xlabels))]
+                male_x   = [idx + bar_adjust for idx in range(len(xlabels))]
+
+                #Plot bars
+                plt.barh(
+                    y=female_x,
+                    width=females-female_surplus, height=bar_width,
+                    color='#D81B60', alpha=0.7, label='Females',
+                    hatch=hatches[hue_i], edgecolor='snow', linewidth=0
+                )
+                plt.barh(
+                    y=male_x,
+                    width=-males-male_surplus, height=bar_width,
+                    color='#1E88E5', alpha=0.7, label='Males',
+                    hatch=hatches[hue_i],edgecolor='snow',linewidth=0
+                )
+                plt.barh(
+                    y=female_x,
+                    width=female_surplus, height=bar_width, left=males, 
+                    color='#AD1457',alpha=0.7, label='Female Surplus',
+                    hatch=hatches[hue_i],edgecolor='#F5F5F5',linewidth=0
+                )
+                plt.barh(
+                    y=male_x,
+                    width=male_surplus, height=bar_width, left=-females, 
+                    color='#1565C0', alpha=0.7, label='Male Surplus',
+                    hatch=hatches[hue_i],edgecolor='#F5F5F5',linewidth=0
+                )
+                
+                #Add labels on each bar
+                for fx,f in zip(female_x,females):
+                    plt.text(x=f+0.1,y=fx,s=f'{f:.1f}%' if f else "",
+                        va='center', ha='left', color='black', fontsize=10
+                    )
+
+                for mx,m in zip(male_x,males):
+                    plt.text(x=-m-0.5,y=mx,s=f'{m:.1f}%' if m else "",
+                        va='center', ha='left', color='black', fontsize=10
+                    )
+
+        #Customize the plot
+        plt.xlabel('Population (%)', fontsize=fontsize)
+        plt.ylabel(x,fontsize=fontsize)
+        plt.xticks(range(-xlim,xlim+xstep,xstep))
+        plt.yticks(range(len(xlabels)),xlabels)
+        plt.suptitle(f'Population Pyramid', fontsize=fontsize+5, y=1, fontweight='bold', color='#333333')
+        plt.text(0.4, len(df[x].unique())-0.07, dataset, ha='center', fontsize=fontsize+2, color='#666666', style='italic')
+
+        from matplotlib.patches import Patch
+        plt.legend(
+            handles=([
+                Patch(facecolor='white',label=hue_i,hatch=hatches[hue_i],edgecolor='black',linewidth=0)
+                for hue_i in reversed(df[hue].unique())
+                ] if not aggregate else []) + [
+                    Patch(facecolor='#1E88E5', label='Males',          edgecolor='black'),
+                    Patch(facecolor='#D81B60', label='Females',        edgecolor='black'),
+                    Patch(facecolor='#1565C0', label='Male Surplus',   edgecolor='black'),
+                    Patch(facecolor='#AD1457', label='Female Surplus', edgecolor='black')
+                ],
+            title="Legend",title_fontsize=fontsize+2,loc='best',
+            frameon=True,framealpha=0.7,edgecolor='lightgrey'
+        )
+
+        plt.axvline(x=0, color='black', linewidth=1, linestyle='--')
+        plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{abs(x):g}'))
+        plt.tight_layout()
+
+        return plt
     
 class StackedBar():
     def __init__(self,models):
