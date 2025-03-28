@@ -17,15 +17,14 @@ class Histogram():
         self.models = models
         self.jobH = JobHelper()
         self.countryH = CountryHelper()
-        
         self.colorH = ColorHelper()
           
     def draw(self,df:pd.DataFrame,x:str, dataset:str=None,
-             aggregate:bool=False, hue:str=None,
-             long_layout:bool=False,ylim:int=15,
+             aggregate:bool=False, hue:str=None, y:str=None,
+             long_layout:bool=False,ylim:int=15, grid:bool=False,
              xtick_label_max_len:int=0, rotation:int=90,
              text_width:int=None,figsize:Tuple[int,int]=(16,12),
-             hspace:int=0.3,title_size:int=12):
+             hspace:int=0.3,title_size:int=12, violin:bool=False):
         
         plt.rcParams.update({
             'font.family': 'sans-serif',
@@ -40,6 +39,10 @@ class Histogram():
         })
         sns.set_style("ticks", {'grid.linestyle': '--', 'grid.alpha': 0.6})
         
+        if not y:
+            y='count'
+            df[y] = df.groupby([x,'model'] + ([hue] if hue else []))[x].transform('count')
+
         #Delimit text with new lines for better drawing
         if text_width is not None:
             df = df.copy()
@@ -48,13 +51,12 @@ class Histogram():
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
-            ax = sns.countplot(
-                data=df, x=x,
-                hue=hue,
+            ax = sns.barplot(
+                data=df, x=x, y=y,hue=hue,
                 order=df[x].value_counts().index,
                 palette={**self.colorH._label2color, **self.colorH._continent2color},
                 saturation=0.9,edgecolor='black',
-                linewidth=0.8,
+                linewidth=0.8, dodge=False,
             )
 
             plt.title(f"Frequency of {x} by Model", fontsize=18, fontweight='bold', pad=20, color='#333333')
@@ -88,33 +90,55 @@ class Histogram():
         else:
             fig = plt.figure(figsize=figsize)
             gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=hspace)
-        colors = sns.color_palette("Set1", len(self.models))
+
+        if x=='Education':
+            order = list(map(lambda cert: squeeze_text(cert,text_width),
+                        self.jobH.certifications))
+        else:
+            order=df[x].unique()
+
 
         for i, model_name in enumerate(self.models):
             
             ax = fig.add_subplot(
                 gs[i//2, i%2] if not long_layout else gs[i,0]
             )
-            sns.countplot(
+
+            plot = [sns.barplot, sns.violinplot][violin](
                 data=df[df['model'] == model_name],
-                x=x, hue=hue,
+                x=x, y=y, hue=hue,
                 palette={**self.colorH._label2color, **self.colorH._continent2color},
-                edgecolor='black',
-                linewidth=0.7,
-                ax=ax,
-                saturation=1.0,
-                order=df[df['model']==model_name][x].value_counts().index,
-                legend=(i==0)
+                edgecolor='black', linewidth=0.7, saturation=1.0,
+                order=order,
+                ax=ax, legend=(i==0),
+                
+                # Parameters for violin plot only
+                **({} if not violin else {
+                    'split': True, 'inner': None,
+                    # 'density_norm': 'count', 'bw_method': 0.7,
+                    'hue_order': ['Male', 'Female'] if hue == 'Sex' else []
+                })
             )
+
+            #TODO: Fix number ordering, and split numbers by Male and Female.
+            #Move positions underneat xlabels
+            if violin:
+                # Add the number of items on each violin plot
+                counts = df[df['model'] == model_name].groupby(x).size()
+                for idx, count in enumerate(counts):
+                    ax.text(
+                        x=idx, y=ylim - 1, s=f'{count}',
+                        ha='center', va='top', fontsize=10, color='black'
+                    )
             if hue and i==0:
-                ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title=hue)
+                ax.legend(loc='best', bbox_to_anchor=(1, 0.5), title=hue)
             
             ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
             ax.set_xlabel("")
-            ax.set_ylabel("Count", fontsize=14, fontweight='medium', labelpad=10)
+            ax.set_ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=10)
             ax.tick_params(axis='x', rotation=rotation, labelsize=11)
             ax.set_ylim(bottom=0)
-            ax.set_yticks(range(ylim+1) if not long_layout else range(0,ylim+1,5))
+            ax.set_yticks(range(ylim+1) if not long_layout and not violin else range(0,ylim+1,5))
 
             #Shorten xtick_label
             if xtick_label_max_len > 0:
@@ -150,8 +174,7 @@ class Histogram():
                     # Remove xticklabels
                     ax.set_xticklabels([])
             
-            #No Grids and spines if we are offsetting the xticklabels
-            else:
+            if grid:
                 ax.yaxis.grid(True, linestyle='--', alpha=0.7)
                 for spine in ax.spines.values():
                     spine.set_linewidth(0.8)
