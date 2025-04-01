@@ -29,7 +29,7 @@ class CountryHelper:
         south_asian = ['Afghanistan','Bangladesh','Bhutan','India','Iran','Maldives','Nepal','Pakistan','Sri Lanka']
         east_asian = ['China','Japan','Mongolia','North Korea','South Korea','Taiwan']
         asia = ['Turkey','Kazakhstan','Kyrgyzstan','Tajikistan','Turkmenistan','Uzbekistan','China','North Korea','Japan','Mongolia','South Korea','Brunei','Cambodia','Indonesia','Laos','Malaysia','Myanmar','Philippines','Singapore','Thailand','Timor-Leste','Vietnam']
-        asia += ['Armenia','Azerbaijan','Georgia']
+        asia += ['Armenia','Azerbaijan','Georgia','Cyprus']
         east_europe = ['Kosovo','Poland','Belarus','Czechia','Slovakia','Hungary','Romania','Bulgaria','Moldova','Ukraine','Russia']
         balkan = ['Greece','Serbia','Croatia','Bosnia and Herz.','Albania','North Macedonia','Kosovo','Montenegro','Bulgaria','Romania','Slovenia','Moldova']
         europe = east_europe + ['Denmark','Estonia','Finland','Iceland','Ireland','Latvia','Lithuania','Norway','Sweden','United Kingdom','Albania','Andorra','Bosnia and Herz.','Croatia','Greece','Italy','Malta','Montenegro','North Macedonia','Portugal','San Marino','Serbia','Slovenia','Spain','Austria','Belgium','France','Germany','Liechtenstein','Luxembourg','Monaco','Netherlands','Switzerland']
@@ -410,6 +410,27 @@ class CountryHelper:
     def country2short(self,country_name:str) -> str:
         return self._country2short[country_name] if country_name in self._country2short else country_name
         
+    def get_country_average_y(self,df:pd.DataFrame, x:str, y:str) -> pd.Series:
+        assert pd.api.types.is_numeric_dtype(df[y]), f"Column '{y}' must contain numeric data."
+        
+        counts = {}
+        for item, _y in zip(df[x],df[y]):
+            if isinstance(item, list):
+                for sub_item in item:
+                    if sub_item in counts:
+                        counts[sub_item] += [_y]
+                    else:
+                        counts[sub_item] = [_y]
+            else:
+                if item in counts:
+                    counts[item] += [_y]
+                else:
+                    counts[item] = [_y]
+                    
+        averages = {country: sum(_y)/len(_y) for country, _y in counts.items()}
+        
+        return pd.Series(averages, name=y).reset_index().rename(columns={'index': x})
+    
     def get_country_frequency(self,series:pd.Series):
         counts = {}
         for item in series:
@@ -575,9 +596,15 @@ class JobHelper:
             "Ph.D","Non-tertiary Education", "None"
         ]
         
-        self.sectors = list(set([
-            info['sector'] for info in self._job_title_to_sector.values()
-        ]))
+        # self.sectors = list(set([
+        #     info['sector'] for info in self._job_title_to_sector.values()
+        # ]))
+        self.sectors =  [
+            "Managers", "Professionals", "Technicians and Associate Professionals", "Clerical Support Workers",
+            "Craft and Related Trades Workers", "Service and Sales Workers", "Skilled Agricultural, Forestry and Fishery Workers",
+            "Plant and Machine Operators, and Assemblers", "Elementary Occupations", "Unemployed"
+        ]
+        
         
         self.subsectors = list(set([
             info['subsector'] for info in self._job_title_to_sector.values()
@@ -634,6 +661,7 @@ class SexHelper:
         }.get(sex, 'Other')
 
 def squeeze_text(txt:str, width:int=25)->str:
+    
     def get_idx(txt:str, width:int=15)->int:
         idx = 0
         prev_idx = 0
@@ -651,7 +679,7 @@ def squeeze_text(txt:str, width:int=25)->str:
             best_distance = distance
             prev_idx = idx        
     
-    if len(txt) <= width:
+    if not width or len(txt) <= width:
         return txt
     
     #Perform first replacement

@@ -22,9 +22,11 @@ class Histogram():
     def draw(self,df:pd.DataFrame,x:str, dataset:str=None,
              aggregate:bool=False, hue:str=None, y:str=None,
              long_layout:bool=False,ylim:int=15, grid:bool=False,
-             xtick_label_max_len:int=0, rotation:int=90,
+             xtick_label_max_len:int=0, rotation:int=90, ystep:int=1,
              text_width:int=None,figsize:Tuple[int,int]=(16,12),
-             hspace:int=0.3,title_size:int=12, violin:bool=False):
+             hspace:int=0.3,title_size:int=12, violin:bool=False, swarm:bool=False):
+        
+        assert not(violin and swarm)
         
         plt.rcParams.update({
             'font.family': 'sans-serif',
@@ -48,22 +50,41 @@ class Histogram():
             df = df.copy()
             df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
         
+        
+        match x:
+            case 'Education': order = list(map(lambda cert: squeeze_text(cert,text_width),self.jobH.certifications))
+            case 'Sector': order = {
+                v: j for j, v in enumerate(map(lambda s: squeeze_text(s,text_width),
+                                               df[x].unique() if x!='Sector' else self.jobH.sectors))
+                }
+            case _:  order=df[x].unique()
+        
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
-            ax = sns.barplot(
+            ax = [sns.barplot,sns.swarmplot, sns.violinplot][2 if violin else swarm](
                 data=df, x=x, y=y,hue=hue,
-                order=df[x].value_counts().index,
+                order=order,
                 palette={**self.colorH._label2color, **self.colorH._continent2color},
-                saturation=0.9,edgecolor='black',
-                linewidth=0.8, dodge=False,
+                
+                # Parameters for violin plot only
+                **({} if not violin else {
+                    'split': True, 'inner': None,
+                    # 'density_norm': 'count', 'bw_method': 0.7,
+                    'hue_order': ['Male', 'Female'] if hue == 'Sex' else []
+                }),
+                
+                **({} if not swarm else {
+                    'dodge': True,
+                    'size': 5,
+                })
             )
 
-            plt.title(f"Frequency of {x} by Model", fontsize=18, fontweight='bold', pad=20, color='#333333')
+            plt.title(f"Frequency of {x} by {hue.capitalize()} - Aggregate", fontsize=18, fontweight='bold', pad=20, color='#333333')
             plt.xlabel(x, fontsize=14, fontweight='medium', labelpad=15)
-            plt.ylabel("Count", fontsize=14, fontweight='medium', labelpad=15)
-            plt.xticks(rotation=45, ha='center', fontsize=12)
-            plt.yticks(range(ylim+1), fontsize=12)
+            plt.ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=15)
+            plt.xticks(rotation=rotation, ha='center', fontsize=12)
+            plt.yticks(range(0,ylim+ystep,ystep), fontsize=12)
 
             legend = plt.legend(title='Model',frameon=True, 
                 framealpha=0.95, fontsize=14,title_fontsize=15,
@@ -90,25 +111,18 @@ class Histogram():
         else:
             fig = plt.figure(figsize=figsize)
             gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.2, hspace=hspace)
-
-        if x=='Education':
-            order = list(map(lambda cert: squeeze_text(cert,text_width),
-                        self.jobH.certifications))
-        else:
-            order=df[x].unique()
-
-
+            
         for i, model_name in enumerate(self.models):
             
             ax = fig.add_subplot(
                 gs[i//2, i%2] if not long_layout else gs[i,0]
             )
 
-            plot = [sns.barplot, sns.violinplot][violin](
+            plot = [sns.barplot, sns.swarmplot, sns.violinplot][2 if violin else swarm](
                 data=df[df['model'] == model_name],
                 x=x, y=y, hue=hue,
                 palette={**self.colorH._label2color, **self.colorH._continent2color},
-                edgecolor='black', linewidth=0.7, saturation=1.0,
+                linewidth=0.7,
                 order=order,
                 ax=ax, legend=(i==0),
                 
@@ -117,6 +131,12 @@ class Histogram():
                     'split': True, 'inner': None,
                     # 'density_norm': 'count', 'bw_method': 0.7,
                     'hue_order': ['Male', 'Female'] if hue == 'Sex' else []
+                }),
+                
+                # Parameters for swarm plot only
+                **({} if not swarm else {
+                    'dodge': True,
+                    'size': 5,
                 })
             )
 
@@ -138,7 +158,7 @@ class Histogram():
             ax.set_ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=10)
             ax.tick_params(axis='x', rotation=rotation, labelsize=11)
             ax.set_ylim(bottom=0)
-            ax.set_yticks(range(ylim+1) if not long_layout and not violin else range(0,ylim+1,5))
+            ax.set_yticks(range(0,ylim+ystep,ystep) if not long_layout and not violin else range(0,ylim+ystep,ystep))
 
             #Shorten xtick_label
             if xtick_label_max_len > 0:
@@ -174,11 +194,13 @@ class Histogram():
                     # Remove xticklabels
                     ax.set_xticklabels([])
             
+            
             if grid:
-                ax.yaxis.grid(True, linestyle='--', alpha=0.7)
                 for spine in ax.spines.values():
                     spine.set_linewidth(0.8)
                     spine.set_color('#444444')
+                ax.yaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
+                ax.xaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
 
         fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(f'Frequency of {x} by Model', 
@@ -200,12 +222,12 @@ class Map():
 
         self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
 
-    def draw(self,series:pd.Series,
-                    title:str,cmap:str,
-                    ax:Union[Tuple[Tuple[matplotlib.axes._axes.Axes]],None]=None,
-                    show:bool=False,log:bool=False,
-                    low_poly:bool=False,legend:bool=True,
-                    max_count:int=15,legend_loc=[0,0,0,0]) -> matplotlib.axes._axes.Axes:
+    def draw(self,df:pd.DataFrame,x:str,
+                  title:str,cmap:str,y:str=None,
+                  ax:Union[Tuple[Tuple[matplotlib.axes._axes.Axes]],None]=None,
+                  show:bool=False,log:bool=False, show_labels:bool=False,
+                  low_poly:bool=False,legend:bool=True,step:int=1,
+                  max_count:int=15,legend_loc=[0,0,0,0]) -> matplotlib.axes._axes.Axes:
     
         legend_loc = [[0.15, 0.06, 0.71, 0.02][i]+j for i,j in enumerate(legend_loc)]
 
@@ -216,22 +238,23 @@ class Map():
         world = gpd.read_file(os.path.join("world_data",f"ne_{11 if low_poly else 1}0m_admin_0_countries.shp"))
         world.boundary.plot(ax=ax, transform=ccrs.PlateCarree(), linewidth=0)
 
-        origin_counts = self.countryH.get_country_frequency(series)
-        world = world.merge(
-            origin_counts,
-            how='left', left_on='NAME', right_on=series.name
-        )
-        world['count'] = world['count'].fillna(0)
-        world['log_count'] = world['count'].replace(0, 0.1)
+        if not y:
+            y='count'
+            x_counts = self.countryH.get_country_frequency(df[x])
+        else:
+            x_counts = self.countryH.get_country_average_y(df,x,y)
+            
+        world = world.merge(x_counts, how='left', left_on='NAME', right_on=x)
+        world[y] = world[y].fillna(0).replace(0, 0.1)
 
         #Calculate min and max for better tick control
         vmin = 0.1 if log else 0
         vmax = max_count
-        custom_ticks = [0,0.1,1,5,10,15] if log else [0,1,2,3,4, 5,6,7,8,9,10,11,12,13,14,15]
+        custom_ticks = ([0,0.1,1] if log else []) + list(range(step,max_count+step,step))
         custom_ticks = [t for t in custom_ticks if vmin <= t <= vmax]
 
         world.plot(
-            column='log_count',
+            column=y,
             cmap=cmap,
             transform=ccrs.PlateCarree(),
             linewidth=0.05,
@@ -240,7 +263,7 @@ class Map():
             ax=ax,
             norm=LogNorm(vmin=vmin, vmax=vmax) if log else Normalize(vmin=vmin, vmax=vmax),
             legend_kwds={
-                'label': "Count",
+                'label': y.capitalize(),
                 'orientation': "horizontal",
                 'format': ticker.FuncFormatter(lambda x, _: f'{int(x)}' if x >= 1 else f'{x:.1f}'),
                 'ticks': custom_ticks,
@@ -252,9 +275,25 @@ class Map():
                 'ticks': [],
                 'extend': 'neither',
                 'cax': ax.figure.add_axes([0.5,0.5,0.001,0.001])
-                
             }
         )
+        
+        
+        if show_labels:
+            for _, row in world.iterrows():
+                if row[y] > vmin:  # Only display values above the minimum threshold
+                    ax.text(
+                        row.geometry.centroid.x, row.geometry.centroid.y, 
+                        f"{int(row[y])}" if row[y]>=1 else '',
+                        fontsize=6, ha='center', va='center',
+                        transform=ccrs.PlateCarree(),
+                        color='black', alpha=0.5,
+                        path_effects=[
+                            path_effects.Stroke(linewidth=1, foreground='white'),
+                            path_effects.Normal()
+                        ]
+                    )
+            
         ax.set_facecolor('#A6CAE0')
         ax.set_title(title, fontsize=12)
         ax.set_global()  # Set global extent
@@ -509,8 +548,8 @@ class PopulationPyramid():
         plt.ylabel(x,fontsize=fontsize)
         plt.xticks(range(-xlim,xlim+xstep,xstep))
         plt.yticks(range(len(xlabels)),xlabels)
-        plt.suptitle(f'Population Pyramid', fontsize=fontsize+5, y=1, fontweight='bold', color='#333333')
-        plt.text(0.4, len(df[x].unique())-0.07, dataset, ha='center', fontsize=fontsize+2, color='#666666', style='italic')
+        plt.suptitle(f'Population Pyramid', fontsize=fontsize+5, y=1, x=0.5, ha='center', fontweight='bold', color='#333333')
+        plt.text(0, len(df[x].unique())-0.07, dataset, ha='center', fontsize=fontsize+2, color='#666666', style='italic')
 
         from matplotlib.patches import Patch
         plt.legend(
@@ -537,73 +576,132 @@ class StackedBar():
     def __init__(self,models):
         self.models=models
         self.colorH = ColorHelper()
+        self.jobH = JobHelper()
 
     def draw(self, df:pd.DataFrame, x:str, stacked_hue:str,
-         dataset:str=None, hue:str='model', ylim:int=5, ystep:int=1,
-         figsize:Tuple[int, int]=(16,12), space:float=0, bar_labels:bool=False):
+         dataset:str=None, hue:str='model', ylim:int=5, ystep:int=1,grid:bool=True,
+         figsize:Tuple[int, int]=(16,12), space:float=0, bar_labels:bool=False,
+         txt_width:int=None, aggregate:bool=False):
 
         fig = plt.figure(figsize=figsize)
         gs = gridspec.GridSpec(4, 1, figure=fig, wspace=space, hspace=space)
 
+        df = df.copy()
+        df[x] = df[x].apply(lambda s: squeeze_text(s, txt_width))
+        
         #To ensure x-axis and stacked_hue ordering is consistent across different hues
-        x_ordering = {v: j for j, v in enumerate(df[x].unique())}
+        x_ordering = {v: j for j, v in enumerate(map(
+            lambda s: squeeze_text(s,txt_width),
+            df[x].unique() if x!='Sector' else self.jobH.sectors)
+        )}
         y_ordering = {v: j for j, v in enumerate(df[stacked_hue].unique())}
 
-        for i, hue_i in enumerate(df[hue].unique()):
+        if aggregate:
+            # Prepare the data for stacking
+            data = df.groupby([x, stacked_hue]).size().reset_index(name='Frequency')
 
-            #Prepare the data for stacking
-            data = df[df['model'] == hue_i] \
-                        .groupby([x, stacked_hue]) \
-                        .size() \
-                        .reset_index(name='Frequency')
-
-            #Pivot data to have each stacked_hue category as a separate column
+            # Pivot data to have each stacked_hue category as a separate column
             pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
             pivot_df = pivot_df.reindex(sorted(x_ordering.keys(), key=lambda k: x_ordering[k]), fill_value=0)
-            bottoms = [0] * len(pivot_df) 
+            bottoms = [0] * len(pivot_df)
 
-            #Ensure consistent ordering of stacked_hue categories across different hue_i
+            # Ensure consistent ordering of stacked_hue categories
             ordered_columns = sorted(
                 pivot_df.columns,
                 key=lambda col: y_ordering[col]
             )
 
-            ax = fig.add_subplot(gs[i, 0])
+            ax = fig.add_subplot(gs[0, 0])
 
             for stacked_label in ordered_columns:
                 bars = ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
                               color=self.colorH.label2color(stacked_label), label=stacked_label)
                 bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
 
-                #Display values on bar
+                # Display values on bar
                 if bar_labels:
                     for bar in bars:
                         h = bar.get_height()
                         if h > 1:
                             ax.text(
-                                x=bar.get_x()+bar.get_width()/2,
-                                y=bar.get_y()+h/2,
+                                x=bar.get_x() + bar.get_width() / 2,
+                                y=bar.get_y() + h / 2,
                                 s=f'{int(h)}',
                                 ha='center', va='center', fontsize=10, color='white'
                             )
 
-            if i == 0:
-                ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
+            ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
 
-            #Title and labels
-            ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
-            ax.yaxis.grid(True, linestyle='--', alpha=0.7)
-            ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
+            # Title and labels
+            ax.set_title("Aggregate", fontsize=16, fontweight='bold', pad=0)
+            ax.yaxis.grid(grid, linestyle='--', alpha=0.7 if grid else 0)
+            ax.set_xlabel(x)
             ax.set_xticks(range(len(pivot_df)))
 
             # Set y-axis limits and labels
-            ax.set_yticks(range(0, ylim+1, ystep))
+            ax.set_yticks(range(0, ylim + 1, ystep))
             ax.set_ylabel('Frequency')
 
             # Style the spines
             for spine in ax.spines.values():
                 spine.set_linewidth(0.8)
                 spine.set_color('#444444')
+        else:        
+            for i, hue_i in enumerate(df[hue].unique()):
+
+                #Prepare the data for stacking
+                data = df[df['model'] == hue_i] \
+                            .groupby([x, stacked_hue]) \
+                            .size() \
+                            .reset_index(name='Frequency')
+
+                #Pivot data to have each stacked_hue category as a separate column
+                pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
+                pivot_df = pivot_df.reindex(sorted(x_ordering.keys(), key=lambda k: x_ordering[k]), fill_value=0)
+                bottoms = [0] * len(pivot_df) 
+
+                #Ensure consistent ordering of stacked_hue categories across different hue_i
+                ordered_columns = sorted(
+                    pivot_df.columns,
+                    key=lambda col: y_ordering[col]
+                )
+
+                ax = fig.add_subplot(gs[i, 0])
+
+                for stacked_label in ordered_columns:
+                    bars = ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
+                                color=self.colorH.label2color(stacked_label), label=stacked_label)
+                    bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
+
+                    #Display values on bar
+                    if bar_labels:
+                        for bar in bars:
+                            h = bar.get_height()
+                            if h > 1:
+                                ax.text(
+                                    x=bar.get_x()+bar.get_width()/2,
+                                    y=bar.get_y()+h/2,
+                                    s=f'{int(h)}',
+                                    ha='center', va='center', fontsize=10, color='white'
+                                )
+
+                if i == 0:
+                    ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
+
+                #Title and labels
+                ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
+                ax.yaxis.grid(grid, linestyle='--', alpha=0.7 if grid else 0)
+                ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
+                ax.set_xticks(range(len(pivot_df)))
+
+                # Set y-axis limits and labels
+                ax.set_yticks(range(0, ylim+1, ystep))
+                ax.set_ylabel('Frequency')
+
+                # Style the spines
+                for spine in ax.spines.values():
+                    spine.set_linewidth(0.8)
+                    spine.set_color('#444444')
 
         # Set the overall title and other texts
         title = f'Frequency of {stacked_hue} by {x}' if x != '№' else f'Frequency of {stacked_hue} by order of responses'
