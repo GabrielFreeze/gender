@@ -50,14 +50,15 @@ class Histogram():
             df = df.copy()
             df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
         
-        
         match x:
             case 'Education': order = list(map(lambda cert: squeeze_text(cert,text_width),self.jobH.certifications))
             case 'Sector': order = {
                 v: j for j, v in enumerate(map(lambda s: squeeze_text(s,text_width),
                                                df[x].unique() if x!='Sector' else self.jobH.sectors))
                 }
-            case _:  order=df[x].unique()
+            case _: order = df.groupby(x)[y].sum().sort_values(ascending=False).index.tolist() \
+                    if aggregate else None
+                
         
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
@@ -80,7 +81,7 @@ class Histogram():
                 })
             )
 
-            plt.title(f"Frequency of {x} by {hue.capitalize()} - Aggregate", fontsize=18, fontweight='bold', pad=20, color='#333333')
+            plt.title(f"Distribution of {x} by {hue.capitalize()} - Aggregate", fontsize=18, fontweight='bold', pad=20, color='#333333')
             plt.xlabel(x, fontsize=14, fontweight='medium', labelpad=15)
             plt.ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=15)
             plt.xticks(rotation=rotation, ha='center', fontsize=12)
@@ -117,14 +118,15 @@ class Histogram():
             ax = fig.add_subplot(
                 gs[i//2, i%2] if not long_layout else gs[i,0]
             )
+            data = df[df['model'] == model_name]
 
-            plot = [sns.barplot, sns.swarmplot, sns.violinplot][2 if violin else swarm](
-                data=df[df['model'] == model_name],
+            [sns.barplot, sns.swarmplot, sns.violinplot][2 if violin else swarm](
+                data=data,
                 x=x, y=y, hue=hue,
                 palette={**self.colorH._label2color, **self.colorH._continent2color},
                 linewidth=0.7,
-                order=order,
-                ax=ax, legend=(i==0),
+                order=order if order else data.groupby(x)[y].sum().sort_values(ascending=False).index.tolist(),
+                ax=ax, legend=(i==1),
                 
                 # Parameters for violin plot only
                 **({} if not violin else {
@@ -144,14 +146,14 @@ class Histogram():
             #Move positions underneat xlabels
             if violin:
                 # Add the number of items on each violin plot
-                counts = df[df['model'] == model_name].groupby(x).size()
+                counts = data.groupby(x).size()
                 for idx, count in enumerate(counts):
                     ax.text(
                         x=idx, y=ylim - 1, s=f'{count}',
                         ha='center', va='top', fontsize=10, color='black'
                     )
-            if hue and i==0:
-                ax.legend(loc='best', bbox_to_anchor=(1, 0.5), title=hue)
+            if hue and i==1:
+                ax.legend(loc='best', bbox_to_anchor=(1, 0.95), title=hue)
             
             ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
             ax.set_xlabel("")
@@ -202,10 +204,10 @@ class Histogram():
                 ax.yaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
                 ax.xaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
 
-        fig.text(0.5, 0.02, x, ha='center', fontsize=16, fontweight='bold')
-        fig.suptitle(f'Frequency of {x} by Model', 
-                    fontsize=20, y=0.98, fontweight='bold', color='#333333')
-        fig.text(0.5, 1, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
+        fig.text(0.5, 0.035, x, ha='center', fontsize=16, fontweight='bold')
+        fig.suptitle(f'Distribution of {x} by Model', 
+                    fontsize=title_size, y=0.965, fontweight='bold', color='#333333')
+        fig.text(0.5, 0.93, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
         plt.tight_layout(rect=[0, 0.04, 1, 0.94])
         
@@ -244,24 +246,24 @@ class Map():
         else:
             x_counts = self.countryH.get_country_average_y(df,x,y)
             
+
+        negligible_value = 0.1
         world = world.merge(x_counts, how='left', left_on='NAME', right_on=x)
-        world[y] = world[y].fillna(0).replace(0, 0.1)
+        world[y] = world[y].fillna(negligible_value)
 
         #Calculate min and max for better tick control
-        vmin = 0.1 if log else 0
-        vmax = max_count
-        custom_ticks = ([0,0.1,1] if log else []) + list(range(step,max_count+step,step))
-        custom_ticks = [t for t in custom_ticks if vmin <= t <= vmax]
+        vmin = int(world[y][world[y]>negligible_value].min()) if y=='Age' else [0, 0.1][log]
+        vmax = int(world[y].max())               if y=='Age' else max_count
+        custom_ticks = \
+            ([0,negligible_value,1] if log else []) + \
+            list(range(int(vmin),int(vmax)+step,step))
 
         world.plot(
-            column=y,
-            cmap=cmap,
+            column=y,cmap=cmap,
             transform=ccrs.PlateCarree(),
-            linewidth=0.05,
-            edgecolor='black',
-            legend=True,
-            ax=ax,
-            norm=LogNorm(vmin=vmin, vmax=vmax) if log else Normalize(vmin=vmin, vmax=vmax),
+            linewidth=0.05,edgecolor='black',
+            legend=True, ax=ax,
+            norm=[Normalize,LogNorm][log](vmin=vmin, vmax=vmax),
             legend_kwds={
                 'label': y.capitalize(),
                 'orientation': "horizontal",
@@ -278,7 +280,19 @@ class Map():
             }
         )
         
-        
+        #Apply hatching + greying color for countries with neglibile values
+        for _, row in world.iterrows():
+            if row[y] <= negligible_value:
+                ax.add_geometries(
+                    [row.geometry],
+                    crs=ccrs.PlateCarree(),
+                    facecolor='lightgrey',
+                    edgecolor='black',
+                    linewidth=0.1,
+                    alpha=0.2,
+                    hatch='///'
+                )
+
         if show_labels:
             for _, row in world.iterrows():
                 if row[y] > vmin:  # Only display values above the minimum threshold
