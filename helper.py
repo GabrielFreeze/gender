@@ -51,12 +51,18 @@ class CountryHelper:
             'Middle Eastern':middle_east,
             'Eastern European':east_europe,
             'Balkan':balkan,
-            
+            'European':europe,
             'Asian':asia,
             'East Asian':east_asian,
             'South Asian':south_asian,
             'Korean':['North Korea','South Korea'],
             
+            'Scandinavian' : ['Denmark','Norway','Sweden'],
+            'Slavic': [
+                'Belarus','Russia','Ukraine','Czechia',
+                'Bosnia and Herzegovina','Croatia',
+                'Montenegro','North Macedonia','Serbia','Slovenia'
+            ],
             'African-American':'United States of America',
             'African American':'United States of America',
             'Caucasian':white,
@@ -74,25 +80,25 @@ class CountryHelper:
             'Djiboutian':'Djibouti','Dominican':'Dominican Rep.','Dutch':'Netherlands','East Timorese':'Timor-Leste','Ecuadorean':'Ecuador','Egyptian':'Egypt',
             'Emirati':'United Arab Emirates','Equatorial Guinean':'Eq. Guinea','Eritrean':'Eritrea','Estonian':'Estonia','Ethiopian':'Ethiopia','Fijian':'Fiji',
             'Finnish':'Finland','French':'France','Falklander':'Falkland Islands','Gabonese':'Gabon','Gambian':'Gambia','Georgian':'Georgia','German':'Germany','Ghanaian':'Ghana','Gibraltarian':'Gibraltar',
-            'Greek':'Greece','Greenlandic':'Greenland','Grenadian':'Grenada','Guadeloupean':'Guadeloupe','Guamanian':'Guam','Guatemalan':'Guatemala','Guernsey':'Guernsey',
-            'Guinean':'Guinea','Guinea-Bissauan':'Guinea-Bissau','Guyanese':'Guyana','Haitian':'Haiti','Honduran':'Honduras','Hong Konger':'Hong Kong','Hungarian':'Hungary',
+            'Greek':'Greece','Greenlandic':'Greenland','Grenadian':'Grenada','Guamanian':'Guam','Guatemalan':'Guatemala',
+            'Guinean':'Guinea','Guinea-Bissauan':'Guinea-Bissau','Guyanese':'Guyana','Haitian':'Haiti','Honduran':'Honduras','Hungarian':'Hungary',
             'Icelandic':'Iceland','Indian':'India','Indonesian':'Indonesia','Iranian':'Iran','Iraqi':'Iraq','Irish':'Ireland','Israeli':'Israel','Italian':'Italy',
             'Ivorian':"Côte d'Ivoire",'Jamaican':'Jamaica','Japanese':'Japan','Jordanian':'Jordan','Kazakhstani':'Kazakhstan','Kenyan':'Kenya','Kittitian':'Saint Kitts and Nevis',
             'Kuwaiti':'Kuwait','Kyrgyzstani':'Kyrgyzstan','Lao':'Laos','Latvian':'Latvia','Lebanese':'Lebanon','Liberian':'Liberia','Libyan':'Libya','Liechtensteiner':'Liechtenstein',
-            'Lithuanian':'Lithuania','Luxembourgish':'Luxembourg','Macanese':'Macau','Macedonian':'North Macedonia','Malagasy':'Madagascar','Malawian':'Malawi',
-            'Malaysian':'Malaysia','Maldivian':'Maldives','Malian':'Mali','Maltese':'Malta','Marshallese':'Marshall Islands','Martiniquais':'Martinique','Mauritanian':'Mauritania',
+            'Lithuanian':'Lithuania','Luxembourgish':'Luxembourg','Macedonian':'North Macedonia','Malagasy':'Madagascar','Malawian':'Malawi',
+            'Malaysian':'Malaysia','Maldivian':'Maldives','Malian':'Mali','Maltese':'Malta','Marshallese':'Marshall Islands','Mauritanian':'Mauritania',
             'Mauritian':'Mauritius','Mexican':'Mexico','Micronesian':'Micronesia','Moldovan':'Moldova','Monacan':'Monaco','Mongolian':'Mongolia','Montenegrin':'Montenegro',
-            'Montserratian':'Montserrat','Moroccan':'Morocco','Mozambican':'Mozambique','Namibian':'Namibia','Nauruan':'Nauru','Nepalese':'Nepal','New Zealander':'New Zealand',
-            'Nicaraguan':'Nicaragua','Nigerien':'Niger','Nigerian':'Nigeria','Niuean':'Niue','North Korean':'North Korea','Northern Irish':'Northern Ireland','Norwegian':'Norway',
+            'Moroccan':'Morocco','Mozambican':'Mozambique','Namibian':'Namibia','Nauruan':'Nauru','Nepalese':'Nepal','New Zealander':'New Zealand',
+            'Nicaraguan':'Nicaragua','Nigerien':'Niger','Nigerian':'Nigeria','Niuean':'Niue','North Korean':'North Korea','Northern Irish':'United Kingdom','Norwegian':'Norway',
             'Omani':'Oman','Pakistani':'Pakistan','Palauan':'Palau','Palestinian':'Palestine','Panamanian':'Panama','Papua New Guinean':'Papua New Guinea','Paraguayan':'Paraguay',
             'Peruvian':'Peru','Filipino':'Philippines','Filipina':'Philippines','Polish':'Poland','Portuguese':'Portugal','Puerto Rican':'Puerto Rico','Qatari':'Qatar','Romanian':'Romania',
-            'Russian':'Russia','Rwandan':'Rwanda','Saint Lucian':'Saint Lucia','Salvadoran':'El Salvador','Sammarinese':'San Marino','Samoan':'Samoa','São Toméan':'São Tomé and Príncipe',
-            'Saudi':'Saudi Arabia','Scottish':'Scotland','Senegalese':'Senegal','Serbian':'Serbia','Seychellois':'Seychelles','Sierra Leonean':'Sierra Leone','Singaporean':'Singapore',
+            'Russian':'Russia','Rwandan':'Rwanda','Saint Lucian':'Saint Lucia','Salvadoran':'El Salvador','Sammarinese':'San Marino','Samoan':'Samoa','São Toméan':'Sao Tome and Principe',
+            'Saudi':'Saudi Arabia','Scottish':'United Kingdom','Senegalese':'Senegal','Serbian':'Serbia','Seychellois':'Seychelles','Sierra Leonean':'Sierra Leone','Singaporean':'Singapore',
             'Slovak':'Slovakia','Slovenian':'Slovenia','Solomon Islander':'Solomon Is.','Somali':'Somalia','South African':'South Africa','South Korean':'South Korea','South Sudanese':'S. Sudan',
             'Spanish':'Spain','Sri Lankan':'Sri Lanka','Sudanese':'Sudan','Surinamese':'Suriname','Swazi':'Eswatini','Swedish':'Sweden','Swiss':'Switzerland','Syrian':'Syria',
             'Taiwanese':'Taiwan','Tajik':'Tajikistan','Tanzanian':'Tanzania','Thai':'Thailand','Togolese':'Togo','Tongan':'Tonga','Trinidadian':'Trinidad and Tobago','Tunisian':'Tunisia',
             'Turkish':'Turkey','Turkmen':'Turkmenistan','Tuvaluan':'Tuvalu','Ugandan':'Uganda','Ukrainian':'Ukraine','Uruguayan':'Uruguay','Uzbek':'Uzbekistan','Vanuatuan':'Vanuatu',
-            'Vatican':'Vatican City','Venezuelan':'Venezuela','Vietnamese':'Vietnam','Welsh':'Wales','Yemeni':'Yemen','Zambian':'Zambia','Zimbabwean':'Zimbabwe'        
+            'Venezuelan':'Venezuela','Vietnamese':'Vietnam','Welsh':'United Kingdom','Yemeni':'Yemen','Zambian':'Zambia','Zimbabwean':'Zimbabwe'        
         }
 
         self. _country2region = {
@@ -166,7 +172,7 @@ class CountryHelper:
             "Sierra Leone": {"region": "Africa", "subregion": "Western Africa"},
             "Togo": {"region": "Africa", "subregion": "Western Africa"},
             
-             # Americas - Caribbean
+            # Americas - Caribbean
             "Anguilla": {"region": "Americas", "subregion": "Caribbean"},
             "Antigua and Barbuda": {"region": "Americas", "subregion": "Caribbean"},
             "Aruba": {"region": "Americas", "subregion": "Caribbean"},
@@ -344,7 +350,7 @@ class CountryHelper:
             "Fiji": {"region": "Oceania", "subregion": "Melanesia"},
             "New Caledonia": {"region": "Oceania", "subregion": "Melanesia"},
             "Papua New Guinea": {"region": "Oceania", "subregion": "Melanesia"},
-            "Solomon Islands": {"region": "Oceania", "subregion": "Melanesia"},
+            "Solomon Is.": {"region": "Oceania", "subregion": "Melanesia"},
             "Vanuatu": {"region": "Oceania", "subregion": "Melanesia"},
             
             # Oceania - Micronesia
@@ -373,6 +379,7 @@ class CountryHelper:
             'United Kingdom':'UK',
             'United Arab Emirates':'UAE',
             'Czech Republic':'Czechia',
+            'Bosnia and Herzegovina':'Bosnia',
         }
 
     def country2region(self,country_name):
@@ -381,35 +388,52 @@ class CountryHelper:
         except KeyError:
             raise KeyError(f"Country '{country_name}' not found in the UNSD taxonomy")
 
-    def region2continent(self, region):
-        pass
-
-
     def race2country(self,race:str) -> list[str]:
+
+        if any(w in race for w in [
+            'Mixed', 'Mixed-Race','Mixed Race'
+        ]): return self.countries
         
+        if any(w in race for w in [
+            'White ', #Note the space at the end. This is to remove
+            'Black ',
+        ]): race = race.replace('White ','').replace('Black ','')
+
         #Take second instance in case of / (Gemini Output)
         if len(k:=race.split('/')) > 1:
-            return self._race2country[k[1]]
-            
-        return self._race2country[race]
+            race = k[1]
+        
+        all_countries = []
+        for race in race.split('-'): #Sometimes we get double races (e.g Chinese-American)
+            countries = self._race2country[race]
+            all_countries += countries if type(countries) is list else [countries]
 
-    def fix_country_naming(self, series:pd.Series) -> pd.Series:
-        
-        series = series.str\
-            .replace('USA'          ,'United States of America')\
-            .replace('US'           ,'United States of America') \
-            .replace('United States','United States of America')  \
-            .replace('UK'           ,'United Kingdom')             \
-            .replace('Britian'      ,'United Kingdom')              \
-            .replace('UAE'          ,'United Arab Emirates')         \
-            .replace('Turkiye'      ,'Turkey')                        \
-            .replace('Türkiye'      ,'Turkey')                         \
-                
-        return series
+        return all_countries if len(all_countries) > 1 else all_countries[0]
+
+    def fix_country_naming(self, countries:Union[str,list]) -> Union[str,list]:
+        replacements = {
+            'USA': 'United States of America',
+            'US': 'United States of America',
+            'United States': 'United States of America',
+            'UK': 'United Kingdom',
+            'Britian': 'United Kingdom',
+            'UAE': 'United Arab Emirates',
+            'Turkiye': 'Turkey',
+            'Türkiye': 'Turkey',
+            'Bosnia and Herzegovina': 'Bosnia and Herz.',
+            'Bosnia': 'Bosnia and Herz.'
+        }
+        if type(countries) is list:
+            return [replacements.get(c, c) for c in countries]
+        else:
+            return replacements.get(countries, countries)
     
-    def country2short(self,country_name:str) -> str:
-        return self._country2short[country_name] if country_name in self._country2short else country_name
-        
+    def country2short(self,countries:Union[str,list]) -> Union[str,list]:
+        if type(countries) is list:
+            return [self._country2short.get(c,c) for c in countries]
+        else:
+            return self._country2short.get(countries,countries)
+
     def get_country_average_y(self,df:pd.DataFrame, x:str, y:str) -> pd.Series:
         assert pd.api.types.is_numeric_dtype(df[y]), f"Column '{y}' must contain numeric data."
         
@@ -545,7 +569,11 @@ class ColorHelper:
         jobH = JobHelper()
         countryH = CountryHelper()
         
-        label_sets = [jobH.sectors, jobH.subsectors, jobH.certifications, countryH.countries, list(countryH._country2short.values())]
+        label_sets = [
+            jobH.sectors, jobH.subsectors,
+            jobH.certifications, countryH.countries,
+            list(countryH._country2short.values())
+        ]
                  
         palette = [
             'red', 'blue', 'green', 'orange', 'gold', 'cyan', 'magenta', 'lime', 'teal',
@@ -576,7 +604,23 @@ class ColorHelper:
         continents = list(set([
             continent['region'] for continent in countryH._country2region.values()
         ]))
-        self._continent2color = dict(zip(continents, sns.color_palette("pastel", len(continents))))
+
+
+        pastel_colors = [
+            (0.6313725490196078, 0.788235294117647, 0.9568627450980393),
+            (1.0, 0.7058823529411765, 0.5098039215686274),
+            (0.5529411764705883, 0.8980392156862745, 0.6313725490196078),
+            (1.0, 0.6235294117647059, 0.6078431372549019),
+            (0.8156862745098039, 0.7333333333333333, 1.0),
+            (0.8705882352941177, 0.7333333333333333, 0.6078431372549019),
+            (0.9803921568627451, 0.6901960784313725, 0.8941176470588236),
+            (0.8117647058823529, 0.8117647058823529, 0.8117647058823529),
+            (1.0, 0.996078431372549, 0.6392156862745098),
+            (0.7254901960784313, 0.9490196078431372, 0.9411764705882353)
+        ]
+        
+        self._continent2color = dict(zip(continents, pastel_colors[:len(continents)]))
+
     
     def label2color(self, label: str) -> str:
         return self._label2color[label.replace('\n',' ')]

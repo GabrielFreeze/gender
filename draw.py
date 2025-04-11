@@ -59,7 +59,6 @@ class Histogram():
             case _: order = df.groupby(x)[y].sum().sort_values(ascending=False).index.tolist() \
                     if aggregate else None
                 
-        
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
@@ -89,7 +88,7 @@ class Histogram():
 
             legend = plt.legend(title='Model',frameon=True, 
                 framealpha=0.95, fontsize=14,title_fontsize=15,
-                edgecolor='#444444',loc='upper right',bbox_to_anchor=(1.01, 1.01)
+                edgecolor='#444444',loc='upper right',bbox_to_anchor=(0.95, 1)
             )
             legend.get_title().set_fontweight('bold')
 
@@ -102,6 +101,40 @@ class Histogram():
             ax.set_frame_on(True)
             ax.patch.set_edgecolor('#888888')
             ax.patch.set_linewidth(0.8)
+
+            #Shorten xtick_label
+            if xtick_label_max_len > 0:
+                ax.set_xticklabels([
+                    f'{label.get_text()[:xtick_label_max_len]}..'
+                    if len(label.get_text()) > xtick_label_max_len else label.get_text()
+                    for label in ax.get_xticklabels()
+                ])
+
+                #If shortening xtick_labels and long_layout==True, move xtick_labels on bars
+                if long_layout:
+                    
+                    # Get the tick positions and labels
+                    positions = ax.get_xticks()
+                    labels = [item.get_text() for item in ax.get_xticklabels()]
+
+                    # Add annotations at the exact tick positions
+                    for i, (pos, label) in enumerate(zip(positions, labels)):
+                        ax.annotate(
+                            text=label,
+                            xy=(pos, 0),  # Use the exact tick position
+                            ha='center', va='bottom',
+                            xytext=(0, 9),
+                            textcoords='offset points',
+                            fontsize=max(6.5, 
+                                min(12,#The less unique countires = the wider the bars = the larger the text
+                                0.06 * (196 - len(df[x].unique()))
+                            )),
+                            fontweight='light', color='black',
+                            rotation=rotation
+                        )
+
+                    # Remove xticklabels
+                    ax.set_xticklabels([])
 
             plt.tight_layout()
             return plt
@@ -153,8 +186,12 @@ class Histogram():
                         ha='center', va='top', fontsize=10, color='black'
                     )
             if hue and i==1:
-                ax.legend(loc='best', bbox_to_anchor=(1, 0.95), title=hue)
-            
+                legend = ax.legend(
+                    loc='best', title=hue,
+                    fontsize=8 if len(df[hue].unique()) > 5 else title_size-4,
+                    title_fontsize=title_size-3
+                )
+
             ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
             ax.set_xlabel("")
             ax.set_ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=10)
@@ -205,7 +242,7 @@ class Histogram():
                 ax.xaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
 
         fig.text(0.5, 0.035, x, ha='center', fontsize=16, fontweight='bold')
-        fig.suptitle(f'Distribution of {x} by Model', 
+        fig.suptitle(f'Distribution of {x} by Model' if y=='count' else f'Mean {y} Distribution in {x} by Model', 
                     fontsize=title_size, y=0.965, fontweight='bold', color='#333333')
         fig.text(0.5, 0.93, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
@@ -246,14 +283,14 @@ class Map():
         else:
             x_counts = self.countryH.get_country_average_y(df,x,y)
             
-
         negligible_value = 0.1
         world = world.merge(x_counts, how='left', left_on='NAME', right_on=x)
         world[y] = world[y].fillna(negligible_value)
 
         #Calculate min and max for better tick control
-        vmin = int(world[y][world[y]>negligible_value].min()) if y=='Age' else [0, 0.1][log]
-        vmax = int(world[y].max())               if y=='Age' else max_count
+        vmin = int(world[y][world[y]>negligible_value].min() // 10 * 10) \
+               if y=='Age' else [0, 0.1][log]
+        vmax = int(world[y].max() // 10 * 10 + 10) if y=='Age' else max_count
         custom_ticks = \
             ([0,negligible_value,1] if log else []) + \
             list(range(int(vmin),int(vmax)+step,step))
@@ -426,9 +463,9 @@ class Piechart():
                 # Set font size of labels differently from pct
                 for text in ax.texts:
                     if '%' in text.get_text():
-                        text.set_fontsize(11)  # pct
+                        text.set_fontsize(14)  # pct
                     else:
-                        text.set_fontsize(8)  # labels
+                        text.set_fontsize(10)  # labels
                     
                     #Add white border around each character to ensure legibility
                     text.set_path_effects([
@@ -464,7 +501,7 @@ class PopulationPyramid():
 
     def draw(self, df:pd.DataFrame,x:str,stacked_hue:str,xlabels:List[str],dataset:str,
              aggregate:bool=False,xlim:int=10, xstep:int=1,hue:str='model',
-             dodge:int=1.5,bar_width:float=0.2,fontsize:int=10):
+             dodge:int=1.5,bar_width:float=0.2,fontsize:int=10, figsize:Tuple[int,int]=None):
         
         y='pct'
         hatches = {"/\\|-+xo*."[i]*4:hue_i for i,hue_i in enumerate(df[hue].unique())} \
@@ -475,7 +512,7 @@ class PopulationPyramid():
         df[y] = (df['count'] / df['count'].sum()) * 100
 
         if aggregate:
-            plt.figure(figsize=(10, 6))
+            plt.figure(figsize=figsize if figsize else (10,6))
 
             #Separate males and females
             males   = df[df[stacked_hue] == 'Male'  ].groupby(x)[y].sum().reindex(xlabels, fill_value=0)
@@ -502,7 +539,7 @@ class PopulationPyramid():
                 plt.text(-m-3 , i, f'{m:.1f}%' if m else "", va='center', ha='left', color='black')
 
         else:
-            plt.figure(figsize=(16, 9), dpi=300)  # Larger figure, higher DPI
+            plt.figure(figsize=figsize if figsize else (16, 9), dpi=300)  # Larger figure, higher DPI
             plt.style.use('seaborn-v0_8-whitegrid')  # More professional background
             for i,hue_i in enumerate(df[hue].unique()):
 
@@ -553,7 +590,7 @@ class PopulationPyramid():
                     )
 
                 for mx,m in zip(male_x,males):
-                    plt.text(x=-m-0.5,y=mx,s=f'{m:.1f}%' if m else "",
+                    plt.text(x=-m-0.7,y=mx,s=f'{m:.1f}%' if m else "",
                         va='center', ha='left', color='black', fontsize=10
                     )
 
@@ -700,13 +737,13 @@ class StackedBar():
                                 )
 
                 if i == 0:
-                    ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
+                    ax.legend(loc='upper right', title=stacked_hue)
 
                 #Title and labels
-                ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0)
+                ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0.2)
                 ax.yaxis.grid(grid, linestyle='--', alpha=0.7 if grid else 0)
                 ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
-                ax.set_xticks(range(len(pivot_df)))
+                ax.set_xticks(range(1,len(pivot_df)+1))
 
                 # Set y-axis limits and labels
                 ax.set_yticks(range(0, ylim+1, ystep))
