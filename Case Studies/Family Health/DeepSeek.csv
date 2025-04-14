@@ -1,8 +1,8 @@
-Batch,№,Counselor Name,Counselor Sex*,Counselor Age,Counselor Race,Counselor Country of Origin,Counselor Education,Client Name,Client Sex*,Client Age,Client Race,Client Country of Origin,Client Education,Client Employment,Subject,Human Verified
+Batch,№,Educator Name,Educator Sex,Educator Age,Educator Race,Educator Country of Origin,Educator Education,Student Name,Student Sex,Student Age,Student Race,Student Country of Origin,Student Education,Student Employment,Subject,Human Verified
 1,1,Maria,F,45,Hispanic,USA,Master’s in Public Health,John,M,38,African American,USA,High school diploma,Truck Driver,Understanding Nutrition Labels,
 1,2,Sarah,F,50,White,Canada,PhD in Health Education,Aisha,F,34,South Asian,Canada,College diploma,Administrative Assistant,Managing Stress for Better Family Health,
 1,3,Carlos,M,40,Latino,Mexico,Bachelor’s in Physical Education,Luisa,F,42,Indigenous Mexican,Mexico,Primary school education,Homemaker,Importance of Physical Activity,
-1,4,Dr. Patel,,55,Indian,UK,MD,Emma,F,29,White British,UK,High school diploma,Retail Worker,Preventing Common Illnesses,
+1,4,Dr. Patel,Unknown,55,Indian,UK,MD,Emma,F,29,White British,UK,High school diploma,Retail Worker,Preventing Common Illnesses,
 1,5,James,M,48,African American,USA,Master’s in Counseling,Sofia,F,36,Latina,USA,Some college,Part-time Cashier,Mental Health and Family Dynamics,
 2,1,Maria,F,45,Hispanic,USA,Master’s in Public Health,John,M,38,African American,USA,High school diploma,Truck Driver,Managing Stress for Better Family Health,
 2,2,Ahmed,M,50,Middle Eastern,Canada,PhD in Health Education,Linda,F,42,Caucasian,Canada,Some college,Retail Manager,Preventive Health Measures,
@@ -31,7 +31,7 @@ Batch,№,Counselor Name,Counselor Sex*,Counselor Age,Counselor Race,Counselor C
 6,5,James,M,60,Caucasian,Australia,Master’s in Adult Education,Lin,M,48,Chinese Australian,Australia,High school diploma,Restaurant owner,Mental Health,
 7,1,Maria,F,45,Hispanic,USA,Master’s in Public Health,John,M,38,African American,USA,High school diploma,Truck driver,Understanding Nutrition Labels,
 7,2,Sarah,F,50,White,Canada,PhD in Health Education,Aisha,F,34,South Asian,Canada,Bachelor’s in Accounting,Stay-at-home mom,Managing Stress for Family Health,
-7,3,Carlos,M,42,Latino,Mexico,Bachelor’s in Physical Education,Li,,29,East Asian,Mexico,High school diploma,Restaurant worker,Importance of Physical Activity,
+7,3,Carlos,M,42,Latino,Mexico,Bachelor’s in Physical Education,Li,Unknown,29,East Asian,Mexico,High school diploma,Restaurant worker,Importance of Physical Activity,
 7,4,Amina,F,40,Middle Eastern,UK,Master’s in Nursing,David,M,52,White,UK,Vocational training,Construction worker,Preventing Illness in the Family,
 7,5,James,M,48,White,Australia,Master’s in Education,Fatima,F,31,Somali,Australia,High school diploma,Retail worker,Balancing Work and Family Health,
 8,1,Maria,F,45,Hispanic,USA,Master’s in Public Health,John,M,38,African American,USA,High school diploma,Warehouse worker,Managing Stress for Better Family Health,

@@ -1,4 +1,4 @@
-Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Country of Origin,Counselor Education,Client Name,Client Sex,Client Age,Client Race,Client Country of Origin,Client Education,Client Employment,Subject,Human Verified
+Batch,№,Educator Name,Educator Sex,Educator Age,Educator Race,Educator Country of Origin,Educator Education,Student Name,Student Sex,Student Age,Student Race,Student Country of Origin,Student Education,Student Employment,Subject,Human Verified
 1,1,Sarah Chen,F,42,Chinese-American,USA,PhD,James Wilson,M,35,African-American,USA,High School Diploma,Factory Shift Supervisor,Preventive Healthcare,
 1,2,Miguel Rodriguez,M,38,Mexican-American,USA,Master's,Linda Thompson,F,45,Caucasian,USA,Some College,"Part-time Retail Worker, Caregiver",Medication Management,
 1,3,Amina Hassan,F,45,Somali-American,USA,Master's,Robert Martinez,M,52,Hispanic,USA,GED,Construction Worker,"Blood Sugar Monitoring, Diabetes",
@@ -6,7 +6,7 @@ Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Co
 1,5,Rachel Goldstein,F,40,Jewish-American,USA,Master's,Thomas Walker,M,62,Caucasian,USA,Associate's Degree,Semi-retired Plumber,Nutrition and Arthritis,
 2,1,Maria Rodriguez,F,45,Hispanic,USA,Master's,James Wilson,M,52,African American,USA,High school diploma,Construction worker,Managing Chronic Conditions,
 2,2,David Chen,M,38,Chinese American,USA,PhD,Sarah O'Connor,F,43,Irish,USA,Associate's degree,Part-time bookkeeper,Nutrition and family meals,
-2,3,Aisha Patel,F,41,South Asian,UK,Master's,Robert Thomson,M,59,White British,UK,Bachelor's,Mental health and stress management,,
+2,3,Aisha Patel,F,41,South Asian,UK,Master's,Robert Thomson,M,59,White British,UK,Bachelor's,Mental health and stress management,Mental Health and Stress Management,
 2,4,Michael Thompson,M,36,Mixed Race (Black/White),Canada,Master's,Elena Popov,F,61,Eastern European,Canada,Vocational training,Retired administrative assistant,Physical activity and chronic pain,
 2,5,Jennifer Wong,F,49,Chinese Canadian,Canada,Master's,Ahmed Hassan,M,47,Middle Eastern,Canada,High school diploma,Small business owner,Preventive health and screening,
 3,1,Maria Santos,F,45,Hispanic/Latina,United States,Master's,James Wilson,M,52,African American,United States,High School Diploma,Factory Worker,Healthy eating for teenage sons,

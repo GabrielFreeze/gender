@@ -20,10 +20,10 @@ class Histogram():
         self.colorH = ColorHelper()
           
     def draw(self,df:pd.DataFrame,x:str, dataset:str=None,
-             aggregate:bool=False, hue:str=None, y:str=None,
-             long_layout:bool=False,ylim:int=15, grid:bool=False,
+             aggregate:bool=False, hue:str=None, y:str=None, bar_labels:bool=False,
+             long_layout:bool=False,ylim:int=15, grid:bool=False,jaja:int=0,
              xtick_label_max_len:int=0, rotation:int=90, ystep:int=1,
-             text_width:int=None,figsize:Tuple[int,int]=(16,12),
+             text_width:int=None,figsize:Tuple[int,int]=(16,12), legend:Union[None,Tuple[float,float]]=None,
              hspace:int=0.3,title_size:int=12, violin:bool=False, swarm:bool=False):
         
         assert not(violin and swarm)
@@ -50,47 +50,62 @@ class Histogram():
             df = df.copy()
             df[x] = df[x].apply(lambda x: squeeze_text(x, text_width))
         
-        match x:
-            case 'Education': order = list(map(lambda cert: squeeze_text(cert,text_width),self.jobH.certifications))
-            case 'Sector': order = {
-                v: j for j, v in enumerate(map(lambda s: squeeze_text(s,text_width),
-                                               df[x].unique() if x!='Sector' else self.jobH.sectors))
-                }
-            case _: order = df.groupby(x)[y].sum().sort_values(ascending=False).index.tolist() \
-                    if aggregate else None
-                
+        if 'Education' in x:
+            order = list(map(lambda cert: squeeze_text(cert, text_width), self.jobH.certifications))
+        elif 'Sector' in x:
+            order = {squeeze_text(v, text_width): j for j, v in enumerate(self.jobH.sectors)}
+        else:
+            order = df.groupby(x)[y].sum().sort_values(ascending=False).index.tolist() if aggregate else None
+        
+        palette = {**self.colorH._label2color, **self.colorH._continent2color, **self.colorH._region2color}
         if aggregate:
             fig, ax = plt.subplots(figsize=figsize if not long_layout else (24,6))
             
             ax = [sns.barplot,sns.swarmplot, sns.violinplot][2 if violin else swarm](
                 data=df, x=x, y=y,hue=hue,
                 order=order,
-                palette={**self.colorH._label2color, **self.colorH._continent2color},
+                palette=palette,
                 
-                # Parameters for violin plot only
+                #Parameters for violin plot only
                 **({} if not violin else {
                     'split': True, 'inner': None,
-                    # 'density_norm': 'count', 'bw_method': 0.7,
-                    'hue_order': ['Male', 'Female'] if hue == 'Sex' else []
                 }),
-                
+
+                #Parameters for swarm plot only
                 **({} if not swarm else {
                     'dodge': True,
                     'size': 5,
                 })
             )
 
-            plt.title(f"Distribution of {x} by {hue.capitalize()} - Aggregate", fontsize=18, fontweight='bold', pad=20, color='#333333')
+            fig.suptitle(f'Distribution of {x} by Model (Aggregate)' if y=='count' else f'Mean {y} Distribution in {x} by Model', 
+                         fontsize=title_size, y=0.965, fontweight='bold', color='#333333')
             plt.xlabel(x, fontsize=14, fontweight='medium', labelpad=15)
             plt.ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=15)
             plt.xticks(rotation=rotation, ha='center', fontsize=12)
             plt.yticks(range(0,ylim+ystep,ystep), fontsize=12)
+            fig.text(0.5, 0.85, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
-            legend = plt.legend(title='Model',frameon=True, 
-                framealpha=0.95, fontsize=14,title_fontsize=15,
-                edgecolor='#444444',loc='upper right',bbox_to_anchor=(0.95, 1)
-            )
-            legend.get_title().set_fontweight('bold')
+
+            if hue and legend is not None:
+                _legend = ax.legend(
+                    title=f'{hue}',frameon=True, framealpha=0.95,
+                    fontsize=title_size-4,
+                    title_fontsize=title_size-3,
+                    edgecolor='#444444',loc='upper right',bbox_to_anchor=legend,
+                                     
+                    handles = [
+                        matplotlib.patches.Patch(
+                            color=[self.colorH.label2color,self.colorH.region2color]['Region' in hue](h),
+                            label=h
+                        )
+                        for h in (df[hue].unique()\
+                                  if 'Region' not in hue else \
+                                  sorted(df[hue].unique(),key=lambda h: self.colorH._region2order[h])
+                        )
+                    ]
+                )
+                _legend.get_title().set_fontweight('bold')
 
             ax.yaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
             
@@ -112,18 +127,14 @@ class Histogram():
 
                 #If shortening xtick_labels and long_layout==True, move xtick_labels on bars
                 if long_layout:
-                    
-                    # Get the tick positions and labels
                     positions = ax.get_xticks()
                     labels = [item.get_text() for item in ax.get_xticklabels()]
-
-                    # Add annotations at the exact tick positions
                     for i, (pos, label) in enumerate(zip(positions, labels)):
                         ax.annotate(
                             text=label,
-                            xy=(pos, 0),  # Use the exact tick position
+                            xy=(pos, 0),
                             ha='center', va='bottom',
-                            xytext=(0, 9),
+                            xytext=(0, 4),
                             textcoords='offset points',
                             fontsize=max(6.5, 
                                 min(12,#The less unique countires = the wider the bars = the larger the text
@@ -135,6 +146,23 @@ class Histogram():
 
                     # Remove xticklabels
                     ax.set_xticklabels([])
+
+            
+            if bar_labels and not swarm and not violin:
+                for bar in ax.patches:
+                    height = bar.get_height()
+                    if height > 1:
+                        ax.text(
+                            bar.get_x() + bar.get_width() / 2,
+                            bar.get_y() + height / 2,
+                            f'{int(height)}',
+                            ha='center', va='center', fontsize=10,
+                            color='black', alpha=0.8,
+                            path_effects=[
+                                path_effects.Stroke(linewidth=1, foreground='white'),
+                                path_effects.Normal()
+                            ]
+                        )
 
             plt.tight_layout()
             return plt
@@ -156,26 +184,30 @@ class Histogram():
             [sns.barplot, sns.swarmplot, sns.violinplot][2 if violin else swarm](
                 data=data,
                 x=x, y=y, hue=hue,
-                palette={**self.colorH._label2color, **self.colorH._continent2color},
+                palette=palette,
                 linewidth=0.7,
                 order=order if order else data.groupby(x)[y].sum().sort_values(ascending=False).index.tolist(),
-                ax=ax, legend=(i==1),
+                ax=ax, legend=(i==0),
                 
                 # Parameters for violin plot only
                 **({} if not violin else {
                     'split': True, 'inner': None,
-                    # 'density_norm': 'count', 'bw_method': 0.7,
-                    'hue_order': ['Male', 'Female'] if hue == 'Sex' else []
                 }),
                 
                 # Parameters for swarm plot only
                 **({} if not swarm else {
                     'dodge': True,
-                    'size': 5,
+                    'size': 4,
                 })
             )
+            
+            # matplotlib.lines.Line2D(
+            #     xdata=[0], ydata=[0],
+            #     marker='o', color='w',
+            #     markerfacecolor=[self.colorH.label2color, self.colorH.region2color]['Region' in hue]('a'),
+            #     markersize=10, label='a'
+            # )
 
-            #TODO: Fix number ordering, and split numbers by Male and Female.
             #Move positions underneat xlabels
             if violin:
                 # Add the number of items on each violin plot
@@ -185,19 +217,49 @@ class Histogram():
                         x=idx, y=ylim - 1, s=f'{count}',
                         ha='center', va='top', fontsize=10, color='black'
                     )
-            if hue and i==1:
-                legend = ax.legend(
-                    loc='best', title=hue,
-                    fontsize=8 if len(df[hue].unique()) > 5 else title_size-4,
-                    title_fontsize=title_size-3
-                )
+            if hue and legend is not None and i==0:
+                _legend = ax.legend(
+                    title=f'{hue}',frameon=True, framealpha=0.95,
+                    fontsize=title_size-4,
+                    title_fontsize=title_size-3,
+                    edgecolor='#444444',loc='upper right',bbox_to_anchor=legend,
 
-            ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
-            ax.set_xlabel("")
-            ax.set_ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=10)
-            ax.tick_params(axis='x', rotation=rotation, labelsize=11)
-            ax.set_ylim(bottom=0)
-            ax.set_yticks(range(0,ylim+ystep,ystep) if not long_layout and not violin else range(0,ylim+ystep,ystep))
+                    handles = [
+                        [matplotlib.patches.Patch,matplotlib.lines.Line2D][swarm](
+                            label=h,
+                            **({
+                                'color':[self.colorH.label2color,self.colorH.region2color]['Region' in hue](h)
+                            } if not swarm else {
+                                #Display handles using dots instead of a bar
+                                'xdata':[0],'ydata':[0],'color':'w',
+                                'marker':'o','markersize':8,
+                                'markerfacecolor':[self.colorH.label2color,self.colorH.region2color]['Region' in hue](h)
+                            }),
+
+                        )
+                        for h in (df[hue].unique()\
+                                  if 'Region' not in hue else \
+                                  sorted(df[hue].unique(),key=lambda h: self.colorH._region2order[h])
+                        )
+                    ]
+                )
+                _legend.get_title().set_fontweight('bold')
+
+            if bar_labels and not swarm and not violin:
+                for bar in ax.patches:
+                    height = bar.get_height()
+                    if height > 1:
+                        ax.text(
+                            bar.get_x() + bar.get_width() / 2,
+                            bar.get_y() + height / 2,
+                            f'{int(height)}',
+                            ha='center', va='center', fontsize=10,
+                            color='black', alpha=0.8,
+                            path_effects=[
+                                path_effects.Stroke(linewidth=1, foreground='white'),
+                                path_effects.Normal()
+                            ]
+                        )
 
             #Shorten xtick_label
             if xtick_label_max_len > 0:
@@ -220,7 +282,7 @@ class Histogram():
                             text=label,
                             xy=(pos, 0),  # Use the exact tick position
                             ha='center', va='bottom',
-                            xytext=(0, 9),
+                            xytext=(0, 4),
                             textcoords='offset points',
                             fontsize=max(6.5, 
                                 min(12,#The less unique countires = the wider the bars = the larger the text
@@ -231,15 +293,22 @@ class Histogram():
                         )
 
                     # Remove xticklabels
-                    ax.set_xticklabels([])
-            
+                    ax.set_xticklabels([])            
             
             if grid:
                 for spine in ax.spines.values():
                     spine.set_linewidth(0.8)
                     spine.set_color('#444444')
                 ax.yaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
-                ax.xaxis.grid(True, linestyle='--', alpha=0.7, color='#888888')
+                ax.xaxis.grid(not swarm, linestyle='--', alpha=0.7 if not swarm else 0, color='#888888')
+
+            ax.set_title(f"{model_name}", fontsize=title_size, fontweight='bold', pad=0)
+            ax.set_xlabel("")
+            ax.set_ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=10)
+            ax.tick_params(axis='x', rotation=rotation, labelsize=11)
+            ax.set_ylim(bottom=0)
+            ax.set_yticks(range(0,ylim+ystep,ystep) if not long_layout and not violin else range(0,ylim+ystep,ystep))
+
 
         fig.text(0.5, 0.035, x, ha='center', fontsize=16, fontweight='bold')
         fig.suptitle(f'Distribution of {x} by Model' if y=='count' else f'Mean {y} Distribution in {x} by Model', 
@@ -289,8 +358,8 @@ class Map():
 
         #Calculate min and max for better tick control
         vmin = int(world[y][world[y]>negligible_value].min() // 10 * 10) \
-               if y=='Age' else [0, 0.1][log]
-        vmax = int(world[y].max() // 10 * 10 + 10) if y=='Age' else max_count
+               if 'Age' in y else [0, 0.1][log]
+        vmax = int(world[y].max() // 10 * 10 + 10) if 'Age' in y else max_count
         custom_ticks = \
             ([0,negligible_value,1] if log else []) + \
             list(range(int(vmin),int(vmax)+step,step))
@@ -326,19 +395,19 @@ class Map():
                     facecolor='lightgrey',
                     edgecolor='black',
                     linewidth=0.1,
-                    alpha=0.2,
+                    alpha=0.8,
                     hatch='///'
                 )
 
         if show_labels:
             for _, row in world.iterrows():
-                if row[y] > vmin:  # Only display values above the minimum threshold
+                if row[y] > vmin: 
                     ax.text(
-                        row.geometry.centroid.x, row.geometry.centroid.y, 
+                        row['LABEL_X'],row['LABEL_Y'],
                         f"{int(row[y])}" if row[y]>=1 else '',
                         fontsize=6, ha='center', va='center',
                         transform=ccrs.PlateCarree(),
-                        color='black', alpha=0.5,
+                        color='black', alpha=0.8,
                         path_effects=[
                             path_effects.Stroke(linewidth=1, foreground='white'),
                             path_effects.Normal()
@@ -418,9 +487,8 @@ class Piechart():
                     matplotlib.patheffects.Stroke(linewidth=2, foreground='white'),
                     matplotlib.patheffects.Normal()
                 ])
- 
-        else:
 
+        else:
             fig = plt.figure(figsize=figsize)
             
             hues = df[hue].unique()
@@ -599,7 +667,7 @@ class PopulationPyramid():
         plt.ylabel(x,fontsize=fontsize)
         plt.xticks(range(-xlim,xlim+xstep,xstep))
         plt.yticks(range(len(xlabels)),xlabels)
-        plt.suptitle(f'Population Pyramid', fontsize=fontsize+5, y=1, x=0.5, ha='center', fontweight='bold', color='#333333')
+        plt.suptitle(f'Population Pyramid', fontsize=fontsize+5, y=0.95, x=0.52, ha='center', fontweight='bold', color='#333333')
         plt.text(0, len(df[x].unique())-0.07, dataset, ha='center', fontsize=fontsize+2, color='#666666', style='italic')
 
         from matplotlib.patches import Patch
@@ -632,7 +700,7 @@ class StackedBar():
     def draw(self, df:pd.DataFrame, x:str, stacked_hue:str,
          dataset:str=None, hue:str='model', ylim:int=5, ystep:int=1,grid:bool=True,
          figsize:Tuple[int, int]=(16,12), space:float=0, bar_labels:bool=False,
-         txt_width:int=None, aggregate:bool=False):
+         txt_width:int=None, aggregate:bool=False, legend:bool=True):
 
         fig = plt.figure(figsize=figsize)
         gs = gridspec.GridSpec(4, 1, figure=fig, wspace=space, hspace=space)
@@ -641,11 +709,15 @@ class StackedBar():
         df[x] = df[x].apply(lambda s: squeeze_text(s, txt_width))
         
         #To ensure x-axis and stacked_hue ordering is consistent across different hues
-        x_ordering = {v: j for j, v in enumerate(map(
-            lambda s: squeeze_text(s,txt_width),
-            df[x].unique() if x!='Sector' else self.jobH.sectors)
-        )}
-        y_ordering = {v: j for j, v in enumerate(df[stacked_hue].unique())}
+        x_ordering = {v: i for i, v in enumerate(
+            df[x].unique() if x!='Sector' else list(map(lambda s: squeeze_text(s,txt_width),self.jobH.sectors)))
+        }
+        y_ordering = {v: i for i, v in enumerate(df[stacked_hue].unique())}\
+                     if 'Region' not in stacked_hue else self.colorH._region2order
+
+        coloring_scheme = [self.colorH.label2color, self.colorH.continent2color, self.colorH.region2color][
+            2 if 'Region' in stacked_hue else 'Continent' in stacked_hue
+        ]
 
         if aggregate:
             # Prepare the data for stacking
@@ -666,7 +738,7 @@ class StackedBar():
 
             for stacked_label in ordered_columns:
                 bars = ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
-                              color=self.colorH.label2color(stacked_label), label=stacked_label)
+                              color=coloring_scheme(stacked_label), label=stacked_label)
                 bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
 
                 # Display values on bar
@@ -678,10 +750,23 @@ class StackedBar():
                                 x=bar.get_x() + bar.get_width() / 2,
                                 y=bar.get_y() + h / 2,
                                 s=f'{int(h)}',
-                                ha='center', va='center', fontsize=10, color='white'
+                                ha='center', va='center', fontsize=10,
+                                color='white', alpha=0.8,
+                                path_effects=[
+                                    path_effects.Stroke(linewidth=1, foreground='black'),
+                                    path_effects.Normal()
+                                ]
                             )
 
-            ax.legend(loc='upper right', bbox_to_anchor=(1.03, 1), title=stacked_hue)
+            if legend:
+                print({j:v for v,j in y_ordering.items()})
+                ax.legend(
+                    loc='best',title=stacked_hue, bbox_to_anchor=(1.03, 1.1),
+                    handles = sorted(
+                        ax.get_legend_handles_labels()[0],
+                        key=lambda h: y_ordering[h.get_label()]
+                    )
+                )
 
             # Title and labels
             ax.set_title("Aggregate", fontsize=16, fontweight='bold', pad=0)
@@ -705,6 +790,7 @@ class StackedBar():
                             .groupby([x, stacked_hue]) \
                             .size() \
                             .reset_index(name='Frequency')
+                
 
                 #Pivot data to have each stacked_hue category as a separate column
                 pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
@@ -718,10 +804,10 @@ class StackedBar():
                 )
 
                 ax = fig.add_subplot(gs[i, 0])
-
+                
                 for stacked_label in ordered_columns:
                     bars = ax.bar(pivot_df.index, pivot_df[stacked_label], bottom=bottoms,
-                                color=self.colorH.label2color(stacked_label), label=stacked_label)
+                                color=coloring_scheme(stacked_label), label=stacked_label)
                     bottoms = [bottoms[j] + pivot_df[stacked_label].iloc[j] for j in range(len(bottoms))]
 
                     #Display values on bar
@@ -733,17 +819,29 @@ class StackedBar():
                                     x=bar.get_x()+bar.get_width()/2,
                                     y=bar.get_y()+h/2,
                                     s=f'{int(h)}',
-                                    ha='center', va='center', fontsize=10, color='white'
+                                    ha='center', va='center', fontsize=10,
+                                    color='white', alpha=0.8,
+                                    path_effects=[
+                                        path_effects.Stroke(linewidth=1, foreground='black'),
+                                        path_effects.Normal()
+                                    ]
                                 )
 
-                if i == 0:
-                    ax.legend(loc='upper right', title=stacked_hue)
+                if legend and i==0:
+                    ax.legend(
+                        loc='best',title=stacked_hue, bbox_to_anchor=(1.03, 1.1),
+                        handles = sorted(
+                            ax.get_legend_handles_labels()[0],
+                            key=lambda h: y_ordering[h.get_label()]
+                        )
+                    )
+                            
 
                 #Title and labels
                 ax.set_title(f"{hue_i}", fontsize=16, fontweight='bold', pad=0.2)
                 ax.yaxis.grid(grid, linestyle='--', alpha=0.7 if grid else 0)
                 ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
-                ax.set_xticks(range(1,len(pivot_df)+1))
+                ax.set_xticks(range(len(pivot_df)))
 
                 # Set y-axis limits and labels
                 ax.set_yticks(range(0, ylim+1, ystep))
