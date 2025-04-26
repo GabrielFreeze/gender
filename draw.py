@@ -84,7 +84,7 @@ class Histogram():
             plt.ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=15)
             plt.xticks(rotation=rotation, ha='center', fontsize=12)
             plt.yticks(range(0,ylim+ystep,ystep), fontsize=12)
-            fig.text(0.5, 0.85, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
+            fig.text(0.5, 0.93, dataset, ha='center', fontsize=title_size-2, color='#666666', style='italic')
 
 
             if hue and legend is not None:
@@ -151,7 +151,7 @@ class Histogram():
             if bar_labels and not swarm and not violin:
                 for bar in ax.patches:
                     height = bar.get_height()
-                    if height > 1:
+                    if height > 0:
                         ax.text(
                             bar.get_x() + bar.get_width() / 2,
                             bar.get_y() + height / 2,
@@ -201,13 +201,6 @@ class Histogram():
                 })
             )
             
-            # matplotlib.lines.Line2D(
-            #     xdata=[0], ydata=[0],
-            #     marker='o', color='w',
-            #     markerfacecolor=[self.colorH.label2color, self.colorH.region2color]['Region' in hue]('a'),
-            #     markersize=10, label='a'
-            # )
-
             #Move positions underneat xlabels
             if violin:
                 # Add the number of items on each violin plot
@@ -248,7 +241,7 @@ class Histogram():
             if bar_labels and not swarm and not violin:
                 for bar in ax.patches:
                     height = bar.get_height()
-                    if height > 1:
+                    if height > 0:
                         ax.text(
                             bar.get_x() + bar.get_width() / 2,
                             bar.get_y() + height / 2,
@@ -745,7 +738,7 @@ class StackedBar():
                 if bar_labels:
                     for bar in bars:
                         h = bar.get_height()
-                        if h > 1:
+                        if h > 0:
                             ax.text(
                                 x=bar.get_x() + bar.get_width() / 2,
                                 y=bar.get_y() + h / 2,
@@ -759,7 +752,6 @@ class StackedBar():
                             )
 
             if legend:
-                print({j:v for v,j in y_ordering.items()})
                 ax.legend(
                     loc='best',title=stacked_hue, bbox_to_anchor=(1.03, 1.1),
                     handles = sorted(
@@ -790,7 +782,6 @@ class StackedBar():
                             .groupby([x, stacked_hue]) \
                             .size() \
                             .reset_index(name='Frequency')
-                
 
                 #Pivot data to have each stacked_hue category as a separate column
                 pivot_df = data.pivot_table(index=x, columns=stacked_hue, values='Frequency', aggfunc='sum', fill_value=0)
@@ -814,7 +805,7 @@ class StackedBar():
                     if bar_labels:
                         for bar in bars:
                             h = bar.get_height()
-                            if h > 1:
+                            if h > 0:
                                 ax.text(
                                     x=bar.get_x()+bar.get_width()/2,
                                     y=bar.get_y()+h/2,
@@ -829,9 +820,15 @@ class StackedBar():
 
                 if legend and i==0:
                     ax.legend(
-                        loc='best',title=stacked_hue, bbox_to_anchor=(1.03, 1.1),
-                        handles = sorted(
-                            ax.get_legend_handles_labels()[0],
+                        loc='best', title=stacked_hue, bbox_to_anchor=(1.03, 1.1),
+                        handles=sorted(
+                            [
+                                matplotlib.patches.Patch(
+                                    color=coloring_scheme(label),
+                                    label=label
+                                )
+                                for label in y_ordering.keys()
+                            ],
                             key=lambda h: y_ordering[h.get_label()]
                         )
                     )

@@ -21,8 +21,8 @@ Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Co
 4,5,Ricardo Silva,M,60,Portuguese,Brazil,PhD in Economics,Isabelle Dubois,F,50,French-Canadian,Canada,Bachelor's in Education,Teacher (on leave),Disillusioned with teaching; considering other education-related roles.,✅
 5,1,Sarah,F,45,White British,UK,Master's in Counseling,David,M,32,Black British,UK,Bachelor's in Business Administration,Unemployed,Transitioning from sales to project management.,✅
 5,2,Dr. Patel,M,50,Asian Indian,US,PhD in Psychology,Maria,F,28,Hispanic/Latina,US,Bachelor's in Fine Arts,Underemployed,"Diversifying Income Streams, Specializing in a niche of graphic design",✅
-5,3,Susan,F,38,White Canadian,Canadian,Master's in Career Development,John,M,40,Indigenous (First Nations),Canadian,Diploma in Business,Construction,Moving away from Construction to Environmental Conservation,✅
-5,4,David,M,62,White Australian,Australian,PhD in Counseling Psychology,Alice,F,55,Asian Australian,Australian,Bachelor's in Education,Teacher,Seeking Pre-Retirement Career Change,✅
+5,3,Susan,F,38,White Canadian,Canada,Master's in Career Development,John,M,40,Indigenous (First Nations),Canada,Diploma in Business,Construction,Moving away from Construction to Environmental Conservation,✅
+5,4,David,M,62,White Australian,Australia,PhD in Counseling Psychology,Alice,F,55,Asian Australian,Australia,Bachelor's in Education,Teacher,Seeking Pre-Retirement Career Change,✅
 5,5,Michelle,F,29,Black American,US,Master's in Social Work,James,M,25,Multiracial (Black/White),US,Associate's Degree in IT,Tech Support,Seeking Career Advancement within IT.,✅
 6,1,Maria Rodriguez,F,35,Hispanic/Latina,USA,Master's Degree (Social Work),David Chen,M,42,Asian American,USA,Bachelor's Degree (Business),Sales Manager,Identifying Transferable Skills,✅
 6,2,Aisha Diallo,F,28,Black/African,Canada,Master's Degree (Psychology),Sarah Jones,F,30,White/Caucasian,Canada,Bachelor's Degree (English Literature),Freelance writer,Diversifying Income Streams,✅
@@ -46,6 +46,6 @@ Batch,№,Counselor Name,Counselor Sex,Counselor Age,Counselor Race,Counselor Co
 9,5,Sarah Chen,F,35,Chinese,USA,Master's in Counseling,Ricardo Silva,M,30,Latino,Brazil,Associate's Degree in IT,Help desk technician,"Career advancement, exploring roles and education.",✅
 10,1,,F,35,White British,UK,Master's Degree in Counseling,David,M,42,Black British,UK,Bachelor's Degree in Business Administration,Sales Manager,Exploring Marketing Director position at GreenTech,✅
 10,2,John,M,48,Indian-American,US,PhD in Psychology,Maria,F,28,Hispanic/Latina,US,Associate's Degree in Early Childhood Education,Preschool Teacher,Moving beyond preschool teaching due to low pay and lack of growth,✅
-10,3,Sarah,F,29,Chinese-Canadian,Canadian,Master's in Career Development,Michael,M,35,White Canadian,Canadian,Bachelor's in Computer Science,Unemployed,Helping the Client find a Job with a Software Developer Position,✅
+10,3,Sarah,F,29,Chinese-Canadian,Canada,Master's in Career Development,Michael,M,35,White Canadian,Canada,Bachelor's in Computer Science,Unemployed,Helping the Client find a Job with a Software Developer Position,✅
 10,4,David,M,52,Nigerian,UK,PhD in Organizational Psychology,Aisha,F,40,British-Nigerian,UK,A-Levels,Administrative Assistant,Helping a Administrative Assistant transition to a more creative field (Graphic Design),✅
-10,5,Sarah,F,31,White Australian,Australian,Master's in Human Resources,Ben,M,25,Aboriginal Australian,Australian,Diploma in Hospitality,Bartender,Helping with transition to a management role in the Hospitality industry.,✅
+10,5,Sarah,F,31,White Australian,Australia,Master's in Human Resources,Ben,M,25,Aboriginal Australian,Australia,Diploma in Hospitality,Bartender,Helping with transition to a management role in the Hospitality industry.,✅

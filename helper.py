@@ -10,10 +10,14 @@ import matplotlib.ticker as ticker
 import matplotlib.gridspec as gridspec
 from typing import List, Dict, Union, Tuple
 from matplotlib.colors import LogNorm, Normalize
+import re
 
 #Countries:   https://unstats.un.org/unsd/methodology/m49/  + with the inclusion of Kosovo, Taiwan
 #Job Sectors: https://unstats.un.org/unsd/classifications/Family/Detail/1067 ISCO-08 classification is used
 
+#Jewish -> Based on this data, 83% of all Jewish people are in USA or Israel
+# https://www.census.gov/library/publications/2011/compendia/statab/131ed/population.html
+# https://www.jewishvirtuallibrary.org/latest-population-statistics-for-israel
 
 class CountryHelper:
     def __init__(self):
@@ -73,12 +77,22 @@ class CountryHelper:
             'British Indian':['UK','India'],
             'Indo': 'India',
             
+            'Jewish': ['United States of America','Israel'],
+
+            'Mediterranean': [
+                'Spain', 'Italy', 'Greece', 'Turkey', 'Cyprus', 'Malta', 'Libya','Palestine', 
+                'France', 'Lebanon', 'Israel', 'Egypt', 'Morocco', 'Algeria', 'Tunisia'
+            ],
+
             #Omega Hack: I split mixed race via space, so if someone is Puerto Rican, I can still handle this edge case.
             'Puerto': 'Puerto Rico',
             'Rican' :[],
             
             #Americans think the world revolves around them.
             'Indigenous':'USA',
+
+            #This technically should be England only
+            'Anglo':'UK',
 
             'Caribbean':[
                 "Anguilla","Antigua and Barbuda","Aruba","Bahamas",
@@ -400,16 +414,22 @@ class CountryHelper:
     def race2country(self,race:str) -> list[str]:
 
         if any(w in race for w in [
-            'Mixed', 'Mixed-Race','Mixed Race'
+            'Mixed', 'Mixed-Race','Mixed Race', 'Multiracial'
         ]): return self.countries
         
+        if 'First Nations' in race:
+            return ['USA','Canada']
+        
+        if any([w in race for w in ['Aboriginal Australian','Aboriginal-Australian']]):
+            return ['Australia']
+
         adjectives = [
             #Note the space. This is to remove prepending informtion about the race
-            'White ','Black ',
+            'White ','Black ', 'Native ', 'and ',
             'Indigenous ',' descent',
         ]
 
-        if any(w in race for w in adjectives): 
+        if any([w in race for w in adjectives]): 
             for a in adjectives:
                 race = race.replace(a,'')
 
@@ -417,9 +437,12 @@ class CountryHelper:
         if len(k:=race.split('/')) > 1:
             race = k[1]
 
-        if any([w in race for w in ['North','South','Middle','East']]) and '-' not in race:
+        if any([w in race for w in ['North','South','Middle','East','West']]) and '-' not in race:
             return self._race2country[race]
 
+        #Remove brackets
+        race = race.replace('(','').replace(')','')
+        
         all_countries = []
         #Sometimes we get double races (e.g Chinese-American)
         for race in race.split('-' if '-' in race else ' '):
@@ -429,6 +452,12 @@ class CountryHelper:
         return all_countries if len(all_countries) > 1 else all_countries[0]
 
     def fix_country_naming(self, countries:Union[str,list]) -> Union[str,list]:
+
+        def preprocess(country_name: str) -> str:
+            #Remove any text within parentheses and strip leading/trailing whitespace
+            country_name = re.sub(r'\s*\(.*?\)', '', country_name).strip()
+            return country_name
+
         replacements = {
             'USA': 'United States of America',
             'US': 'United States of America',
@@ -442,10 +471,12 @@ class CountryHelper:
             'Bosnia': 'Bosnia and Herz.'
         }
         if type(countries) is list:
+            countries = list(map(preprocess,countries))
             return [replacements.get(c, c) for c in countries]
         else:
+            countries = preprocess(countries)
             return replacements.get(countries, countries)
-    
+        
     def country2short(self,countries:Union[str,list]) -> Union[str,list]:
         if type(countries) is list:
             return [self._country2short.get(c,c) for c in countries]
@@ -602,7 +633,7 @@ class JobHelper:
         self.certifications = [
             "None","Non-tertiary Education",
             "Diploma","Associate Degree","Technical Education",
-            "Bachelor's Degree","Master's Degree", "Ph.D",
+            "Bachelor's Degree","Master's Degree", "Ph.D / Doctor",
         ]
         
         # self.sectors = list(set([
@@ -647,8 +678,8 @@ class JobHelper:
         if any(term in education for term in ["master's","mba","master’s"]):
             return "Master's Degree"
         
-        if any(term in education for term in ["phd","ph.d","psyd"]):
-            return "Ph.D"
+        if any(term in education for term in ["phd","ph.d","psyd","md in"]) or education == 'md':
+            return "Ph.D / Doctor"
         
         if "diploma" in education and "high school" not in education:
             return "Diploma"
@@ -669,7 +700,7 @@ class SexHelper:
             'F':'Female','Female':'Female',
             'M':'Male','Male':'Male',
             'Unknown':'Unknown',
-        }.get(sex, 'Other')
+        }.get(sex.strip(), 'Other')
 
 def squeeze_text(txt:str, width:int=25)->str:
     
