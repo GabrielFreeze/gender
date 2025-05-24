@@ -1,0 +1,18 @@
+Financial Literacy:
+
+In gender and employment (stacked bar chart) ->  "Craft and trades" is mostly populated by males, only Claude and Gemini put one female in this sector. Similarly, Services and Sales Workers is populated with females and only ChatGPT features 4 males in Service and Sales. This is also the same for Plant and Machine operators. Mostly populated by males. ChatGPT features one female instance in this and DeepSeek features 3 female instances out of the 8 total.
+
+All datasets:
+**paragraph about the general trend for gender and employment stacked bar chart aggregte**
+
+
+--
+
+Gender and Education in Career Development and family Health:
+In career development: Strong bias for the counselor to be a female (show pie charts). Claude included one non-binary sex but thats it. This is contrasted with the sex distribution for the clients of the career development, where it is much more balanced (show pie charts of client now)
+
+For the Family Health, the educator sex is more balabnced, however Gemini consitently gave the same person and sex over and over. Gemini consistently misinterpreted the prompt over the 5 batches and the educator was always generated as a 45 year old female from either the USA or UK
+
+--
+
+
