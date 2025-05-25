@@ -324,10 +324,10 @@ class Map():
         self._label2color = dict(zip(labels,sns.color_palette("tab20", len(labels))))
 
     def draw(self,df:pd.DataFrame,x:str,
-                  title:str,cmap:str,y:str=None,
+                  title:str,cmap,y:str=None,
                   ax:Union[Tuple[Tuple[matplotlib.axes._axes.Axes]],None]=None,
-                  show:bool=False,log:bool=False, show_labels:bool=False,
-                  low_poly:bool=False,legend:bool=True,step:int=1,
+                  show:bool=False,log:bool=False, show_labels:bool=False, apply_hatching:bool=True,
+                  low_poly:bool=False,legend:bool=True,step:int=1,clamp_axis:Union[None,Tuple]=None,
                   max_count:int=15,legend_loc=[0,0,0,0]) -> matplotlib.axes._axes.Axes:
     
         legend_loc = [[0.15, 0.06, 0.71, 0.02][i]+j for i,j in enumerate(legend_loc)]
@@ -349,10 +349,14 @@ class Map():
         world = world.merge(x_counts, how='left', left_on='NAME', right_on=x)
         world[y] = world[y].fillna(negligible_value)
 
-        #Calculate min and max for better tick control
-        vmin = int(world[y][world[y]>negligible_value].min() // 10 * 10) \
-               if 'Age' in y else [0, 0.1][log]
-        vmax = int(world[y].max() // 10 * 10 + 10) if 'Age' in y else max_count
+        if clamp_axis is None:
+            #Calculate min and max for better tick control
+            vmin = int(world[y][world[y]>negligible_value].min() // 10 * 10) \
+                if 'Age' in y else [0, 0.1][log]
+            vmax = int(world[y].max() // 10 * 10 + 10) if 'Age' in y else max_count
+        else:
+            vmin,vmax = clamp_axis
+
         custom_ticks = \
             ([0,negligible_value,1] if log else []) + \
             list(range(int(vmin),int(vmax)+step,step))
@@ -379,25 +383,28 @@ class Map():
             }
         )
         
-        #Apply hatching + greying color for countries with neglibile values
-        for _, row in world.iterrows():
-            if row[y] <= negligible_value:
-                ax.add_geometries(
-                    [row.geometry],
-                    crs=ccrs.PlateCarree(),
-                    facecolor='lightgrey',
-                    edgecolor='black',
-                    linewidth=0.1,
-                    alpha=0.8,
-                    hatch='///'
-                )
+        if apply_hatching:
+            #Apply hatching + greying color for countries with neglibile values
+            for _, row in world.iterrows():
+                if row[y] <= negligible_value:
+                    ax.add_geometries(
+                        [row.geometry],
+                        crs=ccrs.PlateCarree(),
+                        facecolor='lightgrey',
+                        edgecolor='black',
+                        linewidth=0.1,
+                        alpha=0.8,
+                        hatch='///'
+                    )
 
         if show_labels:
             for _, row in world.iterrows():
-                if row[y] > vmin: 
+                if (clamp_axis is None and row[y] > vmin) or (clamp_axis is not None and abs(row[y])>=0.05): 
                     ax.text(
                         row['LABEL_X'],row['LABEL_Y'],
-                        f"{int(row[y])}" if row[y]>=1 else '',
+                        f"{int(row[y]) if clamp_axis is None else round(row[y],1)}",
+
+                        # f"{int(row[y])}" if row[y]>=1 else '',
                         fontsize=6, ha='center', va='center',
                         transform=ccrs.PlateCarree(),
                         color='black', alpha=0.8,

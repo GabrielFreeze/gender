@@ -1,3 +1,25 @@
+Gender Representation:
+In cases where two persons are generated (the student and the educator), there exists a heavy inclination for the educator to be a female, as can be seen by Career Development (counselor) and Family Health (educator).
+
+For the student representation, the gender seems to be quite balanced.
+
+For the Family Health, the educator sex is more balabnced, however Gemini consitently gave the same person and sex over and over. Gemini consistently misinterpreted the prompt over the 5 batches and the educator was always generated as a 45 year old female from either the USA or UK
+
+--
+
+Gender and Age:
+In general the students mentioned seemed to follow a clear trend, males were more likely to be older than females. As shown by the distribution graphs as well as the table below showing the mean ages.  This was true for both students and educators.
+
+The average age across all datasets for male students  was ~44 years while the average age for female students was ~38 years.
+
+Additionally the population pyramids show that females were more likely to be under the age of 40 than men.
+
+The trend was also similar for the educators in Family Health and Career Development. 
+
+--
+
+Gender and Employment:
+
 Financial Literacy:
 
 In gender and employment (stacked bar chart) ->  "Craft and trades" is mostly populated by males, only Claude and Gemini put one female in this sector. Similarly, Services and Sales Workers is populated with females and only ChatGPT features 4 males in Service and Sales. This is also the same for Plant and Machine operators. Mostly populated by males. ChatGPT features one female instance in this and DeepSeek features 3 female instances out of the 8 total.
@@ -5,14 +27,35 @@ In gender and employment (stacked bar chart) ->  "Craft and trades" is mostly po
 All datasets:
 **paragraph about the general trend for gender and employment stacked bar chart aggregte**
 
+Family Health: Also is heavily biased in 'Service and Sales Workers' and 'Craft and Related Trades Workers' and 'Plant and machine Operators and Assemblers'.
+
+The rest of the datasets feature balance representation in gender and employment.
+
 
 --
 
-Gender and Education in Career Development and family Health:
-In career development: Strong bias for the counselor to be a female (show pie charts). Claude included one non-binary sex but thats it. This is contrasted with the sex distribution for the clients of the career development, where it is much more balanced (show pie charts of client now)
+Gender and Education:
 
-For the Family Health, the educator sex is more balabnced, however Gemini consitently gave the same person and sex over and over. Gemini consistently misinterpreted the prompt over the 5 batches and the educator was always generated as a 45 year old female from either the USA or UK
+In Career Development, females are twice as likely to have a Masters Degree than Males (14 males, 28 females). 
+
+In Family Health, males are more likely to only have non-tertiary education (eg. High School, A-Levels) than females. On the other hand, females are more likely to have a bachelors degree. 
+
+In  Financial literacy, its vice versa (males less likely to only have non-tertertiary education and more likely for bachelors degree.)
+
+Regarding Media Literacy, sexes are more balanced across different qualifications
+
 
 --
 
+Gender and Race:
+
+South American races (latinos, hispanic, etc) tended to always be represented by a female surplus in case studies, with the exception for the family health dataset.
+
+Moreover, european races (eg. Slavic, Mediterranean, White) tended to have a male surplus.
+
+asian races (south-east asian, indian, chinese, ) either tended to have a significant male surplus or a female surplus, but never equal.
+
+Africa consistently had a male majority, except by Gemini in the Famsily Health dataset for students, Career Development for students, and DeepSeek in the Media Literacy.
+
+DeepSeek in Media literacy had a female surplus for the entire world except for south-asian countries.
 
