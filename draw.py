@@ -78,7 +78,7 @@ class Histogram():
                 })
             )
 
-            fig.suptitle(f'Distribution of {x} by Model (Aggregate)' if y=='count' else f'Mean {y} Distribution in {x} by Model', 
+            fig.suptitle(f'Distribution of {x} by Model (Aggregate)' if y=='count' else f'Mean {y} Distribution in {x} (Aggregate)', 
                          fontsize=title_size, y=0.965, fontweight='bold', color='#333333')
             plt.xlabel(x, fontsize=14, fontweight='medium', labelpad=15)
             plt.ylabel(y.capitalize(), fontsize=14, fontweight='medium', labelpad=15)
@@ -96,7 +96,7 @@ class Histogram():
                                      
                     handles = [
                         matplotlib.patches.Patch(
-                            color=[self.colorH.label2color,self.colorH.region2color]['Region' in hue](h),
+                            color=[self.colorH.label2color,self.colorH.region2color][any(word in hue for word in ['Region', 'Country', 'Continent'])](h),
                             label=h
                         )
                         for h in (df[hue].unique()\
@@ -211,6 +211,7 @@ class Histogram():
                         ha='center', va='top', fontsize=10, color='black'
                     )
             if hue and legend is not None and i==0:
+                print(hue)
                 _legend = ax.legend(
                     title=f'{hue}',frameon=True, framealpha=0.95,
                     fontsize=title_size-4,
@@ -221,7 +222,7 @@ class Histogram():
                         [matplotlib.patches.Patch,matplotlib.lines.Line2D][swarm](
                             label=h,
                             **({
-                                'color':[self.colorH.label2color,self.colorH.region2color]['Region' in hue](h)
+                                'color':[self.colorH.label2color,self.colorH.region2color][any(word in hue for word in ['Region', 'Country', 'Continent'])](h)
                             } if not swarm else {
                                 #Display handles using dots instead of a bar
                                 'xdata':[0],'ydata':[0],'color':'w',
@@ -384,9 +385,9 @@ class Map():
         )
         
         if apply_hatching:
-            #Apply hatching + greying color for countries with neglibile values
+            #Apply hatching + greying color for countries with values in range [-negligible_value, negligible_value]
             for _, row in world.iterrows():
-                if row[y] <= negligible_value:
+                if -negligible_value <= row[y] <= negligible_value:
                     ax.add_geometries(
                         [row.geometry],
                         crs=ccrs.PlateCarree(),
@@ -399,7 +400,7 @@ class Map():
 
         if show_labels:
             for _, row in world.iterrows():
-                if (clamp_axis is None and row[y] > vmin) or (clamp_axis is not None and abs(row[y])>=0.05): 
+                if not (-negligible_value <= row[y] <= negligible_value) and ((clamp_axis is None and row[y] > vmin) or (clamp_axis is not None and abs(row[y])>=0.05)):
                     ax.text(
                         row['LABEL_X'],row['LABEL_Y'],
                         f"{int(row[y]) if clamp_axis is None else round(row[y],1)}",
@@ -700,7 +701,7 @@ class StackedBar():
     def draw(self, df:pd.DataFrame, x:str, stacked_hue:str,
          dataset:str=None, hue:str='model', ylim:int=5, ystep:int=1,grid:bool=True,
          figsize:Tuple[int, int]=(16,12), space:float=0, bar_labels:bool=False,
-         txt_width:int=None, aggregate:bool=False, legend:bool=True):
+         txt_width:int=None, aggregate:bool=False, legend:bool=True,skip_first_xlabel:bool=False):
 
         fig = plt.figure(figsize=figsize)
         gs = gridspec.GridSpec(4, 1, figure=fig, wspace=space, hspace=space)
@@ -847,9 +848,13 @@ class StackedBar():
                 ax.set_xlabel(x if i == len(df[hue].unique()) - 1 else "")
                 ax.set_xticks(range(len(pivot_df)))
 
-                # Set y-axis limits and labels
+                # Set axis limits and labels
                 ax.set_yticks(range(0, ylim+1, ystep))
                 ax.set_ylabel('Frequency')
+                ax.set_xlabel(x if i == 3 else "")
+
+                ax.set_xticks(range(skip_first_xlabel,len(pivot_df)+1))
+                    
 
                 # Style the spines
                 for spine in ax.spines.values():

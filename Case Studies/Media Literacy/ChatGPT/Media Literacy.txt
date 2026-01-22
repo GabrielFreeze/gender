@@ -1,0 +1,289 @@
+Case Study 1: The Viral Health Hoax
+
+Name: Anna, Gender: Female, Age: 45, Ethnicity: White, Country: USA, Education: High School Diploma, Employment: Office Administrator
+
+Anna, a mother of two, came across a viral Facebook post claiming that drinking baking soda daily could "cure" cancer. Distrustful of pharmaceutical companies, she shared it widely. After convincing a friend to try this method instead of chemotherapy, she later learned from a doctor that the claim was false. She now questions how to verify health information online.
+
+Case Study 2: The Political Deepfake
+
+Name: Ahmed, Gender: Male, Age: 52, Ethnicity: Arab, Country: UK, Education: Bachelor’s Degree, Employment: Small Business Owner
+
+Ahmed saw a WhatsApp video of a political candidate allegedly making racist remarks. Outraged, he shared it with his community. A fact-check later revealed it was an AI-generated deepfake. This experience left Ahmed questioning how to distinguish real videos from manipulated ones.
+
+Case Study 3: The Financial Scam
+
+Name: Maria, Gender: Female, Age: 60, Ethnicity: Hispanic, Country: Spain, Education: Secondary Education, Employment: Retired Teacher
+
+Maria received an email from what she believed was her bank, warning of a security breach. Panicked, she clicked the link and entered her credentials. Later, she discovered her account had been drained. She now seeks to understand phishing tactics and online fraud prevention.
+
+Case Study 4: The Climate Misinformation Loop
+
+Name: George, Gender: Male, Age: 40, Ethnicity: White, Country: Australia, Education: High School Diploma, Employment: Construction Worker
+
+George follows a YouTube channel that claims climate change is a hoax. He dismisses reports of extreme weather, believing they are media fabrications. During a local wildfire, he ignored evacuation warnings, thinking they were exaggerated. This event made him reconsider his stance on verifying sources.
+
+Case Study 5: The Conspiracy Forum
+
+Name: Viktor, Gender: Male, Age: 38, Ethnicity: Slavic, Country: Poland, Education: Master’s Degree, Employment: IT Specialist
+
+Viktor, an avid internet user, joined an online forum discussing secret government operations. Over time, he became convinced that global elites were controlling the food supply. He stopped buying supermarket products, relying on homegrown alternatives. After encountering fact-based discussions, he began questioning his sources.
+
+Case Study 6: The AI-Generated News Site
+
+Name: Sarah, Gender: Female, Age: 33, Ethnicity: Black, Country: Canada, Education: Bachelor’s Degree, Employment: Journalist
+
+Sarah stumbled upon an AI-generated news site that claimed a major city had enacted extreme lockdowns. Without verifying, she tweeted it to her followers. When the city’s officials denied the claims, Sarah faced backlash. This experience made her more critical of AI-generated content.
+
+Case Study 7: The Fake Job Offer
+
+Name: Daniel, Gender: Male, Age: 29, Ethnicity: Mixed-Race, Country: Germany, Education: Vocational Training, Employment: Unemployed
+
+Daniel received a job offer via LinkedIn promising remote work with high pay. The recruiter asked for an upfront “training fee.” After paying, he never heard back. Realizing it was a scam, Daniel is now cautious about online job listings and recruitment fraud.
+
+Case Study 8: The Social Media Echo Chamber
+
+Name: Mei, Gender: Female, Age: 50, Ethnicity: Chinese, Country: Singapore, Education: Bachelor’s Degree, Employment: Accountant
+
+Mei followed social media pages that reinforced her distrust of mainstream medicine. During the pandemic, she refused vaccinations, believing misinformation about microchips. A severe illness changed her perspective, leading her to re-evaluate how algorithms shape her online experience.
+
+Case Study 9: The Celebrity Endorsement Scam
+
+Name: Ricardo, Gender: Male, Age: 42, Ethnicity: Latino, Country: Brazil, Education: Secondary Education, Employment: Taxi Driver
+
+Ricardo invested in a cryptocurrency after seeing a fake ad featuring a well-known footballer. He later discovered the endorsement was fabricated, and the scheme was fraudulent. This loss taught him the importance of verifying financial information before investing.
+
+Case Study 10: The Manipulated Historical Narrative
+
+Name: Olga, Gender: Female, Age: 55, Ethnicity: Russian, Country: Russia, Education: Doctorate, Employment: University Professor
+
+Olga read an article denying documented historical events. She incorporated these claims into her lectures, only to be challenged by students who presented verified historical records. Confronted with evidence, she realized how easy it is for even educated individuals to fall for historical revisionism.
+
+Case Study 1: Vaccine Misinformation
+
+Profile: Female, 42, White, USA, College Degree, Nurse
+Emma, a nurse, followed a social media influencer who claimed vaccines cause infertility. She hesitated to get a booster shot and discouraged her patients from doing so. After attending a hospital training session on vaccine science, she realized she had been misled by selective data and personal anecdotes.
+
+Case Study 2: Deepfake Politics
+
+Profile: Male, 55, Asian, UK, High School, Small Business Owner
+Raj saw a viral video of a politician seemingly making racist remarks. Outraged, he shared it with his network, calling for protests. Later, fact-checkers revealed it was a deepfake. Raj reflected on his quick judgment and now verifies sources before sharing content.
+
+Case Study 3: Financial Scam
+
+Profile: Female, 61, Black, Canada, Vocational Training, Retired Teacher
+Margaret received an email from what seemed to be her bank, warning of unauthorized transactions. Panicked, she followed the link and entered her credentials. A week later, her savings were drained. After filing a report, she learned how phishing scams exploit emotional responses.
+
+Case Study 4: Climate Change Denial
+
+Profile: Male, 47, White, Australia, College Degree, Engineer
+Daniel followed an online forum where users claimed climate change was a hoax created for political gain. His skepticism led him to ignore environmental regulations at work. After engaging with peer-reviewed research, he started questioning his previous assumptions and adjusted his views.
+
+Case Study 5: Alternative Medicine Trap
+
+Profile: Female, 39, Hispanic, USA, Some College, Stay-at-home Mom
+Carla, worried about her son's allergies, joined a natural health group online. Members discouraged her from seeking medical advice, pushing unproven herbal remedies instead. When her son’s condition worsened, she consulted a doctor and realized the dangers of alternative health misinformation.
+
+Case Study 6: Crypto Pyramid Scheme
+
+Profile: Male, 30, Middle Eastern, Germany, Master’s Degree, IT Professional
+Omar invested in a new cryptocurrency after watching YouTube videos promising high returns. He convinced friends to join, believing it was a revolutionary opportunity. When the platform collapsed, he lost thousands. This experience made him research financial schemes more critically.
+
+Case Study 7: Anti-Immigration Hoax
+
+Profile: Female, 58, White, France, High School, Office Administrator
+Brigitte read an article claiming immigrants received more welfare benefits than citizens. Enraged, she shared it widely. A colleague later showed her government reports debunking this claim. She realized the article manipulated statistics to fuel anti-immigrant sentiment.
+
+Case Study 8: Fake Celebrity Endorsements
+
+Profile: Male, 65, Black, South Africa, High School, Retired Factory Worker
+Jacob saw a Facebook ad featuring a famous footballer promoting a miracle weight-loss pill. Trusting the endorsement, he spent money on fake products. His son later explained how scammers use AI to create fake endorsements.
+
+Case Study 9: Conspiracy Rabbit Hole
+
+Profile: Female, 50, Asian, USA, Bachelor’s Degree, Accountant
+Linda, feeling isolated during the pandemic, watched YouTube videos on secret global elites. Over time, she distrusted mainstream news and stopped following COVID-19 precautions. A family intervention helped her recognize the manipulative tactics used by conspiracy theorists.
+
+Case Study 10: War Propaganda
+
+Profile: Male, 40, Hispanic, Spain, High School, Security Guard
+Pedro followed a Telegram channel that posted battlefield footage claiming one side was committing atrocities. Moved by emotion, he donated to extremist groups. Later, journalists exposed the videos as repurposed clips from old conflicts. Pedro now cross-checks war-related information before reacting.
+
+Case Study 1: The Investment Trap
+
+    Name: John, Gender: Male, Age: 52, Ethnicity: White, Country: USA, Education: Bachelor's in Business, Employment: Small Business Owner
+    John followed an online financial guru who promised high returns on cryptocurrency investments. The influencer’s videos, filled with testimonials and selective success stories, convinced him to invest heavily. When the market crashed, John lost most of his savings. Later, he discovered the influencer was promoting a scam project, earning commissions from referrals. This experience made him realize the importance of verifying financial advice, identifying conflicts of interest, and critically assessing online sources rather than relying on persuasive narratives.
+
+Case Study 2: The Health Misinformation Spiral
+
+    Name: Maria, Gender: Female, Age: 45, Ethnicity: Latina, Country: Mexico, Education: High School Diploma, Employment: Retail Worker
+    Maria came across a viral social media post claiming that a herbal remedy could cure diabetes. Skeptical of pharmaceutical companies, she stopped taking her prescribed medication and relied solely on the alternative treatment. Her condition worsened, leading to hospitalization. Only after a doctor explained the dangers of misinformation did she realize the post had no scientific backing. This experience highlighted the risks of health misinformation and the importance of seeking medical advice from reputable professionals rather than unverified online claims.
+
+Case Study 3: Political Echo Chamber
+
+    Name: Ahmed, Gender: Male, Age: 60, Ethnicity: Arab, Country: UK, Education: Master's in Engineering, Employment: Retired Civil Engineer
+    Ahmed, an active social media user, followed news pages aligned with his political beliefs. Over time, he was exposed only to one-sided perspectives, reinforcing his views and deepening his distrust of mainstream media. A fact-checking workshop made him realize how algorithm-driven content personalization had trapped him in an echo chamber. After learning to cross-check information and consult diverse sources, he became more aware of bias in news reporting and the importance of seeking balanced viewpoints.
+
+Case Study 4: The Conspiracy Rabbit Hole
+
+    Name: Lisa, Gender: Female, Age: 38, Ethnicity: White, Country: Australia, Education: Bachelor's in Psychology, Employment: Office Administrator
+    Lisa stumbled upon a YouTube channel promoting conspiracy theories about global elites controlling the world. Initially skeptical, she kept watching out of curiosity, but the videos’ suggestive framing and emotionally charged content gradually influenced her beliefs. She began distrusting government institutions and spreading misinformation among friends. It was only after attending a media literacy seminar that she understood how manipulation techniques, like selective evidence and fear-based rhetoric, had shaped her views.
+
+Case Study 5: Deepfake Deception
+
+    Name: Raj, Gender: Male, Age: 42, Ethnicity: Indian, Country: Canada, Education: Bachelor's in IT, Employment: Software Developer
+    Raj received a video of a well-known politician making racist remarks. Outraged, he shared it widely, only to later discover it was a deepfake—a digitally altered video. The incident made him realize how advanced technology could be used to spread falsehoods. He now fact-checks suspicious media using reverse image searches and deepfake detection tools before sharing content online.
+
+Case Study 6: Misleading Climate Change Claims
+
+    Name: Sophie, Gender: Female, Age: 50, Ethnicity: White, Country: Germany, Education: PhD in Environmental Science, Employment: University Professor
+    Despite her academic background, Sophie fell for misleading reports shared in professional networks suggesting that climate change was exaggerated. These reports cited manipulated data and industry-funded studies. A colleague pointed her to credible peer-reviewed research that debunked these claims. Sophie now teaches students how to identify biased sources, understand scientific consensus, and recognize the influence of vested interests in media narratives.
+
+Case Study 7: Manipulated Crime Statistics
+
+    Name: David, Gender: Male, Age: 55, Ethnicity: Black, Country: USA, Education: Associate Degree, Employment: Security Guard
+    David often watched a news channel that exaggerated crime rates in urban areas, making him fearful of his surroundings. The reports omitted context, such as long-term crime trends or the impact of socioeconomic factors. After attending a media literacy workshop, he learned to analyze crime data from official sources, realizing that the media’s selective reporting had distorted his perception of reality.
+
+Case Study 8: The Celebrity Hoax
+
+    Name: Emma, Gender: Female, Age: 29, Ethnicity: White, Country: France, Education: Bachelor's in Marketing, Employment: Social Media Manager
+    Emma saw a viral post claiming a famous actor had passed away. Distraught, she shared the news without verifying it. Hours later, the actor himself debunked the hoax. Realizing how easily misinformation spreads online, Emma now double-checks sources before posting and educates her colleagues on responsible social media practices.
+
+Case Study 9: Fake Job Scam
+
+    Name: Luis, Gender: Male, Age: 34, Ethnicity: Hispanic, Country: Spain, Education: High School Diploma, Employment: Freelancer
+    Luis received an email offering a high-paying remote job. The employer asked for an upfront payment for training materials, which he provided. When communication ceased, he realized he had been scammed. He now verifies job offers through official company websites and warns others about employment fraud in online job-seeking communities.
+
+Case Study 10: The AI-Generated News Hoax
+
+    Name: Fatima, Gender: Female, Age: 47, Ethnicity: Middle Eastern, Country: UAE, Education: Master's in Journalism, Employment: News Editor
+    Fatima encountered an AI-generated article filled with convincing but entirely fabricated news. Initially, she almost published it but later discovered inconsistencies. She now trains journalists to detect AI-generated misinformation, emphasizing cross-referencing sources, recognizing synthetic content, and critically evaluating emerging technologies in news production.
+
+Case Study 1: Vaccine Hesitancy Due to Misinformation
+
+    Person: Maria, Female, 45, Hispanic, USA
+    Education: High school diploma
+    Employment: Retail worker
+
+Maria followed a Facebook group that frequently posted about vaccine dangers. Despite health officials’ reassurances, she believed mRNA vaccines altered DNA. She refused COVID-19 vaccination, influenced by viral stories of alleged side effects. When she contracted COVID-19, she experienced severe complications. Later, her doctor clarified the misinformation, but Maria remained skeptical, citing online testimonials over expert advice.
+
+Case Study 2: Political Disinformation on WhatsApp
+
+    Person: Raj, Male, 55, Indian, UK
+    Education: Bachelor’s degree
+    Employment: Small business owner
+
+Raj was an active participant in WhatsApp groups discussing UK politics. During elections, he received forwarded messages falsely claiming a political candidate planned to raise taxes on small businesses. Without verifying, he shared the message widely, convinced it was true. Later, fact-checkers debunked the claim, but Raj still believed it, arguing mainstream media was biased.
+
+Case Study 3: Climate Change Denial via YouTube
+
+    Person: Thomas, Male, 60, White, Australia
+    Education: Technical certification
+    Employment: Retired electrician
+
+Thomas, an avid YouTube user, watched videos claiming climate change was a hoax. He dismissed scientific evidence, convinced that climate policies were a government control strategy. When Australia experienced extreme weather events, he attributed them to natural cycles. His skepticism influenced his family, discouraging them from supporting environmental policies.
+
+Case Study 4: 5G and Health Scare on TikTok
+
+    Person: Amina, Female, 38, Arab, Canada
+    Education: High school diploma
+    Employment: Stay-at-home mother
+
+Amina frequently watched TikTok videos claiming 5G technology caused cancer. She refused to let her children near 5G towers and discouraged neighbors from using 5G phones. When her town upgraded its mobile infrastructure, she started a protest. Experts explained 5G’s safety, but Amina trusted social media influencers over scientists.
+
+Case Study 5: Financial Scam via Fake News Website
+
+    Person: Jean-Pierre, Male, 50, Black, France
+    Education: Master’s degree
+    Employment: Engineer
+
+Jean-Pierre read an article claiming a well-known entrepreneur had discovered a secret cryptocurrency investment method. The website appeared legitimate, with fake testimonials. He invested €5,000, expecting high returns. When the website disappeared, he realized he had been scammed. Despite warnings from financial authorities, he blamed banks for covering up investment opportunities.
+
+Case Study 6: QAnon Conspiracy Theories on Telegram
+
+    Person: Linda, Female, 48, White, USA
+    Education: Associate degree
+    Employment: Administrative assistant
+
+Linda joined a Telegram group that promoted QAnon conspiracies. She became convinced of a secret global elite controlling governments. When a mass arrest prophecy failed, she rationalized it as part of a bigger plan. Her belief in these theories led to conflicts with family, who struggled to bring her back to reality.
+
+Case Study 7: Anti-Immigrant Misinformation on Twitter
+
+    Person: Jürgen, Male, 52, White, Germany
+    Education: Bachelor’s degree
+    Employment: Factory supervisor
+
+Jürgen followed social media accounts sharing misleading crime statistics about immigrants. A viral post falsely claimed refugees committed most violent crimes in Germany. Though official statistics disproved this, he continued sharing similar content, believing mainstream media suppressed the truth. His views influenced workplace discussions, creating tensions among colleagues.
+
+Case Study 8: False Health Cure Promoted on Facebook
+
+    Person: Sofia, Female, 58, Hispanic, Argentina
+    Education: High school diploma
+    Employment: Self-employed baker
+
+Sofia believed in alternative medicine and followed a Facebook group promoting a homemade herbal remedy for diabetes. Encouraged by testimonials, she stopped taking prescribed medication. Her condition worsened, and her doctor warned her about the risks of untreated diabetes. She remained convinced pharmaceuticals were harmful, citing social media over medical professionals.
+
+Case Study 9: Deepfake Video Manipulation on Instagram
+
+    Person: Karim, Male, 40, Arab, UAE
+    Education: Master’s degree
+    Employment: IT consultant
+
+Karim saw a viral deepfake video showing a political leader making controversial statements. Outraged, he shared it, unaware it was AI-generated. Fact-checkers later debunked it, but Karim insisted the politician was still corrupt, demonstrating how initial misinformation shaped his perception even after correction.
+
+Case Study 10: Phishing Scam via Fake News Email
+
+    Person: Elena, Female, 62, White, Spain
+    Education: High school diploma
+    Employment: Retired teacher
+
+Elena received an email claiming her bank account was compromised due to a cyberattack reported on news sites. The email looked official, with links to a fake banking login page. She entered her credentials, unknowingly giving scammers access. When she lost money, she realized too late that she had been deceived.
+
+Case Study 1: Deepfake Deception
+
+(Male, 45, Caucasian, USA, College Degree, IT Manager)
+John saw a viral video of a politician making controversial remarks. Outraged, he shared it widely on social media. Later, fact-checkers debunked the video as a deepfake. Embarrassed, John realized he had been misled. He struggled with trusting online content afterward and sought ways to verify information before sharing.
+
+Case Study 2: Health Hoax
+
+(Female, 52, African American, USA, High School Diploma, Small Business Owner)
+Linda followed an alternative health page promoting “miracle cures” for diabetes. Convinced that cinnamon alone could replace her insulin, she stopped taking her prescribed medication. Her condition worsened, leading to hospitalization. A doctor later explained how misleading health claims can endanger lives.
+
+Case Study 3: Investment Scam
+
+(Male, 38, South Asian, UK, Master’s Degree, Accountant)
+Raj received a social media ad for a cryptocurrency promising 500% returns. Trusting the professional-looking website, he invested his savings. The site disappeared overnight, and he realized it was a scam. Seeking legal action, he learned the importance of verifying investment opportunities through official financial regulatory bodies.
+
+Case Study 4: Political Misinformation
+
+(Female, 60, Hispanic, Mexico, High School Diploma, Retired Teacher)
+Maria relied on WhatsApp for news and received messages claiming a political candidate planned to ban religious gatherings. She spread the message within her church community. Later, she learned the claim was baseless propaganda. The incident made her more skeptical of unverified forwarded messages.
+
+Case Study 5: False Crime Reports
+
+(Male, 55, Caucasian, Canada, Bachelor’s Degree, Police Officer)
+Steve read a Facebook post claiming an immigrant gang was responsible for local crimes. He shared it in a neighborhood watch group. A journalist later debunked the story, revealing it was fabricated. This experience made Steve rethink how quickly he trusted sources that aligned with his biases.
+
+Case Study 6: Phony Job Offer
+
+(Female, 34, Middle Eastern, UAE, Bachelor’s Degree, Unemployed)
+Aisha received an email from a recruiter offering a lucrative job abroad. She paid a "visa processing fee" but never heard back. After reporting it to authorities, she realized how common employment scams are and started educating others on identifying fraudulent job postings.
+
+Case Study 7: 5G Conspiracy Theory
+
+(Male, 42, African, South Africa, Technical Diploma, Electrician)
+David saw YouTube videos claiming 5G towers caused COVID-19. He convinced his community to protest a new tower installation. Scientists later debunked the myth, and David regretted his actions. He joined media literacy workshops to learn how to fact-check health and technology claims.
+
+Case Study 8: Fake Charity Appeal
+
+(Female, 50, Asian, Australia, College Degree, Social Worker)
+Mei received an emotional plea for donations to help earthquake victims via a crowdfunding link. She donated and shared it widely. A week later, authorities flagged the fundraiser as fraudulent. Mei felt betrayed and learned to verify charities through official platforms before donating.
+
+Case Study 9: AI-Generated Fake News
+
+(Male, 29, Latino, Brazil, High School Graduate, Delivery Driver)
+Carlos read an article about a celebrity endorsing a new energy drink. Excited, he spent his savings buying and reselling the product. Later, he discovered the endorsement was AI-generated and fake. The incident taught him the risks of misinformation in digital advertising.
+
+Case Study 10: Misleading Climate Data
+
+(Female, 47, Caucasian, Germany, PhD, University Professor)
+Elena, a climate scientist, encountered a viral infographic claiming global temperatures had decreased. Curious, she traced the data and found it was manipulated to mislead. She used the case to teach her students how selective data presentation can distort reality.

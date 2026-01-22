@@ -612,7 +612,11 @@ class ColorHelper:
             'South America': '#FFA000','Caribbean': '#FFEB3B', 
 
             'Polynesia': '#BA68C8','Melanesia': '#CE93D8',
-            'Micronesia': '#AB47BC','Australia and New Zealand': '#7B1FA2'
+            'Micronesia': '#AB47BC','Australia and New Zealand': '#7B1FA2',
+
+            'Africa':'#98daa7','Europe':'#abc9ea','Asia':'#efb792',
+            'Americas':'#FFEB3B','Oceania':'#d3c4f7',
+            
         }
 
     def label2color(self, label: str) -> str:
